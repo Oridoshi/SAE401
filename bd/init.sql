@@ -15,6 +15,7 @@ CREATE TABLE Etudiant (
     cursus VARCHAR(20),
     absence int,
     annee int,
+    avis boolean,
     PRIMARY KEY (id_etudiant, code_etu)
 );
 
