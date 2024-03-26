@@ -1,0 +1,16 @@
+
+
+user(string login, string mdp, bool permissions)
+
+etudiant((int etudid,string code_etu), string nom, string prenom, string parcours, int rang, string groupeTD,
+		  string groupeTP, string cursus, int absence)
+
+resultats( (etudiant, int semstre), [bin1... bin6],  )
+
+competence(etudiant, idBin, [idRessources], moyenne, string validation)
+
+ressources(etudiant, idBin,  idRessources, noteMoy, libelle )
+
+
+// significationet
+[x ... x] : liste d'éléments
