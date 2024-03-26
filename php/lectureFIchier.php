@@ -3,10 +3,8 @@
 
     use PhpOffice\PhpSpreadsheet\IOFactory;
 
-    function lectureFichier(){
-        $excelFilePath= "/home/hugo/IUT/TP/s4/s4.01_dev_application/SAE401/donnees/S1 FI jury.xlsx";
-
-        $spreadsheet = IOFactory::load($excelFilePath);
+    function lectureFichier($path){
+        $spreadsheet = IOFactory::load($path);
 
         $worksheet = $spreadsheet->getActiveSheet();
 
@@ -26,5 +24,7 @@
             }
         }
 
+        unlink($path);
+        
         return $values;
     }
