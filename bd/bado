@@ -1,7 +1,3 @@
-
-
-user(string login, string mdp, bool permissions)
-
 etudiant((int etudid,string code_etu), string nom, string prenom, string parcours, int rang, string groupeTD,
 		  string groupeTP, string cursus, int absence, int annee)
 
