@@ -13,7 +13,9 @@ class Etudiant {
 	private $absence;
 	private $annee;
 
-	public function __construct($id_etudiant, $code_etu, $nom, $prenom, $parcours, $rang, $groupe_TD, $groupe_TP, $cursus, $absence, $annee) {
+	private $avis;
+
+	public function __construct($id_etudiant, $code_etu, $nom, $prenom, $parcours, $rang, $groupe_TD, $groupe_TP, $cursus, $absence, $annee, $avis) {
 		$this->id_etudiant = $id_etudiant;
 		$this->code_etu = $code_etu;
 		$this->nom = $nom;
@@ -25,6 +27,7 @@ class Etudiant {
 		$this->cursus = $cursus;
 		$this->absence = $absence;
 		$this->annee = $annee;
+		$this->avis = $avis;
 	}
 
 	public function getIdetudiant() { return $this->id_etudiant; }
