@@ -1,5 +1,0 @@
-serveur: SAE4.01
-hostname : S6.SAE.fr
-port : 5432
-user : user
-pwd : user
