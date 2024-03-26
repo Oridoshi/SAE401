@@ -1,9 +1,9 @@
-DROP TABLE IF EXISTS etudiant;
-DROP TABLE IF EXISTS resultats;
+DROP TABLE IF EXISTS Etudiant;
+DROP TABLE IF EXISTS Resultats;
 DROP TABLE IF EXISTS competence;
 DROP TABLE IF EXISTS ressources;
 
-CREATE TABLE etudiant (
+CREATE TABLE Etudiant (
     id_etudiant int,
     code_etu VARCHAR(10),
     nom VARCHAR(30),
@@ -18,34 +18,34 @@ CREATE TABLE etudiant (
     PRIMARY KEY (id_etudiant, code_etu)
 );
 
-CREATE TABLE resultats (
+CREATE TABLE Resultats (
     id_etudiant int,
     code_etu VARCHAR(10),
     id_resultat int,
     id_comp int[],
     PRIMARY KEY (id_etudiant, code_etu, id_resultat),
-    FOREIGN KEY (id_etudiant, code_etu) REFERENCES etudiant(id_etudiant, code_etu)
+    FOREIGN KEY (id_etudiant, code_etu) REFERENCES Etudiant(id_etudiant, code_etu)
 );
 
-CREATE TABLE competence (
+CREATE TABLE Competence (
     id_etudiant int,
     code_etu VARCHAR(10),
-    idBin VARCHAR(10),
+    id_Bin VARCHAR(10),
     lstRessources int[],
     moyenne float,
     recommandation VARCHAR(10),
-    PRIMARY KEY (id_etudiant, code_etu, idBin),
-    FOREIGN KEY (id_etudiant, code_etu) REFERENCES etudiant(id_etudiant, code_etu)
+    PRIMARY KEY (id_etudiant, code_etu, id_Bin),
+    FOREIGN KEY (id_etudiant, code_etu) REFERENCES Etudiant(id_etudiant, code_etu)
 );
 
-CREATE TABLE ressources (
+CREATE TABLE Ressources (
     id_etudiant int,
     code_etu VARCHAR(10),
-    id_bin VARCHAR(10),
+    id_Bin VARCHAR(10),
     id_ressource int,
     notes float,
     lib VARCHAR(50),
-    PRIMARY KEY (id_etudiant, code_etu, id_bin, id_ressource),
-    FOREIGN KEY (id_etudiant, code_etu) REFERENCES etudiant(id_etudiant, code_etu),
-    FOREIGN KEY (id_etudiant, code_etu, id_bin) REFERENCES competence(id_etudiant, code_etu, idBin)
+    PRIMARY KEY (id_etudiant, code_etu, id_Bin, id_ressource),
+    FOREIGN KEY (id_etudiant, code_etu) REFERENCES Etudiant(id_etudiant, code_etu),
+    FOREIGN KEY (id_etudiant, code_etu, id_Bin) REFERENCES Competence(id_etudiant, code_etu, id_Bin)
 );
