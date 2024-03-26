@@ -6,15 +6,15 @@ class Ressources{
 	private $id_Bin;
 	private $id_ressource;
 	private $notes;
-	private $lib;
+	private $libelle;
 
-	public function __construct($id_etudiant, $code_etu, $id_bin, $id_ressource, $notes, $lib){
+	public function __construct($id_etudiant, $code_etu, $id_bin, $id_ressource, $notes, $libelle){
 		$this->id_etudiant = $id_etudiant;
 		$this->code_etu = $code_etu;
 		$this->id_Bin = $id_bin;
 		$this->id_ressource = $id_ressource;
 		$this->notes = $notes;
-		$this->lib = $lib;
+		$this->libelle = $libelle;
 	}
 
 	public function getIdEtudiant(){ return $this->id_etudiant; }
@@ -27,7 +27,7 @@ class Ressources{
 
 	public function getNotes(){ return $this->notes; }
 
-	public function getLib(){ return $this->lib; }
+	public function getLibelle(){ return $this->libelle; }
 
 	public function setIdEtudiant($etudiant){ $this->id_etudiant = $etudiant; }
 
@@ -39,5 +39,5 @@ class Ressources{
 
 	public function setNotes($notes){ $this->notes = $notes; }
 
-	public function setLib($lib){ $this->lib = $lib; }
+	public function setLibelle($libelle){ $this->libelle = $libelle; }
 }
