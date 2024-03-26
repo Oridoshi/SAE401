@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS Etudiant;
-DROP TABLE IF EXISTS Resultats;
-DROP TABLE IF EXISTS competence;
 DROP TABLE IF EXISTS ressources;
+DROP TABLE IF EXISTS competence;
+DROP TABLE IF EXISTS Resultats;
+DROP TABLE IF EXISTS Etudiant;
 
 CREATE TABLE Etudiant (
     id_etudiant int,
