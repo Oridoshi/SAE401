@@ -35,6 +35,7 @@ CREATE TABLE Competence (
     code_etu VARCHAR(10),
     id_comp VARCHAR(10),
     moyenne float,
+    rang int,
     recommandation VARCHAR(10),
     PRIMARY KEY (id_etu, code_etu, id_comp),
     FOREIGN KEY (id_etu, code_etu) REFERENCES Etudiant(id_etu, code_etu)
