@@ -10,7 +10,6 @@ CREATE TABLE Etudiant (
     nom VARCHAR(30),
     prenom VARCHAR(30),
     parcours VARCHAR(20),
-    rang int,
     groupe_TD VARCHAR(2),
     groupe_TP VARCHAR(2),
     cursus VARCHAR(20),
@@ -25,6 +24,7 @@ CREATE TABLE Resultats (
     id_resultat int,
     id_comp int[],
     absence int,
+    rang int,
     moyenne float,
     PRIMARY KEY (id_etu, code_etu, id_resultat),
     FOREIGN KEY (id_etu, code_etu) REFERENCES Etudiant(id_etu, code_etu)

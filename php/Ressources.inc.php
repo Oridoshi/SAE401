@@ -1,41 +1,41 @@
 <?php
 
 class Ressources{
-	private $id_etudiant;
+	private $id_etu;
 	private $code_etu;
-	private $id_Bin;
-	private $id_ressource;
+	private $id_comp;
+	private $id_module;
 	private $notes;
 	private $libelle;
 
-	public function __construct($id_etudiant, $code_etu, $id_bin, $id_ressource, $notes, $libelle){
-		$this->id_etudiant = $id_etudiant;
+	public function __construct($id_etudiant, $code_etu, $id_comp, $id_module, $notes, $libelle){
+		$this->id_etu = $id_etudiant;
 		$this->code_etu = $code_etu;
-		$this->id_Bin = $id_bin;
-		$this->id_ressource = $id_ressource;
+		$this->id_comp = $id_comp;
+		$this->id_module = $id_module;
 		$this->notes = $notes;
 		$this->libelle = $libelle;
 	}
 
-	public function getIdEtudiant(){ return $this->id_etudiant; }
+	public function getIdEtudiant(){ return $this->id_etu; }
 
 	public function getCodeEtu(){ return $this->code_etu; }
 
-	public function getIdBin(){ return $this->id_Bin; }
+	public function getIdComp(){ return $this->id_comp; }
 
-	public function getIdRessource(){ return $this->id_ressource; }
+	public function getIdModule(){ return $this->id_module; }
 
 	public function getNotes(){ return $this->notes; }
 
 	public function getLibelle(){ return $this->libelle; }
 
-	public function setIdEtudiant($etudiant){ $this->id_etudiant = $etudiant; }
+	public function setIdEtudiant($etudiant){ $this->id_etu = $etudiant; }
 
 	public function setCodeEtu($etu){ $this->code_etu = $etu; }
 
-	public function setIdBin($bin){ $this->id_Bin = $bin; }
+	public function setIdComp($id_comp){ $this->id_comp = $id_comp; }
 
-	public function setIdRessource($ressource){ $this->id_ressource = $ressource; }
+	public function setIdModule($module){ $this->id_module = $module; }
 
 	public function setNotes($notes){ $this->notes = $notes; }
 
