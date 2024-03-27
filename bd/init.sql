@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS competenceModules;
 DROP TABLE IF EXISTS modules;
 DROP TABLE IF EXISTS competence;
 DROP TABLE IF EXISTS Resultats;
@@ -32,24 +33,31 @@ CREATE TABLE Resultats (
 CREATE TABLE Competence (
     id_etu int,
     code_etu VARCHAR(10),
-    id_bin VARCHAR(10),
-    lstRessources int[],
+    id_comp VARCHAR(10),
     moyenne float,
-    coef int,
     recommandation VARCHAR(10),
-    PRIMARY KEY (id_etu, code_etu, id_bin),
+    PRIMARY KEY (id_etu, code_etu, id_comp),
     FOREIGN KEY (id_etu, code_etu) REFERENCES Etudiant(id_etu, code_etu)
 );
 
 CREATE TABLE Modules (
     id_etu int,
     code_etu VARCHAR(10),
-    id_bin VARCHAR(10),
-    id_ressource int,
+    id_module VARCHAR(10),
     notes float,
-    coef int
     lib VARCHAR(50),
-    PRIMARY KEY (id_etu, code_etu, id_bin, id_ressource),
-    FOREIGN KEY (id_etu, code_etu) REFERENCES Etudiant(id_etu, code_etu),
-    FOREIGN KEY (id_etu, code_etu, id_bin) REFERENCES Competence(id_etu, code_etu, id_bin)
+    PRIMARY KEY (id_etu, code_etu, id_module),
+    FOREIGN KEY (id_etu, code_etu) REFERENCES Etudiant(id_etu, code_etu)
+);
+
+CREATE TABLE CompetenceModules (
+    id_etu int,
+    code_etu VARCHAR(10),
+    id_comp VARCHAR(10),
+    id_module VARCHAR(10),
+    coef float,
+    PRIMARY KEY (id_etu, code_etu, id_comp, id_module),
+    FOREIGN KEY (id_etu, code_etu, id_comp) REFERENCES Competence(id_etu, code_etu, id_comp),
+    FOREIGN KEY (id_etu, code_etu, id_module) REFERENCES Modules(id_etu, code_etu, id_module)
+
 );
