@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS ressources;
+DROP TABLE IF EXISTS modules;
 DROP TABLE IF EXISTS competence;
 DROP TABLE IF EXISTS Resultats;
 DROP TABLE IF EXISTS Etudiant;
@@ -24,6 +24,7 @@ CREATE TABLE Resultats (
     code_etu VARCHAR(10),
     id_resultat int,
     id_comp int[],
+    moyenne float,
     PRIMARY KEY (id_etu, code_etu, id_resultat),
     FOREIGN KEY (id_etu, code_etu) REFERENCES Etudiant(id_etu, code_etu)
 );
@@ -34,17 +35,19 @@ CREATE TABLE Competence (
     id_bin VARCHAR(10),
     lstRessources int[],
     moyenne float,
+    coef int,
     recommandation VARCHAR(10),
     PRIMARY KEY (id_etu, code_etu, id_bin),
     FOREIGN KEY (id_etu, code_etu) REFERENCES Etudiant(id_etu, code_etu)
 );
 
-CREATE TABLE Ressources (
+CREATE TABLE Modules (
     id_etu int,
     code_etu VARCHAR(10),
     id_bin VARCHAR(10),
     id_ressource int,
     notes float,
+    coef int
     lib VARCHAR(50),
     PRIMARY KEY (id_etu, code_etu, id_bin, id_ressource),
     FOREIGN KEY (id_etu, code_etu) REFERENCES Etudiant(id_etu, code_etu),
