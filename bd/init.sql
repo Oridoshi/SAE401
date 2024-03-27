@@ -14,7 +14,6 @@ CREATE TABLE Etudiant (
     groupe_TD VARCHAR(2),
     groupe_TP VARCHAR(2),
     cursus VARCHAR(20),
-    absence int,
     annee int,
     avis boolean,
     PRIMARY KEY (id_etu, code_etu)
@@ -25,6 +24,7 @@ CREATE TABLE Resultats (
     code_etu VARCHAR(10),
     id_resultat int,
     id_comp int[],
+    absence int,
     moyenne float,
     PRIMARY KEY (id_etu, code_etu, id_resultat),
     FOREIGN KEY (id_etu, code_etu) REFERENCES Etudiant(id_etu, code_etu)
