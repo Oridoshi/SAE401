@@ -9,14 +9,16 @@ class Resultat{
 	private $absence;
 	private $rang;
 	private $moyenne;
+	private $alternant;
 
-	public function __construct($id_etudiant, $code_etu, $id_resultat, $rang, $absence, $moyenne){
+	public function __construct($id_etudiant, $code_etu, $id_resultat, $rang, $absence, $moyenne, $alternant){
 		$this->id_etu = $id_etudiant;
 		$this->code_etu = $code_etu;
 		$this->id_resultat = $id_resultat;
 		$this->rang = $rang;
 		$this->absence = $absence;
 		$this->moyenne = $moyenne;
+		$this->alternant = $alternant;
 	}
 
 	public function addComp($id){
@@ -37,6 +39,8 @@ class Resultat{
 
 	public function getMoyenne(){ return $this->moyenne; }
 
+	public function getAlternant(){ return $this->alternant; }
+
 	public function setIdEtudiant($etudiant){ $this->id_etu = $etudiant; }
 
 	public function setCodeEtu($code){ $this->code_etu = $code; }
@@ -50,4 +54,6 @@ class Resultat{
 	public function setAbsence($absence){ $this->absence = $absence; }
 
 	public function setMoyenne($moyenne){ $this->moyenne = $moyenne; }
+
+	public function setAlternant($alternant){ $this->alternant = $alternant; }
 }
