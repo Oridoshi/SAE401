@@ -107,7 +107,5 @@ class DB{
         $query = "SELECT * FROM CompetenceModule;"
         return $this->execQuery($query, NULL, "CompetenceModule");
     }
-
-    private function insertEtudiants()
     
 }
