@@ -83,5 +83,31 @@ class DB{
         return $stmt->rowCount();
     }
 
+    public function selectEtudiants() {
+        $query = "SELECT * FROM Etudiant;"
+        return $this->execQuery($query, NULL, "Etudiant");
+    }
+
+    public function selectResultats() {
+        $query = "SELECT * FROM Resultat;"
+        return $this->execQuery($query, NULL, "Resultat");
+    }
+
+    public function selectCompertences() {
+        $query = "SELECT * FROM Competence;"
+        return $this->execQuery($query, NULL, "Competence");
+    }
+
+    public function selectModules() {
+        $query = "SELECT * FROM Module;"
+        return $this->execQuery($query, NULL, "Module");
+    }
+
+    public function selectCompetenceModule() {
+        $query = "SELECT * FROM CompetenceModule;"
+        return $this->execQuery($query, NULL, "CompetenceModule");
+    }
+
+    private function insertEtudiants()
     
 }
