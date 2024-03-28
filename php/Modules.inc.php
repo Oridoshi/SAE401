@@ -1,6 +1,6 @@
 <?php
 
-class Ressources{
+class Modules {
 	private $id_etu;
 	private $code_etu;
 	private $id_comp;
