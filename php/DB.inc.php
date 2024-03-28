@@ -83,5 +83,58 @@ class DB{
         return $stmt->rowCount();
     }
 
-    
+    public function selectEtudiants() {
+        $query = "SELECT * FROM Etudiant;"
+        return $this->execQuery($query, NULL, "Etudiant");
+    }
+
+    public function selectResultats() {
+        $query = "SELECT * FROM Resultat;"
+        return $this->execQuery($query, NULL, "Resultat");
+    }
+
+    public function selectCompetences() {
+        $query = "SELECT * FROM Competence;"
+        return $this->execQuery($query, NULL, "Competence");
+    }
+
+    public function selectModules() {
+        $query = "SELECT * FROM Module;"
+        return $this->execQuery($query, NULL, "Module");
+    }
+
+    public function selectCompetenceModule() {
+        $query = "SELECT * FROM CompetenceModule;"
+        return $this->execQuery($query, NULL, "CompetenceModule");
+    }
+
+    public insertEtudiant($id_etudiant, $code_etu, $nom, $prenom, $parcours, $rang, $groupe_TD, $groupe_TP, $cursus, $annee, $avis) {
+        $requete = "INSERT INTO Etudiant VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        $tparam = array($id_etudiant, $code_etu, $nom, $prenom, $parcours, $rang, $groupe_TD, $groupe_TP, $cursus, $annee, $avis);
+        return $this->execMaj($requete, $tparam);
+    }
+
+    public insertResultat($id_etudiant, $code_etu, $id_resultat, $rang, $absence, $moyenne, $alternant) {
+        $requete = "INSERT INTO Resultat VALUES (?,?,?,?,?,?,?)";
+        $tparam = array($id_etudiant, $code_etu, $id_resultat, $rang, $absence, $moyenne, $alternant);
+        return $this->execMaj($requete, $tparam);
+    }
+
+    public insertCompetence($id_etudiant, $code_etu, $id_comp, $moyenne, $recommendation, $rang) {
+        $requete = "INSERT INTO Competence VALUES (?,?,?,?,?,?)";
+        $tparam = array($id_etudiant, $code_etu, $id_comp, $moyenne, $recommendation, $rang);
+        return $this->execMaj($requete, $tparam);
+    }
+
+    public insertModule($id_etudiant, $code_etu, $id_comp, $id_module, $notes, $libelle) {
+        $requete = "INSERT INTO Module VALUES (?,?,?,?,?,?)";
+        $tparam = array($id_etudiant, $code_etu, $id_comp, $id_module, $notes, $libelle);
+        return $this->execMaj($requete, $tparam);
+    }
+
+    public insertCompetenceModule($id_etu, $code_etu, $id_comp, $id_module, $coef) {
+        $requete = "INSERT INTO CompetenceModule VALUES (?,?,?,?,?)";
+        $tparam = array($id_etu, $code_etu, $id_comp, $id_module, $coef);
+        return $this->execMaj($requete, $tparam);
+    }
 }
