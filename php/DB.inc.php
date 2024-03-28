@@ -137,5 +137,4 @@ class DB{
         $tparam = array($id_etu, $code_etu, $id_comp, $id_module, $coef);
         return $this->execMaj($requete, $tparam);
     }
-    
 }
