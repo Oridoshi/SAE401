@@ -93,7 +93,7 @@ class DB{
         return $this->execQuery($query, NULL, "Resultat");
     }
 
-    public function selectCompertences() {
+    public function selectCompetences() {
         $query = "SELECT * FROM Competence;"
         return $this->execQuery($query, NULL, "Competence");
     }
