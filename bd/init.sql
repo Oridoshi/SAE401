@@ -26,6 +26,7 @@ CREATE TABLE Resultats (
     absence int,
     rang int,
     moyenne float,
+    alternant boolean,
     PRIMARY KEY (id_etu, code_etu, id_resultat),
     FOREIGN KEY (id_etu, code_etu) REFERENCES Etudiant(id_etu, code_etu)
 );
