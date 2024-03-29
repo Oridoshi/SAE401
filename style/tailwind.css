@@ -649,19 +649,8 @@ video {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-.my-2 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
 .mb-16 {
   margin-bottom: 4rem;
-}
-.mb-2 {
-  margin-bottom: 0.5rem;
 }
 .mb-20 {
   margin-bottom: 5rem;
@@ -683,9 +672,6 @@ video {
 }
 .mt-2 {
   margin-top: 0.5rem;
-}
-.mt-4 {
-  margin-top: 1rem;
 }
 .box-border {
   box-sizing: border-box;
@@ -765,14 +751,11 @@ video {
 .h-20 {
   height: 5rem;
 }
-.w-10 {
-  width: 2.5rem;
+.h-full {
+  height: 100%;
 }
 .w-3\/4 {
   width: 75%;
-}
-.w-80 {
-  width: 20rem;
 }
 .w-\[this-is\\\\\] {
   width: this-is\\;
@@ -1531,10 +1514,6 @@ video {
 .border-none {
   border-style: none;
 }
-.border-gray-400 {
-  --tw-border-opacity: 1;
-  border-color: rgb(156 163 175 / var(--tw-border-opacity));
-}
 .border-vertFonce {
   --tw-border-opacity: 1;
   border-color: rgb(104 126 90 / var(--tw-border-opacity));
@@ -1542,14 +1521,6 @@ video {
 .bg-\[rgb\(255\2c 0\2c 0\)\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 0 0 / var(--tw-bg-opacity));
-}
-.bg-gray-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-.bg-gray-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 .bg-vertFonce {
   --tw-bg-opacity: 1;
@@ -1624,9 +1595,6 @@ video {
 .bg-origin-content {
   background-origin: content-box;
 }
-.fill-gray-600 {
-  fill: #4b5563;
-}
 .object-contain {
   -o-object-fit: contain;
      object-fit: contain;
@@ -1647,33 +1615,17 @@ video {
   -o-object-fit: scale-down;
      object-fit: scale-down;
 }
-.px-1 {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-}
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
-}
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
-.py-2\.5 {
-  padding-top: 0.625rem;
-  padding-bottom: 0.625rem;
-}
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
 }
 .text-left {
   text-align: left;
@@ -1717,16 +1669,9 @@ video {
 .align-super {
   vertical-align: super;
 }
-.font-\[sans-serif\] {
-  font-family: sans-serif;
-}
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
-}
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
 }
 .text-lg {
   font-size: 1.125rem;
@@ -1735,10 +1680,6 @@ video {
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
-}
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
 }
 .font-bold {
   font-weight: 700;
@@ -1799,23 +1740,12 @@ video {
   --tw-numeric-fraction: stacked-fractions;
   font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
 }
-.tracking-wider {
-  letter-spacing: 0.05em;
-}
 .text-\[\#336699\]\/\[\.35\] {
   color: rgb(51 102 153 / .35);
 }
 .text-blue-500 {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity));
-}
-.text-gray-400 {
-  --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity));
-}
-.text-gray-600 {
-  --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 .text-marronFonce {
   --tw-text-opacity: 1;
@@ -2118,6 +2048,13 @@ video {
 .forced-color-adjust-none {
   forced-color-adjust: none;
 }
+
+@font-face{
+    font-family: 'Abang';
+
+    src: url('./font/abang.ttf') format('ttf'), url('./font/abang.ttf') format('ttf');
+}
+
 @media (min-width: 640px) {
 
   .sm\:container {
@@ -2159,45 +2096,51 @@ video {
     }
   }
 }
-.hover\:bg-gray-100:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
+
 .hover\:bg-vertClair:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(148 179 129 / var(--tw-bg-opacity));
 }
+
 .hover\:bg-violet-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(237 233 254 / var(--tw-bg-opacity));
 }
+
 .hover\:font-bold:hover {
   font-weight: 700;
 }
+
 .hover\:text-gray-300:hover {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
+
 .before\:hover\:text-center:hover::before {
   content: var(--tw-content);
   text-align: center;
 }
+
 .hover\:before\:text-center:hover::before {
   content: var(--tw-content);
   text-align: center;
 }
+
 .focus\:hover\:text-center:hover:focus {
   text-align: center;
 }
+
 .hover\:focus\:text-center:focus:hover {
   text-align: center;
 }
+
 @media (min-width: 640px) {
 
   .sm\:underline {
     text-decoration-line: underline;
   }
 }
+
 @media (prefers-color-scheme: dark) {
 
   @media (min-width: 1024px) {
@@ -2207,4 +2150,3 @@ video {
     }
   }
 }
-
