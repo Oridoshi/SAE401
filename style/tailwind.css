@@ -594,6 +594,9 @@ video {
 .end-1 {
   inset-inline-end: 0.25rem;
 }
+.left-0 {
+  left: 0px;
+}
 .top-0 {
   top: 0px;
 }
@@ -602,6 +605,9 @@ video {
 }
 .isolation-auto {
   isolation: auto;
+}
+.z-0 {
+  z-index: 0;
 }
 .z-10 {
   z-index: 10;
@@ -750,6 +756,9 @@ video {
 }
 .h-20 {
   height: 5rem;
+}
+.h-screen {
+  height: 100vh;
 }
 .h-full {
   height: 100%;
@@ -1673,6 +1682,9 @@ video {
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
+.font-abang {
+  font-family: abang, Arial;
+}
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -2055,6 +2067,11 @@ video {
     src: url('./font/abang.ttf') format('ttf'), url('./font/abang.ttf') format('ttf');
 }
 
+
+
+@import url('https://fonts.cdnfonts.com/css/abang');
+
+
 @media (min-width: 640px) {
 
   .sm\:container {
@@ -2102,37 +2119,53 @@ video {
   background-color: rgb(148 179 129 / var(--tw-bg-opacity));
 }
 
+
+
 .hover\:bg-violet-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(237 233 254 / var(--tw-bg-opacity));
 }
 
+
+
 .hover\:font-bold:hover {
   font-weight: 700;
 }
+
+
 
 .hover\:text-gray-300:hover {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
+
+
 .before\:hover\:text-center:hover::before {
   content: var(--tw-content);
   text-align: center;
 }
+
+
 
 .hover\:before\:text-center:hover::before {
   content: var(--tw-content);
   text-align: center;
 }
 
+
+
 .focus\:hover\:text-center:hover:focus {
   text-align: center;
 }
 
+
+
 .hover\:focus\:text-center:focus:hover {
   text-align: center;
 }
+
+
 
 @media (min-width: 640px) {
 
@@ -2140,6 +2173,8 @@ video {
     text-decoration-line: underline;
   }
 }
+
+
 
 @media (prefers-color-scheme: dark) {
 
