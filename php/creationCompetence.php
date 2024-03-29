@@ -8,6 +8,7 @@ function creationCompetence($values){
 	$cpt = 0;
 	for($lig = 1; $lig < count($values); $lig++){
 		$lstValeur = array();
+		
 		for($col = 0; $col < count($values[0]); $col++){
 			if($values[0][$col] == $nomVal[$cpt]){
 				if($values[$lig][$col] == "" || $values[$lig][$col] == null){
@@ -18,6 +19,11 @@ function creationCompetence($values){
 				}
 				$cpt++;
 				$col = 0;
+			}
+			if($col == count($values)-1){
+				array_push($lstValeur,"inconnue");
+				$col = 0;
+				$cpt++;
 			}
 			if(count($lstValeur) == 6){
 				$col = count($values[0]);

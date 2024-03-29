@@ -19,6 +19,11 @@ function creationEtudiant($values){
 				$cpt++;
 				$col = 0;
 			}
+			if($col == count($values)-1){
+				array_push($lstValeur,"inconnue");
+				$col = 0;
+				$cpt++;
+			}
 			if(count($lstValeur) == 10){
 				$col = count($values[0]);
 			}

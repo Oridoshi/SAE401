@@ -32,6 +32,11 @@ function creationResultat($values){
 				$cpt++;
                 $col = 0;
 			}
+			if($col == count($values)-1){
+				array_push($lstValeur,"inconnue");
+				$col = 0;
+				$cpt++;
+			}
 			if(count($lstValeur) == 8){
 				$col = count($values[0]);
 			}
