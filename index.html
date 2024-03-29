@@ -6,68 +6,6 @@
     <title>Liens centrés dans la navbar</title>
     <link rel="stylesheet" href="style/tailwind.css"></link>
 </head>
-<body class="bg-gray-200">
-
-	<h1 id="Informations" class="text-3xl text-bold text-vertFonce mb-8">Informations et exportation</h1>
-	<p class="text-justify bg-vertFondTexte rounded-perso shadow-xl text-marronFonce text-xl p-10 ml-20 mr-20">
-		Nous tenons à souligner que notre responsabilité ne s'étend pas à l'intégrité des données fournies par les utilisateurs. Bien que nous mettions en œuvre des mesures de sécurité rigoureuses pour protéger les informations que vous partagez avec nous, telles que des pare-feu et des protocoles de cryptage avancés, nous ne pouvons garantir à cent pour cent la préservation complète de ces données. Les utilisateurs sont encouragés à prendre leurs propres précautions en matière de sécurité, telles que la création de mots de passe robustes et la vérification régulière de leurs comptes pour détecter toute activité suspecte. Nous nous engageons à collaborer avec nos utilisateurs pour résoudre tout problème de sécurité qui pourrait survenir, mais nous déclinons toute responsabilité pour toute perte ou dommage résultant de la compromission ou de la modification des données.
-	</p>
-
-	<h1 class="text-3xl text-bold text-vertFonce mb-8 mt-5">Exportation</h1>
-	<!-- double case -->
-	<div class="flex flex-wrap justify-center">
-		<div class="w-full md:w-1/2">
-			<h2 class="text-marronClair m-5">Exportation données Excel</h2>
-			<div class="grid grid-cols-2 w-fit justify-end items-end ml-5">
-				<select id="exportExelPromo" class="bg-vertFonce w-44 hover:bg-vertClair  hover:text-black text-white font-bold py-2 px-4 rounded mb-3">
-					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">Promo 2023</option>
-					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">Promo 2022</option>
-				</select>
-				<button id="exportExelJury" class="bg-marronFonce w-60 hover:bg-marronClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 mb-3">Exporter jury</button>
-				
-				<select id="exportExelSemestre" class="bg-vertFonce w-44 hover:bg-vertClair  hover:text-black text-white font-bold py-2 px-4 rounded">
-					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">S1</option>
-					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">S2</option>
-				</select>
-				<button id="exportExelComm" class="bg-marronFonce w-60 hover:bg-marronClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4">Exporter commission</button>
-			</div>
-		</div>
-		<div class="w-full md:w-1/2">
-			<h2 class="text-marronClair m-5">Exportation avis poursuite d'études</h2>
-			<div class="col-span-2 w-fit justify-end items-end ml-5">
-				<select id="exportEleveAvis" class="bg-vertFonce w-60 hover:bg-vertClair  hover:text-black text-white font-bold py-2 px-4 rounded mb-3">
-					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">Baptiste Hay</option>
-					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">Blocus Périphérique</option>
-				</select>
-				<button id="exportAvis" class="bg-marronFonce w-60 hover:bg-marronClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 mb-3">Exporter avis</button>
-			</div>
-		</div>
-	  </div>
-
-	
-
-
-<!-- Partie Overlay -->
-
-	<div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50 hidden"></div>
-
-<!-- Overlay login -->
-	<div id="loginModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-vertFonce p-8 rounded shadow-lg max-w-sm z-50 hidden">
-		<h2 class="text-lg font-semibold text-white mb-4">Login</h2>
-		<form id="loginForm">
-			<div class="mb-4">
-				<label for="username" class="block text-sm font-medium text-marronClair">Identifian:</label>
-				<input type="text" id="username" name="username" class="mt-1 block w-full rounded-md shadow-sm bg-vertClair text-marronFonce focus:ring focus:ring-vertClair focus:ring-opacity-50">
-			</div>
-			<div class="mb-4">
-				<label for="password" class="block text-sm font-medium text-marronClair">Mot de passe:</label>
-				<input type="password" id="password" name="password" class="mt-1 block w-full rounded-md shadow-sm bg-vertClair text-marronFonce focus:ring focus:ring-vertClair focus:ring-opacity-50">
-			</div>
-			<div class="mt-4">
-				<button type="submit" class="w-full bg-marronFonce text-white py-2 px-4 rounded hover:bg-marronClair hover:text-black focus:outline-none focus:ring-2 focus:ring-marronFonce focus:ring-opacity-50">Login</button>
-			</div>
-
-
 <body>
     <header class="mb-20 opacity-90 z-50 relative">
         <nav class="py-4px-6 flex items-center justify-start fixed w-full top-0 z-10 bg-white">
@@ -163,12 +101,70 @@
 				</select>
 				<button type="submit" class="bg-vertFonce hover:bg-vertClair text-white font-bold py-2 px-4 rounded ml-2 mr-4 h-full">Valider</button>
 			  </div>
-
 		</form>
-
-		
 	</div>
 
+	<h1 id="Informations" class="text-3xl text-bold text-vertFonce mb-8">Informations et exportation</h1>
+	<p class="text-justify bg-vertFondTexte rounded-perso shadow-xl text-marronFonce text-xl p-10 ml-20 mr-20">
+		Nous tenons à souligner que notre responsabilité ne s'étend pas à l'intégrité des données fournies par les utilisateurs. Bien que nous mettions en œuvre des mesures de sécurité rigoureuses pour protéger les informations que vous partagez avec nous, telles que des pare-feu et des protocoles de cryptage avancés, nous ne pouvons garantir à cent pour cent la préservation complète de ces données. Les utilisateurs sont encouragés à prendre leurs propres précautions en matière de sécurité, telles que la création de mots de passe robustes et la vérification régulière de leurs comptes pour détecter toute activité suspecte. Nous nous engageons à collaborer avec nos utilisateurs pour résoudre tout problème de sécurité qui pourrait survenir, mais nous déclinons toute responsabilité pour toute perte ou dommage résultant de la compromission ou de la modification des données.
+	</p>
+
+	<h1 class="text-3xl text-bold text-vertFonce mb-8 mt-5">Exportation</h1>
+	<!-- double case -->
+	<div class="flex flex-wrap justify-center">
+		<div class="w-full md:w-1/2">
+			<h2 class="text-marronClair m-5">Exportation données Excel</h2>
+			<div class="grid grid-cols-2 w-fit justify-end items-end ml-5">
+				<select id="exportExelPromo" class="bg-vertFonce w-44 hover:bg-vertClair  hover:text-black text-white font-bold py-2 px-4 rounded mb-3">
+					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">Promo 2023</option>
+					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">Promo 2022</option>
+				</select>
+				<button id="exportExelJury" class="bg-marronFonce w-60 hover:bg-marronClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 mb-3">Exporter jury</button>
+				
+				<select id="exportExelSemestre" class="bg-vertFonce w-44 hover:bg-vertClair  hover:text-black text-white font-bold py-2 px-4 rounded">
+					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">S1</option>
+					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">S2</option>
+				</select>
+				<button id="exportExelComm" class="bg-marronFonce w-60 hover:bg-marronClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4">Exporter commission</button>
+			</div>
+		</div>
+		<div class="w-full md:w-1/2">
+			<h2 class="text-marronClair m-5">Exportation avis poursuite d'études</h2>
+			<div class="col-span-2 w-fit justify-end items-end ml-5">
+				<select id="exportEleveAvis" class="bg-vertFonce w-60 hover:bg-vertClair  hover:text-black text-white font-bold py-2 px-4 rounded mb-3">
+					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">Baptiste Hay</option>
+					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">Blocus Périphérique</option>
+				</select>
+				<button id="exportAvis" class="bg-marronFonce w-60 hover:bg-marronClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 mb-3">Exporter avis</button>
+			</div>
+		</div>
+	</div>
+
+	
+
+
+<!-- Partie Overlay -->
+
+	<div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50 hidden"></div>
+
+<!-- Overlay login -->
+	<div id="loginModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-vertFonce p-8 rounded shadow-lg max-w-sm z-50 hidden">
+		<h2 class="text-lg font-semibold text-white mb-4">Login</h2>
+		<form id="loginForm">
+			<div class="mb-4">
+				<label for="username" class="block text-sm font-medium text-marronClair">Identifian:</label>
+				<input type="text" id="username" name="username" class="mt-1 block w-full rounded-md shadow-sm bg-vertClair text-marronFonce focus:ring focus:ring-vertClair focus:ring-opacity-50">
+			</div>
+			<div class="mb-4">
+				<label for="password" class="block text-sm font-medium text-marronClair">Mot de passe:</label>
+				<input type="password" id="password" name="password" class="mt-1 block w-full rounded-md shadow-sm bg-vertClair text-marronFonce focus:ring focus:ring-vertClair focus:ring-opacity-50">
+			</div>
+			<div class="mt-4">
+				<button type="submit" class="w-full bg-marronFonce text-white py-2 px-4 rounded hover:bg-marronClair hover:text-black focus:outline-none focus:ring-2 focus:ring-marronFonce focus:ring-opacity-50">Login</button>
+			</div>
+		</form>
+	</div>
 </body>
 <script src="js/fct.HTML.js"></script>
+<script src="js/login.js"></script>
 </html>
