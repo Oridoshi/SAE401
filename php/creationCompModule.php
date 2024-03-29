@@ -7,7 +7,7 @@ function creationCompetenceModule($values){
 	$nomVal = array("etudid", "code_nip", "C1", "C1", "coef");
 	$cpt = 0;
 	for($lig = 1; $lig < count($values); $lig++){
-        $lstValeur = array();
+		$lstValeur = array();
 		for($col = 0; $col < count($values[0]); $col++){
 			if($values[0][$col] == $nomVal[$cpt]){
 				if($values[$lig][$col] == "" || $values[$lig][$col] == null){
@@ -19,7 +19,7 @@ function creationCompetenceModule($values){
 				$cpt++;
 				$col = 0;
 			}
-            if($col == count($values)-1){
+			if($col == count($values)-1){
 				array_push($lstValeur,"inconnu");
 				$col = 0;
 				$cpt++;
@@ -34,7 +34,7 @@ function creationCompetenceModule($values){
 			array_push( $ldtValeur, "inconnu");
 		}
 
-        $competenceMod = new CompetenceModule($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4]);
+		$competenceMod = new CompetenceModule($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4]);
 		array_push($lstCompetence, $competenceMod);
 
 
@@ -53,7 +53,7 @@ function ajoutBDD($lstCompetence) {
 			$resultat = $db->execQuery($requeteSelect, $lstCompetence[$i]->getIdEtudiant(), 'Competence');
 			if(empty($resultat)){
 				$tparam = array($lstCompetence[$i]->getIdEtu(), $lstCompetence[$i]->getCodeEtu(), $lstCompetence[$i]->getIdComp(), $lstCompetence[$i]->getIdModule(), 
-                                $lstCompetence[$i]->getCoef());
+								$lstCompetence[$i]->getCoef());
 				$db->execMaj($requeteUpdate, $tparam);
 			}
 		}

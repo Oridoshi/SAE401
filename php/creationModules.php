@@ -8,15 +8,15 @@ function creationModules($values){
 	for($lig = 1; $lig < count($values); $lig++){
 		$lstValeur = array();
 		for($col = 0; $col < count($values[0]); $col++){
-            if($cpt == 2){
-                if(substr($values[0][$col],0, 3) === "BIN"){
-                    array_push($lstValeur, $values[0][$col]);
-                    array_push($lstValeur, $values[$lig][$col]);
-                    array_push($lstValeur, $values[0][$col]);
-                    $cpt = 5;
-                    $col = count($values[0]);
-                }
-            }
+			if($cpt == 2){
+				if(substr($values[0][$col],0, 3) === "BIN"){
+					array_push($lstValeur, $values[0][$col]);
+					array_push($lstValeur, $values[$lig][$col]);
+					array_push($lstValeur, $values[0][$col]);
+					$cpt = 5;
+					$col = count($values[0]);
+				}
+			}
 			if($values[0][$col] == $nomVal[$cpt]){
 				if($values[$lig][$col] == "" || $values[$lig][$col] == null){
 					array_push($lstValeur, "inconnu");
@@ -42,7 +42,7 @@ function creationModules($values){
 			array_push( $lstValeur, "inconnu");
 		}
 
-        $module = new Modules($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4]);
+		$module = new Modules($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4]);
 		array_push($lstModules, $module);
 
 

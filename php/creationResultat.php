@@ -30,7 +30,7 @@ function creationResultat($values){
 					array_push($lstValeur, $values[$lig][$col]);
 				}
 				$cpt++;
-                $col = 0;
+				$col = 0;
 			}
 			if($col == count($values)-1){
 				array_push($lstValeur,"inconnu");

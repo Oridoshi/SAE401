@@ -35,7 +35,7 @@ function creationCompetence($values){
 			array_push( $ldtValeur, "inconnu");
 		}
 
-        $competence = new Competence($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4], $lstValeur[5]);
+		$competence = new Competence($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4], $lstValeur[5]);
 		array_push($lstCompetence, $competence);
 
 	}
@@ -53,7 +53,7 @@ function ajoutBDD($lstCompetence) {
 			$resultat = $db->execQuery($requeteSelect, $lstCompetence[$i]->getIdEtudiant(), 'Competence');
 			if(empty($resultat)){
 				$tparam = array($lstCompetence[$i]->getIdEtudiant(), $lstCompetence[$i]->getCodeEtu(), $lstCompetence[$i]->getIdComp(), $lstCompetence[$i]->getMoyenne(), 
-                                $lstCompetence[$i]->getRecommendation(), $lstCompetence[$i]->getRang());
+								$lstCompetence[$i]->getRecommendation(), $lstCompetence[$i]->getRang());
 				$db->execMaj($requeteUpdate, $tparam);
 			}
 		}
