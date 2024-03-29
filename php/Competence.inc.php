@@ -10,7 +10,7 @@ class Competence{
 	private $rang;
 
 	public function __construct($id_etudiant, $code_etu, $id_comp, $moyenne, $recommendation, $rang){
-		$this->id_etudiant = $id_etudiant;
+		$this->id_etu = $id_etudiant;
 		$this->code_etu = $code_etu;
 		$this->id_comp = $id_comp;
 		$this->moyenne = $moyenne;
@@ -34,7 +34,7 @@ class Competence{
 
 	public function setCodeEtu($code) { $this->code_etu = $code; }
 
-	public function setIdComp($bin) { $this->id_Bin = $bin; }
+	public function setIdComp($id) { $this->id_comp = $id; }
 
 	public function setMoyenne($moyenne) { $this->moyenne = $moyenne; }
 

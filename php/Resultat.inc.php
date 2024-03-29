@@ -11,10 +11,11 @@ class Resultat{
 	private $moyenne;
 	private $alternant;
 
-	public function __construct($id_etudiant, $code_etu, $id_resultat, $rang, $absence, $moyenne, $alternant){
+	public function __construct($id_etudiant, $code_etu, $id_resultat, $id_comp, $rang, $absence, $moyenne, $alternant){
 		$this->id_etu = $id_etudiant;
 		$this->code_etu = $code_etu;
 		$this->id_resultat = $id_resultat;
+		$this->id_comp = $id_comp;
 		$this->rang = $rang;
 		$this->absence = $absence;
 		$this->moyenne = $moyenne;
