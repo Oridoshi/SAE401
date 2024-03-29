@@ -28,7 +28,7 @@ function creationModules($values){
 				$col = 0;
 			}
 			if($col == count($values)-1){
-				array_push($lstValeur,"inconnue");
+				array_push($lstValeur,"inconnu");
 				$col = 0;
 				$cpt++;
 			}
