@@ -1,6 +1,8 @@
 <?php
 
 //include
+//il maquait 2 3 ; donc je me suis permis de les rajouter Martin 
+//il manquati aussi la préposition function dans certaine function
 
 class DB{
     private static $instance = null;
