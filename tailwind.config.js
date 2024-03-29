@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./*.{html,js}", "./**/*.{html,js}"],
   theme: {
+    
     extend: {
+      fontFamily: {
+        'abang' : ['abang', 'Arial'],
+      },
       colors: {
         "vertFonce" : "#687E5A",
         "vertClair" : "#94B381",
