@@ -1,7 +1,7 @@
 <?php 
 
 
-public function fichierValide()
+function fichierValide()
 {
 	$fichiers = array(
         'commSemmestre1', 'jurySemmestre1', 'commSemmestre2', 'jurySemmestre2',
@@ -22,10 +22,10 @@ public function fichierValide()
 		echo 'oui';
 	}
 	else {
-		echo 'nan'
+		echo 'nan';
 	}
 }
 
-echo 'test'
+fichierValide();
 
 ?>
