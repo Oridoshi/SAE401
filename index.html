@@ -4,23 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liens centrés dans la navbar</title>
-    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link rel="stylesheet" href="style/tailwind.css"></link>
 </head>
+
+
 <body>
+    <header>
+        <nav class="py-4px-6 flex items-center justify-start fixed w-full top-0 z-10 bg-white">
+            <div class="flex items-center">
+                <img src="style/img/icon100x100.png" alt="Logo" class="h-20 mr-3 ml-2 opacity-100">
+                <a href="#Accueil" class="text-marronFonce text-lg mx-6 hover:text-gray-300 mr-4">Accueil</a>
+                <a href="#Importation" class="text-marronFonce mx-6 hover:text-gray-300 mr-4">Importation</a>
+                <a href="#Tableau" class="text-marronFonce mx-6 hover:text-gray-300 mr-4">Tableau</a>
+                <a href="#Informations" class="text-marronFonce mx-6 hover:text-gray-300 mr-4">Informations et exportation</a>
+            </div>
+        </nav>
+    </header>
 
-    <nav class="bg-gray-800 py-4 px-6 flex items-center justify-center fixed w-full top-0 z-10">
-        <div class="flex items-center justify-center">
-            <img src="style/img/icon100x100.png" alt="Logo" class="h-8 mr-4 ">
-            <a href="#Accueil" class="text-white font-bold text-lg mx-6 hover:text-gray-300 mr-4">Accueil</a>
-            <a href="#Importation" class="text-white mx-6 hover:text-gray-300 mr-4">Importation</a>
-            <a href="#Tableau" class="text-white mx-6 hover:text-gray-300 mr-4">Tableau</a>
-            <a href="#Informations" class="text-white mx-6 hover:text-gray-300 mr-4">Informations et exportation</a>
-        </div>
-    </nav>
-	<p class="text-3xl font-bold underline">salut les amis</p>
+    <h1 id="Accueil">Accueil</h1>
+    
 
-	<h1 id="Importation">Importation</h1>
-	<div class="flex justify-center items-center w-full">
+    <div class="mt-20">
+        <h1 id="Importation">Importation</h1>
+	    <div class="flex justify-center items-center w-full">
 		<form class="grid grid-cols-2 gap-0 w-3/4">
 			<input type="file" id="commSemmestre1" class="hidden"/>
 			<label for="commSemmestre1" class="block mr-4 py-2 px-4
@@ -54,17 +60,31 @@
 	
 		</form>
 	</div>
-	  
-	<h1 id="Accueil">Accueil</h1>
-	<h1 id="Tableau">Tableau</h1>
-	<h1 id="Informations">Informations et exportation</h1>
 
-    <div class="mt-20">
-        <h1 id="Accueil">Accueil</h1>
-        <h1 id="Importation">Importation</h1>
-        <h1 id="Tableau">Tableau</h1>
-        <h1 id="Informations">Informations et exportation</h1>
+    <pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </pre>
+    <h1 id="Tableau">Tableau</h1>
+    <h1 id="Informations">Informations et exportation</h1>
     </div>
 
+	
+
 </body>
+<script src="js/fct.HTML.js"></script>
 </html>
