@@ -1,6 +1,11 @@
 <?php
 
 //include
+include 'Etudiant.inc.php';
+include 'Resultat.inc.php';
+include 'Competence.inc.php';
+include 'Module.inc.php';
+include 'CompetenceModule.inc.php';
 
 class DB{
     private static $instance = null;
@@ -136,5 +141,10 @@ class DB{
         $requete = "INSERT INTO CompetenceModule VALUES (?,?,?,?,?)";
         $tparam = array($id_etu, $code_etu, $id_comp, $id_module, $coef);
         return $this->execMaj($requete, $tparam);
+    }
+
+    public function getAnnees() {
+        $query = "SELECT DISTINCT annee FROM Etudiant;";
+        return $this->execQuery($query, NULL, "Etudiant");
     }
 }
