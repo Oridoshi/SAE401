@@ -646,6 +646,9 @@ video {
 .mb-2 {
   margin-bottom: 0.5rem;
 }
+.mb-20 {
+  margin-bottom: 5rem;
+}
 .ml-2 {
   margin-left: 0.5rem;
 }
@@ -657,9 +660,6 @@ video {
 }
 .mt-2 {
   margin-top: 0.5rem;
-}
-.mt-20 {
-  margin-top: 5rem;
 }
 .box-border {
   box-sizing: border-box;
@@ -1765,6 +1765,9 @@ video {
 }
 .opacity-100 {
   opacity: 1;
+}
+.opacity-90 {
+  opacity: 0.9;
 }
 .bg-blend-normal {
   background-blend-mode: normal;
