@@ -10,20 +10,23 @@ document.addEventListener("DOMContentLoaded", function() {
 		var username = document.getElementById('username').value;
 		var password = document.getElementById('password').value;
 
-		// Vous pouvez implémenter ici la logique de vérification du login et du mot de passe
-		
-		// Exemple simple : vérifier si les champs ne sont pas vides
 		if (username.trim() === '' || password.trim() === '') {
 			alert('Veuillez saisir un nom d\'utilisateur et un mot de passe.');
 		} else {
-			alert('Login réussi avec username: ' + username + ' et password: ' + password);
-			overlay.classList.add('hidden');
-			modal.classList.add('hidden');
+			if(username === 'admin' && password === 'admin') {
+				overlay.classList.add('hidden');
+				modal.classList.add('hidden');
+			} else if(username === 'user' && password === 'user'){
+				overlay.classList.add('hidden');
+				modal.classList.add('hidden');
+			} else {
+				alert('Nom d\'utilisateur ou mot de passe incorrect.');
+			}
 		}
 	});
 
-	overlay.addEventListener('click', function() {
-		overlay.classList.add('hidden');
-		modal.classList.add('hidden');
-	});
+	// overlay.addEventListener('click', function() {
+	// 	overlay.classList.add('hidden');
+	// 	modal.classList.add('hidden');
+	// });
 });
