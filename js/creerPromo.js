@@ -1,13 +1,13 @@
-btnCreaPromo = document.getElementById('creerPromo');
+btnCreerPromo = document.getElementById('creerPromo');
 
-btnCreaPromo.addEventListener("click", function() {
+btnCreerPromo.addEventListener("click", function() {
 	var overlay = document.getElementById('overlay');
-	var modal   = document.getElementById('creaPromoModal');
+	var modal   = document.getElementById('creerPromoModal');
 	overlay.classList.remove('hidden');
 	modal.classList.remove('hidden');
 
-	var creaPromoForm = document.getElementById('creaPromoForm');
-	creaPromoForm.addEventListener('submit', function(event) {
+	var creerPromoForm = document.getElementById('creerPromoForm');
+	creerPromoForm.addEventListener('submit', function(event) {
 		event.preventDefault();
 		var promo = document.getElementById('promo').value;
 

@@ -104,8 +104,9 @@
 							<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
 						</svg>
 					</button>
-					<div id="dropdownList" class="absolute flex flex-col w-40 border text-white rounded">
+					<div id="dropdownList" class="absolute flex flex-col w-40 border text-white rounded hidden">
 						<button id="creerPromo" class="flex items-center h-8 px-3 text-sm bg-vertFonce hover:bg-vertClair border border-black">Créer une promo</button>
+						<script src="js/creerPromo.js"></script>
 						<script>
 						  document.getElementById('dropdownBtn').addEventListener('click', function() {
 							const dropdownList = document.getElementById('dropdownList');
@@ -118,11 +119,8 @@
 							button.addEventListener('click', function() {
 								if(button.id !== 'creerPromo') {
 									document.getElementById('dropdownText').textContent = button.innerHTML;
-									dropdownList.classList.add('hidden');
 								}
-								else {
-									
-								}
+								dropdownList.classList.add('hidden');
 							});
 						});
 							
@@ -202,6 +200,25 @@
 			</div>
 			<div class="mt-4">
 				<button type="submit" class="w-full bg-marronFonce text-white py-2 px-4 rounded hover:bg-marronClair hover:text-black focus:outline-none focus:ring-2 focus:ring-marronFonce focus:ring-opacity-50">Login</button>
+			</div>
+		</form>
+	</div>
+
+<!-- Overlay créaPromo -->
+	<div id="creerPromoModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-vertFonce p-8 rounded shadow-lg max-w-sm z-50 hidden">
+		<h2 class="text-lg font-semibold text-white mb-4">Nouvelle Promo</h2>
+		<p class="text-center bg-vertFondTexte rounded-lg shadow-lg text-marronFonce p-2 m-2">
+			Veillez entrée l'année de rentrée<br>
+			en BUT 1, par exemple<br>
+			rentré en BUT 1 2022, entrée 2022.
+		</p>
+		<form id="creerPromoForm">
+			<div class="mb-4">
+				<label for="promo" class="block text-sm font-medium text-marronClair">Nouvelle promo:</label>
+				<input type="number" id="promo" name="promo" class="mt-1 block w-full rounded-md shadow-sm bg-vertClair text-marronFonce focus:ring focus:ring-vertClair focus:ring-opacity-50">
+			</div>
+			<div class="mt-4">
+				<button type="submit" class="w-full bg-marronFonce text-white py-2 px-4 rounded hover:bg-marronClair hover:text-black focus:outline-none focus:ring-2 focus:ring-marronFonce focus:ring-opacity-50">Valider</button>
 			</div>
 		</form>
 	</div>
