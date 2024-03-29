@@ -12,13 +12,12 @@ class Etudiant {
 	private $annee;
 	private $avis;
 
-	public function __construct($id_etudiant, $code_etu, $nom, $prenom, $parcours, $rang, $groupe_TD, $groupe_TP, $cursus, $annee, $avis) {
-		$this->id_etudiant = $id_etudiant;
+	public function __construct($id_etudiant, $code_etu, $nom, $prenom, $parcours, $groupe_TD, $groupe_TP, $cursus, $annee, $avis) {
+		$this->id_etu = $id_etudiant;
 		$this->code_etu = $code_etu;
 		$this->nom = $nom;
 		$this->prenom = $prenom;
 		$this->parcours = $parcours;
-		$this->rang = $rang;
 		$this->groupe_TD = $groupe_TD;
 		$this->groupe_TP = $groupe_TP;
 		$this->cursus = $cursus;
@@ -36,13 +35,15 @@ class Etudiant {
 
 	public function getParcours() { return $this->parcours; }
 
-	public function getGroupe_TD() { return $this->groupe_TD; }
+	public function getGroupeTD() { return $this->groupe_TD; }
 
 	public function getGroupeTP() { return $this->groupe_TP; }
 
 	public function getCursus() { return $this->cursus; }
 
 	public function getAnnee() { return $this->annee; }
+
+	public function getAvis() { return $this->avis; }
 
 	public function setIdetudiant($id) { $this->id_etu = $id; }
 
@@ -54,7 +55,7 @@ class Etudiant {
 
 	public function setParcours($parcours) { $this->parcours = $parcours; }
 
-	public function setGroupe_TD($TD) { $this->groupe_TD = $TD; }
+	public function setGroupeTD($TD) { $this->groupe_TD = $TD; }
 
 	public function setGroupeTP($TP) { $this->groupe_TP = $TP; }
 
