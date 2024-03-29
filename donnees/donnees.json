@@ -1,0 +1,98 @@
+{
+	"etudiants": [
+	  {
+		"id_etu": 1,
+		"code_etu": "HB22XXXX",
+		"nom": "Hay",
+		"prenom": "Baptiste",
+		"parcours": "Informatique",
+		"groupe_TD": "F",
+		"groupe_TP": "F1",
+		"cursus": "S1 S2 S3 S4",
+		"annee": 2022,
+		"avis": true
+	  },
+	  {
+		"id_etu": 2,
+		"code_etu": "DM22XXXX",
+		"nom": "Durand",
+		"prenom": "Marie",
+		"parcours": "GEA",
+		"groupe_TD": "A",
+		"groupe_TP": "A2",
+		"cursus": "S1 S2",
+		"annee": 2022,
+		"avis": false
+	  }
+	],
+	"resultats": [
+	  {
+		"id_etu": 1,
+		"code_etu": "HB22XXXX",
+		"id_resultat": 1,
+		"id_comp": ["BIN01", "BIN02"],
+		"absence": 2,
+		"rang": 3,
+		"moyenne": 14.5,
+		"alternant": false
+	  },
+	  {
+		"id_etu": 2,
+		"code_etu": "DM22XXXX",
+		"id_resultat": 2,
+		"id_comp": ["BIN03", "BIN04"],
+		"absence": 1,
+		"rang": 1,
+		"moyenne": 17.8,
+		"alternant": false
+	  }
+	],
+	"competences": [
+	  {
+		"id_etu": 1,
+		"code_etu": "HB22XXXX",
+		"id_comp": "BIN05",
+		"moyenne": 15.2,
+		"recommandation": "ADM"
+	  },
+	  {
+		"id_etu": 2,
+		"code_etu": "DM22XXXX",
+		"id_comp": "BIN06",
+		"moyenne": 16.3,
+		"recommandation": "AJ"
+	  }
+	],
+	"modules": [
+	  {
+		"id_etu": 1,
+		"code_etu": "HB22XXXX",
+		"id_module": "BINR01",
+		"notes": 12.5,
+		"lib": "Algorithmique"
+	  },
+	  {
+		"id_etu": 2,
+		"code_etu": "DM22XXXX",
+		"id_module": "BINR02",
+		"notes": 18.2,
+		"lib": "Analyse Numérique"
+	  }
+	],
+	"competence_modules": [
+	  {
+		"id_etu": 1,
+		"code_etu": "HB22XXXX",
+		"id_comp": "BIN01",
+		"id_module": "BINR01",
+		"coef": 3
+	  },
+	  {
+		"id_etu": 2,
+		"code_etu": "DM22XXXX",
+		"id_comp": "BIN02",
+		"id_module": "BINR02",
+		"coef": 2
+	  }
+	]
+  }

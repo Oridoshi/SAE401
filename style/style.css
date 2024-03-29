@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face{
+    font-family: 'abang';
+    src: url('./font/abang.ttf');
+}

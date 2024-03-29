@@ -1,8 +1,24 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./**/*.{html,js}"],
+  content: ["./*.{html,js,php}", "./**/*.{html,js,php}"],
   theme: {
-    extend: {},
+    
+    extend: {
+      fontFamily: {
+        'abang' : ['abang', 'sans-serif'],
+      },
+      colors: {
+        "vertFonce" : "#687E5A",
+        "vertClair" : "#94B381",
+        "marronFonce" : "#7E6C5E",
+        "marronClair" : "#B3A193",
+      }
+    },
+    variants: {
+      etends: {
+        backgroundColor: ['active'],
+      },
+    },
   },
   plugins: [],
 }
