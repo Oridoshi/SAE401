@@ -97,12 +97,52 @@
 			text-vertFonce hover:bg-violet-100 cursor-pointer text-center mb-4 ml-4 col-span-2">déposer les coeff des Modules</label>
 	
 			<div class="col-span-2 flex justify-end items-end">
-				<select class="bg-vertFonce hover:bg-vertClair text-white font-bold py-2 px-4 rounded h-full">
-					<option id="creerAnnee" class="bg-vertFonce hover:bg-vertClair text-white">Créer une année</option>
-					<option class="bg-vertFonce hover:bg-vertClair text-white">Promo 2022</option>
-				</select>
+				<div class="relative">
+					<button id="dropdownBtn" class="flex items-center px-4 py-3 h-full rounded border bg-vertFonce hover:bg-vertClair focus:outline-none">
+						<span id="dropdownText" class="text-sm leading-none text-white">
+							Sélectionner une année
+						</span>
+						<svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+							<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+						</svg>
+					</button>
+					<div id="dropdownList" class="absolute flex flex-col w-40 border text-white rounded">
+						<button id="creerPromo" class="flex items-center h-8 px-3 text-sm bg-vertFonce hover:bg-vertClair border border-black">Créer une promo</button>
+						<script>
+						  document.getElementById('dropdownBtn').addEventListener('click', function() {
+							const dropdownList = document.getElementById('dropdownList');
+							dropdownList.classList.toggle('hidden');
+						});
+
+						const dropdownButtons = document.querySelectorAll('#dropdownList button');
+
+						dropdownButtons.forEach(button => {
+							button.addEventListener('click', function() {
+								if(button.id !== 'creerPromo') {
+									document.getElementById('dropdownText').textContent = button.innerHTML;
+									dropdownList.classList.add('hidden');
+								}
+								else {
+									
+								}
+							});
+						});
+							
+							fetch('php/annee.php').then(response => response.json()).then(data => {
+								data.forEach(annee => {
+									let option = document.createElement('a');
+									option.classList.add('flex', 'items-center', 'h-8', 'px-3', 'text-sm', 'bg-vertFonce', 'hover:bg-vertClair', 'rounded');
+									option.textContent = annee;
+									document.getElementById('dropdownList').appendChild(option);
+								});
+							});
+						</script>
+					</div>
+				</div>
 				<button type="submit" class="bg-vertFonce hover:bg-vertClair text-white font-bold py-2 px-4 rounded ml-2 mr-4 h-full">Valider</button>
-			  </div>
+			</div>
+			
+			
 
 		</form>
 
