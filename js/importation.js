@@ -29,28 +29,24 @@ inputJuryS6.addEventListener('change', function(){fichierDepose(inputJuryS6);});
 
 
 function fichierDepose(variable) {
-    const file = variable.files[0];
-    variable.nextElementSibling.textContent = file.name; // Afficher le nom du fichier
+	const file = variable.files[0];
+	variable.nextElementSibling.textContent = file.name; 
 
+	const formData = new FormData();
+	formData.append('fichier', file);
 
-    /*// Créer un objet FormData et y ajouter le fichier sélectionné
-    const formData = new FormData();
-    formData.append('fichier', file);
-
-    // Envoyer les données au serveur
-    fetch('../php/lectureFichier.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        // Gérer la réponse du serveur
-        if (response.ok) {
-            console.log('Fichier téléchargé avec succès !');
-        } else {
-            console.error('Une erreur s\'est produite lors du téléchargement du fichier.');
-        }
-    })
-    .catch(error => {
-        console.error('Une erreur s\'est produite :', error);
-    });*/
+	fetch('../php/lectureFichier.php', {
+		method: 'POST',
+		body: formData
+	})
+	.then(response => {
+		if (response.ok) {
+			console.log('Fichier téléchargé avec succès !');
+		} else {
+			console.error('Une erreur s\'est produite lors du téléchargement du fichier.');
+		}
+	})
+	.catch(error => {
+		console.error('Une erreur s\'est produite :', error);
+	});
 }
