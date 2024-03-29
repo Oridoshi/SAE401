@@ -11,6 +11,7 @@
 <!-- Partie Overlay -->
 <div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50 hidden"></div>
 
+<body>
 
     <header class="mb-20 opacity-90 z-50 relative">
         <nav class="py-4px-6 flex items-center justify-start fixed w-full top-0 z-10 bg-white">
@@ -30,10 +31,9 @@
 
 
 
-
 	<h1 id="Importation" class="text-3xl font-bold text-vertFonce mb-16">Importation</h1>
 	<div class="flex justify-center items-center w-full z-20 relative">
-		<form class="relative grid grid-cols-2 gap-0 w-3/4">
+		<form action="php/ValidationFichier.php" method="post" class="relative grid grid-cols-2 gap-0 w-3/4">
 			<input type="file" id="commSemmestre1" class="hidden"/>
 			<label for="commSemmestre1" class="block mr-4 py-4 px-4
 			border-dashed rounded border-2 border-vertFonce text-sm font-semibold 
@@ -209,7 +209,6 @@
 			</div>
 		</form>
 	</div>
-
 <!-- Overlay créaPromo -->
 	<div id="creerPromoModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-vertFonce p-8 rounded shadow-lg max-w-sm z-50 hidden">
 		<h2 class="text-lg font-semibold text-white mb-4">Nouvelle Promo</h2>

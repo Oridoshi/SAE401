@@ -34,11 +34,6 @@ function fichierDepose(variable) {
 
 	const formData = new FormData();
 	formData.append('fichier', file);
-	try {
-		
-	} catch (error) {
-		
-	}
 
 	fetch('../php/lectureFichier.php', {
 		method: 'POST',
