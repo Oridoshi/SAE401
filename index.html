@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="style/tailwind.css"></link>
 </head>
 <body>
+
+<!-- Partie Overlay -->
+<div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50 hidden"></div>
+
+
     <header class="mb-20 opacity-90 z-50 relative">
         <nav class="py-4px-6 flex items-center justify-start fixed w-full top-0 z-10 bg-white">
             <div class="flex items-center">
@@ -96,46 +101,54 @@
 	
 			<div class="col-span-2 flex justify-end items-end">
 				<div class="relative">
-					<button id="dropdownBtn" class="flex items-center px-4 py-3 h-full rounded border bg-vertFonce hover:bg-vertClair focus:outline-none">
-						<span id="dropdownText" class="text-sm leading-none text-white">
+					<button id="dropdownBtn" class="flex items-center px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair focus:outline-none">
+						<span id="dropdownText" class="text-sm leading-none  font-bold">
 							Sélectionner une année
 						</span>
-						<svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+						<svg id="dropdownImg" class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
 							<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
 						</svg>
 					</button>
-					<div id="dropdownList" class="absolute flex flex-col w-40 border text-white rounded hidden">
-						<button id="creerPromo" class="flex items-center h-8 px-3 text-sm bg-vertFonce hover:bg-vertClair border border-black">Créer une promo</button>
+					<div id="dropdownList" class="absolute flex flex-col w-40 border text-white font-bold rounded hidden">
+						<button id="creerPromo" class="flex items-center h-8 px-3 text-sm bg-vertFonce hover:bg-vertClair hover:text-black border border-black">Créer une promo</button>
 						<script src="js/creerPromo.js"></script>
 						<script>
-						  document.getElementById('dropdownBtn').addEventListener('click', function() {
-							const dropdownList = document.getElementById('dropdownList');
-							dropdownList.classList.toggle('hidden');
-						});
-
-						const dropdownButtons = document.querySelectorAll('#dropdownList button');
-
-						dropdownButtons.forEach(button => {
-							button.addEventListener('click', function() {
-								if(button.id !== 'creerPromo') {
-									document.getElementById('dropdownText').textContent = button.innerHTML;
-								}
-								dropdownList.classList.add('hidden');
+							document.getElementById('dropdownBtn').addEventListener('click', function() {
+								const dropdownList = document.getElementById('dropdownList');
+								dropdownList.classList.toggle('hidden');
 							});
-						});
-							
-							fetch('php/annee.php').then(response => response.json()).then(data => {
-								data.forEach(annee => {
-									let option = document.createElement('a');
-									option.classList.add('flex', 'items-center', 'h-8', 'px-3', 'text-sm', 'bg-vertFonce', 'hover:bg-vertClair', 'rounded');
-									option.textContent = annee;
-									document.getElementById('dropdownList').appendChild(option);
+
+							const dropdownButtons = document.querySelectorAll('#dropdownList button');
+
+							dropdownButtons.forEach(button => {
+								button.addEventListener('click', function() {
+									if(button.id !== 'creerPromo') {
+										document.getElementById('dropdownText').textContent = button.innerHTML;
+									}
+									dropdownList.classList.add('hidden');
 								});
 							});
+
+							document.addEventListener('click', function(event) {
+								const targetElement = event.target;
+
+								if (targetElement.id !== 'dropdownText' && targetElement.id !== 'dropdownBtn' && targetElement.id !== 'dropdownImg') {
+									dropdownList.classList.add('hidden'); 
+								}
+							});
+								
+								fetch('php/annee.php').then(response => response.json()).then(data => {
+									data.forEach(annee => {
+										let option = document.createElement('a');
+										option.classList.add('flex', 'items-center', 'h-8', 'px-3', 'text-sm', 'bg-vertFonce', 'text-white', 'font-bold', 'hover:bg-vertClair', 'hover:text-black', 'rounded');
+										option.textContent = annee;
+										document.getElementById('dropdownList').appendChild(option);
+									});
+								});
 						</script>
 					</div>
 				</div>
-				<button type="submit" class="bg-vertFonce hover:bg-vertClair text-white font-bold py-2 px-4 rounded ml-2 mr-4 h-full">Valider</button>
+				<button type="submit" class="bg-vertFonce hover:bg-vertClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 h-full">Valider</button>
 			</div>
 			
 			
@@ -178,13 +191,6 @@
 			</div>
 		</div>
 	</div>
-
-	
-
-
-<!-- Partie Overlay -->
-
-	<div id="overlay" class="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-50 hidden"></div>
 
 <!-- Overlay login -->
 	<div id="loginModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-vertFonce p-8 rounded shadow-lg max-w-sm z-50 hidden">
