@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>SAE des bgs</title>
-	<link rel="stylesheet" href="style/tailwind.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liens centrés dans la navbar</title>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
 </head>
 <body>
-	<div class="menu">
-		<a href="#Accueil">Accueil</a>
-		<a href="#Importation">Importation</a>
-		<a href="#Tableau">Tableau</a>
-		<a href="#Informations">Informations et exportation</a>
-	</div>
 
-	<p class="text-3xl font-bold underline">salut les amis</p>
+    <nav class="bg-gray-800 py-4 px-6 flex items-center justify-center fixed w-full top-0 z-10">
+        <div class="flex items-center justify-center">
+            <img src="style/img/icon100x100.png" alt="Logo" class="h-8 mr-4 ">
+            <a href="#Accueil" class="text-white font-bold text-lg mx-6 hover:text-gray-300 mr-4">Accueil</a>
+            <a href="#Importation" class="text-white mx-6 hover:text-gray-300 mr-4">Importation</a>
+            <a href="#Tableau" class="text-white mx-6 hover:text-gray-300 mr-4">Tableau</a>
+            <a href="#Informations" class="text-white mx-6 hover:text-gray-300 mr-4">Informations et exportation</a>
+        </div>
+    </nav>
 
-	<h1 id="Importation">Importation</h1>
-	<h1 id="Accueil">Accueil</h1>
-	<h1 id="Tableau">Tableau</h1>
-	<h1 id="Informations">Informations et exportation</h1>
+    <div class="mt-20">
+        <h1 id="Accueil">Accueil</h1>
+        <h1 id="Importation">Importation</h1>
+        <h1 id="Tableau">Tableau</h1>
+        <h1 id="Informations">Informations et exportation</h1>
+    </div>
 
 </body>
 </html>
