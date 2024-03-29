@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @font-face{
-    font-family: 'Abang';
-
-    src: url('./font/abang.ttf') format('ttf'), url('./font/abang.ttf') format('ttf');
+    font-family: 'abang';
+    src: url('./font/abang.ttf');
 }

@@ -5,7 +5,7 @@ module.exports = {
     
     extend: {
       fontFamily: {
-        'abang' : ['abang', 'Arial'],
+        'abang' : ['abang', 'sans-serif'],
       },
       colors: {
         "vertFonce" : "#687E5A",

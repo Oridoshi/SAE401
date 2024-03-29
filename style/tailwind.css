@@ -655,14 +655,14 @@ video {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }
-.mb-16 {
-  margin-bottom: 4rem;
-}
 .mb-20 {
   margin-bottom: 5rem;
 }
 .mb-4 {
   margin-bottom: 1rem;
+}
+.mb-8 {
+  margin-bottom: 2rem;
 }
 .ml-2 {
   margin-left: 0.5rem;
@@ -757,11 +757,11 @@ video {
 .h-20 {
   height: 5rem;
 }
-.h-screen {
-  height: 100vh;
-}
 .h-full {
   height: 100%;
+}
+.h-screen {
+  height: 100vh;
 }
 .w-3\/4 {
   width: 75%;
@@ -1678,12 +1678,16 @@ video {
 .align-super {
   vertical-align: super;
 }
+.font-abang {
+  font-family: abang, sans-serif;
+}
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
-.font-abang {
-  font-family: abang, Arial;
+.text-9xl {
+  font-size: 8rem;
+  line-height: 1;
 }
 .text-lg {
   font-size: 1.125rem;
@@ -2062,15 +2066,9 @@ video {
 }
 
 @font-face{
-    font-family: 'Abang';
-
-    src: url('./font/abang.ttf') format('ttf'), url('./font/abang.ttf') format('ttf');
+    font-family: 'abang';
+    src: url('./font/abang.ttf');
 }
-
-
-
-@import url('https://fonts.cdnfonts.com/css/abang');
-
 
 @media (min-width: 640px) {
 
@@ -2119,53 +2117,37 @@ video {
   background-color: rgb(148 179 129 / var(--tw-bg-opacity));
 }
 
-
-
 .hover\:bg-violet-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(237 233 254 / var(--tw-bg-opacity));
 }
 
-
-
 .hover\:font-bold:hover {
   font-weight: 700;
 }
-
-
 
 .hover\:text-gray-300:hover {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
-
-
 .before\:hover\:text-center:hover::before {
   content: var(--tw-content);
   text-align: center;
 }
-
-
 
 .hover\:before\:text-center:hover::before {
   content: var(--tw-content);
   text-align: center;
 }
 
-
-
 .focus\:hover\:text-center:hover:focus {
   text-align: center;
 }
 
-
-
 .hover\:focus\:text-center:focus:hover {
   text-align: center;
 }
-
-
 
 @media (min-width: 640px) {
 
@@ -2173,8 +2155,6 @@ video {
     text-decoration-line: underline;
   }
 }
-
-
 
 @media (prefers-color-scheme: dark) {
 
