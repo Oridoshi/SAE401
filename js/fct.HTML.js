@@ -19,3 +19,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+
+document.getElementById("creerAnnee").addEventListener("click", function() {
+    var selectedValue = this.value;
+
+    console.log("Option sélectionnée :", selectedValue);
+});
