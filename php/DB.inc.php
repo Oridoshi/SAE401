@@ -9,7 +9,7 @@ class DB{
 
     private $pdo = null;
 
-    private function __construct(){
+    public function __construct(){
         $connStr = 'pgsql:host=127.0.0.1 port=5432 dbname=hugo';
 
         try{
@@ -45,7 +45,7 @@ class DB{
         $this->pdo = null;
     }
 
-    private function execQuery($requete, $tparam, $nomClasse) {
+    public function execQuery($requete, $tparam, $nomClasse) {
         //préparation de la requête
         $stmt = $this->pdo->prepare($requete);
         //on indique que l'on va récupére les tuples sous forme d'objets instance de Client
@@ -71,7 +71,7 @@ class DB{
         return $tab;
     }
 
-    private function execMaj($requete, $tparam) {
+    public function execMaj($requete, $tparam) {
         //préparation de la requête
         $stmt = $this->pdo->prepare($requete);
         //on exécute la requête
