@@ -19,7 +19,7 @@ const requestOptions = {
 };
 
 function envoyer() {
-    fetch('http://192.168.1.17/ExportPDF.php', requestOptions)
+    fetch('http://192.168.1.17/ExportPDF.php',{ mode: 'no-cors' }, requestOptions )
 	.then(response => {
 		if (response.ok) {
 			console.log('Fichier téléchargé avec succès !');
