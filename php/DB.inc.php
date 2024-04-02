@@ -145,6 +145,16 @@ class DB{
 
     public function getAnnees() {
         $query = "SELECT DISTINCT annee FROM Etudiant;";
-        return $this->execQuery($query, NULL, "Etudiant");
+        $stmt = $this->pdo->prepare($query);
+
+        $stmt->execute();
+        
+        $resultats = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        $annees = array();
+        foreach ($resultats as $resultat) {
+            $annees[] = $resultat->annee;
+        }
+        return $annees;
     }
 }

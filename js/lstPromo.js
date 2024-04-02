@@ -24,13 +24,17 @@ document.addEventListener('click', function(event) {
     
 fetch("http://192.168.1.17:8000/annee.php").then(response => { 
     if(response.ok)
-        return response.text();
+        return response.json();
     throw new Error('Network response was not ok.');
 }).then(data => {
     data.forEach(annee => {
         let option = document.createElement('a');   
-        option.classList.add('flex', 'items-center', 'h-8', 'px-3', 'text-sm', 'bg-vertFonce', 'text-white', 'font-bold', 'hover:bg-vertClair', 'hover:text-black', 'rounded');
+        option.classList.add('flex', 'items-center', 'h-8', 'px-3', 'text-sm', 'bg-vertFonce', 'hover:bg-vertClair', 'hover:text-black', 'border', 'border-black');
         option.textContent = annee;
+        option.addEventListener('click', function() {
+            document.getElementById('dropdownText').textContent = annee;
+            document.getElementById('dropdownList').classList.add('hidden');
+        });
         document.getElementById('dropdownList').appendChild(option);
     });
 });
