@@ -38,9 +38,7 @@ include 'lectureFIchier.php';
 				if($donnees[0][$col] == $nomValeur[7]){
 					array_push($lstValeur, $donnees[$lig][$col]);
 				}
-				if($donnees[0][$col] == $nomValeur[8]){
-					array_push($lstValeur, $donnees[$lig][$col]);
-				}
+
 			}
 			$etudiant = new Etudiant($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4], $lstValeur[5], $lstValeur[6], $lstValeur[7], NULL, false);
 			array_push($lstEtudiant, $etudiant);
