@@ -11,10 +11,41 @@ btnCreerPromo.addEventListener("click", function() {
 		event.preventDefault();
 		var promo = document.getElementById('promo').value;
 
+
+	
+
+
 		if (promo.trim() === '') {
-			alert('Veuillez saisir un nom d\'utilisateur et un mot de passe.');
+			alert('Veuillez saisir une valeur valide.');
 		} else {
-			//mettre le code pour creer la promo
+			overlay.classList.add('hidden');
+			modal.classList.add('hidden');
+			let option = document.createElement('a');   
+			option.classList.add('flex', 'items-center', 'h-8', 'px-3', 'text-sm', 'bg-vertFonce', 'hover:bg-vertClair', 'hover:text-black', 'border', 'border-black');
+			option.textContent = promo;
+			option.addEventListener('click', function() {
+				document.getElementById('dropdownText').textContent = promo;
+				document.getElementById('dropdownList').classList.add('hidden');
+			});
+			document.getElementById('dropdownList').appendChild(option);
+
+			fetch('script.php', {
+			method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ annee: promo })
+			}).then(response => {
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+				return response.json();
+			}).then(data => {
+				console.log(data);
+			}).catch(error => {
+				console.error('There was a problem with the fetch operation:', error);
+			});
+
 		}
 	});
 
