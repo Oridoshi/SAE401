@@ -1,4 +1,8 @@
 <?php
+
+header( 'Access-Control-Allow-Origin: *' );
 include 'DB.inc.php';
 
-return DB::getInstance()->getAnnees();
+$vals = DB::getInstance()->getAnnees();
+
+echo json_encode($vals);
