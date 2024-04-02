@@ -1,38 +1,48 @@
-<?php // Inclure la bibliothèque TCPDF
-header("Access-Control-Allow-Origin: *");
-// Autoriser les méthodes HTTP spécifiées (GET, POST, etc.)
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-// Autoriser les en-têtes spécifiés
-header("Access-Control-Allow-Headers: Content-Type");
-// Indiquer que cette réponse peut être mise en cache pendant 3600 secondes (1 heure)
-header("Access-Control-Max-Age: 3600");
-// Indiquer le type de contenu de la réponse (dans ce cas, un fichier PDF)
-header("Content-Type: application/pdf");
+<?php
+// Inclure la bibliothèque PHP Spreadsheet
+require 'vendor/autoload.php';
+require 'DB.inc.php';
 
-require_once './tcpdf/tcpdf.php';
-require_once './tcpdf/config/tcpdf_config.php';
+use PhpOffice\PhpSpreadsheet\Writer\Pdf;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
+// Récupérer le contenu HTML envoyé depuis JavaScript
+$donnees_post = json_decode(file_get_contents('php://input'), true);
+$contenuHTML = $donnees_post['contenuHTML'];
+$nomPrenom = $donnees_post['nomPrenom'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'creerPDF' && isset($_POST['parametre'])) {
-	$pdf_content = creerPDF($_POST['parametre']);
-    
-    // Envoyer le PDF en tant que réponse HTTP
-    header('Content-Type: application/pdf');
-    header('Content-Disposition: attachment; filename="document.pdf"');
-    header('Content-Length: ' . strlen($pdf_content));
-	echo $_POST['parametre'];
+$etud = array(/* nom, prenom, annee, parcours(A, B, C)*/);
+$res1 = array(/* abs, moyenne, rang */);
+$res2 = array(/* abs, moyenne, rang */);
+$res3 = array(/* abs, moyenne, rang */);
+
+$db = DB::getInstance();
+
+$etudiants = $db->getEtudiants();
+$resultats = $db->getResultats();
+
+foreach ($etudiants as $etudiant) {
+	if($etudiant->prenom === $nomPrenom['prenomEleve'] && $etudiant->nom === $nomPrenom['nomEleve']){
+		array_push($etud, $etudiant->nom, $etudiant->prenom, $etudiant->annee, $etudiant->parcours);
+	}
 }
 
-function creerPDF($doc){
-    $pdf = new TCPDF();
-    $pdf->SetCreator(PDF_CREATOR);
-    $pdf->SetAuthor('Auteur');
-    $pdf->SetTitle('Avis de poursuite d\'étude');
-    $pdf->AddPage();
-//    $html = file_get_contents($doc);
-    $pdf->writeHTML($doc, true, false, true, 0, true);
 
-    $result = $pdf->Output('document.pdf', 'F');
+// Créer une nouvelle instance de la classe Spreadsheet
+$spreadsheet = new Spreadsheet();
 
-	return $result;
-}
+// Charger le contenu HTML dans la feuille de calcul
+$spreadsheet->getActiveSheet()->fromHtml($contenuHTML);
+
+// Créer un objet PDF Writer
+$writer = new Pdf($spreadsheet);
+
+// Écrire le PDF dans un flux temporaire
+$filename = tempnam(sys_get_temp_dir(), 'pdf');
+$writer->save($filename);
+
+// Renvoyer le PDF généré en réponse à la requête
+header('Content-Type: application/pdf');
+header('Content-Disposition: attachment; filename="output.pdf"');
+readfile($filename);

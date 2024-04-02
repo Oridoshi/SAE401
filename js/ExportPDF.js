@@ -2,53 +2,48 @@ var btnTel = document.getElementById("telecharge");
 var btnAnnule = document.getElementById("annule");
 var divBtn = document.getElementById("divBtn");
 btnTel.addEventListener("click", function(){
-    divBtn.innerHTML =  " ";
-    envoyer();
+	divBtn.innerHTML =  " ";
+	envoyer();
 });
 
 btnAnnule.addEventListener("click", function () {
-    window.history.back();
+	window.history.back();
 });
 
-const requestOptions = {
-    method: 'POST', // Méthode HTTP à utiliser (POST ou GET)
-   // mode : 'no-cors',
-    headers: {
-        'Content-Type': 'application/json' // Type de contenu de la requête
-    },
-    body: JSON.stringify({ action: 'creerPDF', parametre: document.documentElement }) // Données à envoyer au serveur, si nécessaire
+function envoyer() {
+	// Récupérer le contenu HTML que vous souhaitez convertir en PDF
+	
+	var contenuHTML = document.documentElement;
+    //var nomPrenom = document.getElementById("exportExcelSemestre").value;
+
+	// Envoyer le contenu HTML à votre script PHP via Fetch
+	fetch('http://192.168.1.17:8000/ExportPDF.php', {
+		method: 'POST',
+		body: JSON.stringify({ contenuHTML: contenuHTML, /*nomPrenom: nomPrenom*/ }),
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
+	.then(response => response.blob())
+	.then(blob => {
+		// Récupérer le blob (PDF) et le télécharger ou l'afficher
+		var url = window.URL.createObjectURL(blob);
+		window.open(url); // Ouvre le PDF dans un nouvel onglet
+	})
+	.catch(error => console.error('Erreur:', error));
 };
 
-function envoyer() {
-    fetch('http://192.168.1.17:8000/ExportPDF.php', requestOptions )
-	.then(response => {
-		if (response.ok) {
-			console.log('Fichier téléchargé avec succès !');
-            return response.text();
-		} else {
-			console.error('Une erreur s\'est produite lors du téléchargement du fichier : ', response.status, ' - ', response.statusText);
-            console.log(response);
-		}
-	}).then(data => {
-        const url = "../php/" + data;
-        const link = document.createElement('a');
-link.href = url;
 
-// Définir l'attribut download pour forcer le téléchargement
-link.download = 'example.pdf';
 
-// Ajouter l'élément d'ancre au document
-document.body.appendChild(link);
+//possible de récupérer les noms des élèves directement lors de l'envoi par le php !
+function listerNoms() {
+	var lstNoms = [];
+	var tableau = document.getElementById("TableauFixe");
 
-// Cliquer sur l'élément d'ancre pour déclencher le téléchargement
-link.click();
-
-// Supprimer l'élément d'ancre après le téléchargement
-document.body.removeChild(link);
-
-    })
-	.catch(error => {
-		console.error('Une erreur s\'est produite :', error);
-	});
-
+	for (var i = 1; i < tableau.rows.length; i++) {
+		var nom = tableau.rows[i].cells[3].innerHTML;
+		var prenom = tableau.rows[i].cells[4].innerHTML;
+		lstNoms.push({nomEleve: nom, prenomEleve: prenom});
+	}
+	return lstNoms;
 }
