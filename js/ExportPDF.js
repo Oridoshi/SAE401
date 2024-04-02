@@ -1,12 +1,9 @@
 var btnTel = document.getElementById("telecharge");
 var btnAnnule = document.getElementById("annule");
 var divBtn = document.getElementById("divBtn");
-console.log("arriver dans js");
 btnTel.addEventListener("click", function(){
     divBtn.innerHTML =  " ";
-    console.log("ff");
     envoyer();
-    
 });
 
 btnAnnule.addEventListener("click", function () {
@@ -22,7 +19,6 @@ const requestOptions = {
 };
 
 function envoyer() {
-    console.log("envoie fct");
     fetch('http://192.168.1.17/ExportPDF.php', requestOptions)
 	.then(response => {
 		if (response.ok) {
