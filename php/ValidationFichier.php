@@ -27,5 +27,3 @@ function fichierValide()
 }
 
 fichierValide();
-
-?>
