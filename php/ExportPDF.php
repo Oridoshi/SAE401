@@ -12,6 +12,7 @@ header("Content-Type: application/pdf");
 require_once './tcpdf/tcpdf.php';
 require_once './tcpdf/config/tcpdf_config.php';
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'creerPDF' && isset($_POST['parametre'])) {
 	$pdf_content = creerPDF($_POST['parametre']);
     
@@ -19,8 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     header('Content-Type: application/pdf');
     header('Content-Disposition: attachment; filename="document.pdf"');
     header('Content-Length: ' . strlen($pdf_content));
-    echo $pdf_content;
-    exit;
+	echo $_POST['parametre'];
 }
 
 function creerPDF($doc){
@@ -31,7 +31,8 @@ function creerPDF($doc){
     $pdf->AddPage();
 //    $html = file_get_contents($doc);
     $pdf->writeHTML($doc, true, false, true, 0, true);
-    $result = $pdf->Output('document.pdf', 'S');
+
+    $result = $pdf->Output('document.pdf', 'F');
 
 	return $result;
 }

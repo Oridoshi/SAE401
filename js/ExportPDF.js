@@ -16,7 +16,7 @@ const requestOptions = {
     headers: {
         'Content-Type': 'application/json' // Type de contenu de la requête
     },
-    body: JSON.stringify({ action: 'creerPDF', parametre: document.getElementById("page").value }) // Données à envoyer au serveur, si nécessaire
+    body: JSON.stringify({ action: 'creerPDF', parametre: document.documentElement }) // Données à envoyer au serveur, si nécessaire
 };
 
 function envoyer() {
@@ -24,13 +24,28 @@ function envoyer() {
 	.then(response => {
 		if (response.ok) {
 			console.log('Fichier téléchargé avec succès !');
+            return response.text();
 		} else {
 			console.error('Une erreur s\'est produite lors du téléchargement du fichier : ', response.status, ' - ', response.statusText);
             console.log(response);
 		}
-	})
-    .then(response => {
-        
+	}).then(data => {
+        const url = "../php/" + data;
+        const link = document.createElement('a');
+link.href = url;
+
+// Définir l'attribut download pour forcer le téléchargement
+link.download = 'example.pdf';
+
+// Ajouter l'élément d'ancre au document
+document.body.appendChild(link);
+
+// Cliquer sur l'élément d'ancre pour déclencher le téléchargement
+link.click();
+
+// Supprimer l'élément d'ancre après le téléchargement
+document.body.removeChild(link);
+
     })
 	.catch(error => {
 		console.error('Une erreur s\'est produite :', error);
