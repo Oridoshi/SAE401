@@ -1,61 +1,46 @@
 <?php
 include 'DB.inc.php';
-
+include 'lectureFIchier.php';
 
 function creationCompetence($values){
-	$lstCompetence = array();
-	$nomVal = array("etudid", "code_nip", "C1", "Moy", "Passage", "Rg");
-	$cpt = 0;
-	for($lig = 1; $lig < count($values); $lig++){
-		$lstValeur = array();
-		
-		for($col = 0; $col < count($values[0]); $col++){
-			if($values[0][$col] == $nomVal[$cpt]){
-				if($values[$lig][$col] == "" || $values[$lig][$col] == null){
-					array_push($lstValeur, "inconnu");
-				}
-				else{
-					array_push($lstValeur, $values[$lig][$col]);
-				}
-				$cpt++;
-				$col = 0;
-			}
-			if($col == count($values)-1){
-				array_push($lstValeur,"inconnu");
-				$col = 0;
-				$cpt++;
-			}
-			if(count($lstValeur) == 6){
-				$col = count($values[0]);
-			}
+    $lstCompetence = array();
+    $nomVal = array("etudid", "code_nip", "/^BIN\d{2}$/");
+    
+    for($lig = 1; $lig < count($values); $lig++){
+        $lstValeur = array();
+        for($col = 0; $col < count($values[0]); $col++){
+            //idEtu
+            if($nomVal[0] == $values[0][$col]){
+                array_push($lstValeur, $values[$lig][$col]);
+            }
+            //codeEtu
+            else if($nomVal[1] == $values[0][$col]){
+                array_push($lstValeur, $values[$lig][$col]);
+            }
+            //idComp - moyenne - recommandation
+            else if(preg_match($nomVal[2], $values[0][$col])){
+				//idComp
+				$lstValeur[2] = $values[0][$col];
+				//moyenne
+				$lstValeur[3] = $values[$lig][$col];
+				//recommandation
+				$lstValeur[4] = $values[$lig][$col+1];
 
-		}
-		$cpt = 0;
-		while(count($lstValeur) < 6) {
-			array_push( $ldtValeur, "inconnu");
-		}
+                //ajout de la competence
+                $competence = new Competence($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4], null);
+                array_push($lstCompetence, $competence);
+            }
+        }
+    }
 
-		$competence = new Competence($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4], $lstValeur[5]);
-		array_push($lstCompetence, $competence);
-
-	}
-	ajoutBDD($lstCompetence);
-
+	return $lstCompetence;
 }
 
-function ajoutBDD($lstCompetence) {
-	$db = DB::getInstance();
-	if($db){
-		$requeteSelect = 'SELECT * FROM Competence WHERE id_etu = ?';
-		$requeteUpdate = 'INSERT INTO Competence VALUES(?, ?, ?, ?, ?, ?)';
+$test = creationCompetence(lectureFichier("../donnees/S2 FI jury.xlsx"));
 
-		for($i = 0; $i < count($lstCompetence); $i++){
-			$resultat = $db->execQuery($requeteSelect, $lstCompetence[$i]->getIdEtudiant(), 'Competence');
-			if(empty($resultat)){
-				$tparam = array($lstCompetence[$i]->getIdEtudiant(), $lstCompetence[$i]->getCodeEtu(), $lstCompetence[$i]->getIdComp(), $lstCompetence[$i]->getMoyenne(), 
-								$lstCompetence[$i]->getRecommendation(), $lstCompetence[$i]->getRang());
-				$db->execMaj($requeteUpdate, $tparam);
-			}
-		}
-	}
+foreach($test as $competence){
+	echo $competence->getIdEtu()."<br>";
+	echo $competence->getCodeEtu()."<br>";
+	echo $competence->getIdComp()."<br>";
+	echo $competence->getMoyenne()."<br>";
 }

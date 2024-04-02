@@ -1,68 +1,46 @@
 <?php
 include 'DB.inc.php';
+include 'lectureFIchier.php';
 
-function creationModules($values){
+//fichire moyenne
+function creationModules($donnees){
+	$regex = "/^(Bonus)|(^(BIN)[RS]\d{3})$/";
 	$lstModules = array();
-	$nomVal = array("etudid", "code_nip", "id_module", "Note", "Lib");
-	$cpt = 0;
-	for($lig = 1; $lig < count($values); $lig++){
+	$nomValeur = array("etudid", "code_nip");
+	for($lig = 1; $lig < count($donnees); $lig++){
 		$lstValeur = array();
-		for($col = 0; $col < count($values[0]); $col++){
-			if($cpt == 2){
-				if(substr($values[0][$col],0, 3) === "BIN"){
-					array_push($lstValeur, $values[0][$col]);
-					array_push($lstValeur, $values[$lig][$col]);
-					array_push($lstValeur, $values[0][$col]);
-					$cpt = 5;
-					$col = count($values[0]);
-				}
+		
+		
+		for($col = 0; $col < count($donnees[0]); $col++){
+			if($donnees[0][$col] == $nomValeur[0]){
+				array_push($lstValeur, $donnees[$lig][$col]);
 			}
-			if($values[0][$col] == $nomVal[$cpt]){
-				if($values[$lig][$col] == "" || $values[$lig][$col] == null){
-					array_push($lstValeur, "inconnu");
-				}
-				else{
-					array_push($lstValeur, $values[$lig][$col]);
-				}
-				$cpt++;
-				$col = 0;
+			if($donnees[0][$col] == $nomValeur[1]){
+				array_push($lstValeur, $donnees[$lig][$col]);
 			}
-			if($col == count($values)-1){
-				array_push($lstValeur,"inconnu");
-				$col = 0;
-				$cpt++;
-			}
-			if(count($lstValeur) == 5){
-				$col = count($values[0]);
+			$estComp = preg_match($regex, $donnees[0][$col]);
+
+			if($estComp){
+				$lstValeur[2] = $donnees[0][$col];
+				$lstValeur[3] = $donnees[$lig][$col];
+				$module = new Modules($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], NULL);
+				array_push($lstModules, $module);
+
 			}
 
 		}
-		$cpt = 0;
-		while(count($lstValeur) < 5) {
-			array_push( $lstValeur, "inconnu");
-		}
-
-		$module = new Modules($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4]);
-		array_push($lstModules, $module);
-
 
 	}
-	ajoutBDD($lstModules);
+	
+	return $lstModules;
 
 }
 
-function ajoutBDD($lstModules) {
-	$db = DB::getInstance();
-	if($db){
-		$requeteSelect = 'SELECT * FROM Modules WHERE id_etu = ? AND code_etu = ?';
-		$requeteUpdate = 'INSERT INTO Modules VALUES(?, ?, ?, ?, ?)';
+$test = creationModules(lectureFichier("../donnees/S1 FI moyennes.xlsx"));
 
-		for($i = 0; $i < count($lstModules); $i++){
-			$resultat = $db->execQuery($requeteSelect, array($lstModules[$i]->getIdetudiant(), $lstModules[$i]->getCodeEtu), 'Modules');
-			if(empty($resultat)){
-				$tparam = array($lstModules[$i]->getIdEtudiant(), $lstModules[$i]->getCodeEtu(), $lstModules[$i]->getIdModule(), $lstModules[$i]->getNotes(), $lstModules[$i]->getLibelle());
-				$db->execMaj($requeteUpdate, $tparam);
-			}
-		}
-	}
+foreach($test as $modules){
+	echo $modules->getIdetudiant()."<br>";
+	echo $modules->getCodeEtu()."<br>";
+	echo $modules->getIdModule()."<br>";
+	echo $modules->getNotes()."<br>";
 }

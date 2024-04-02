@@ -1,60 +1,64 @@
 <?php
 include 'DB.inc.php';
+include 'lectureFIchier.php';
 
 
-function creationEtudiant($values){
-	$lstEtudiants = array();
-	$nomVal = array("etudid", "code_nip", "Nom", "Prenom", "Parcours", "TD", "TP", "Cursus", "Annee", "Avis");
-	$cpt = 0;
-	for($lig = 1; $lig < count($values); $lig++){
-		$lstValeur = array();
-		for($col = 0; $col < count($values[0]); $col++){
-			if($values[0][$col] == $nomVal[$cpt]){
-				if($values[$lig][$col] == "" || $values[$lig][$col] == null){
-					array_push($lstValeur, "inconnu");
+//fichier moyenne
+	function creationEtudiant($donnees){
+		$nomValeur = array("etudid", "code_nip", "Nom", "Prénom", "Parcours", "TD", "TP", "Cursus");
+		$lstEtudiant = array();
+		$aNom = array();
+
+		for($lig = 1; $lig < count($donnees); $lig++){
+			$lstValeur = array();
+			$aNom[$lig] = false;
+			for($col = 0; $col < count($donnees[0]); $col++){
+				if($donnees[0][$col] == $nomValeur[0]){
+					array_push($lstValeur, $donnees[$lig][$col]);
 				}
-				else{
-					array_push($lstValeur, $values[$lig][$col]);
+				if($donnees[0][$col] == $nomValeur[1]){
+					array_push($lstValeur, $donnees[$lig][$col]);
 				}
-				$cpt++;
-				$col = 0;
+				if($donnees[0][$col] == $nomValeur[2] && !$aNom[$lig]){
+					array_push($lstValeur, $donnees[$lig][$col]);
+					$aNom[$lig] = true;
+				}
+				if($donnees[0][$col] == $nomValeur[3]){
+					array_push($lstValeur, $donnees[$lig][$col]);
+				}
+				if($donnees[0][$col] == $nomValeur[4]){
+					array_push($lstValeur, $donnees[$lig][$col]);
+				}
+				if($donnees[0][$col] == $nomValeur[5]){
+					array_push($lstValeur, $donnees[$lig][$col]);
+				}
+				if($donnees[0][$col] == $nomValeur[6]){
+					array_push($lstValeur, $donnees[$lig][$col]);
+				}
+				if($donnees[0][$col] == $nomValeur[7]){
+					array_push($lstValeur, $donnees[$lig][$col]);
+				}
+				if($donnees[0][$col] == $nomValeur[8]){
+					array_push($lstValeur, $donnees[$lig][$col]);
+				}
 			}
-			if($col == count($values)-1){
-				array_push($lstValeur,"inconnu");
-				$col = 0;
-				$cpt++;
-			}
-			if(count($lstValeur) == 10){
-				$col = count($values[0]);
-			}
-
+			$etudiant = new Etudiant($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4], $lstValeur[5], $lstValeur[6], $lstValeur[7], NULL, false);
+			array_push($lstEtudiant, $etudiant);
 		}
-		$cpt = 0;
-		while(count($lstValeur) < 10) {
-			array_push( $etudiants, "inconnu");
-		}
-		$etudiant = new Etudiant($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4], $lstValeur[5], $lstValeur[6], $lstValeur[7], $lstValeur[8], $lstValeur[9]);
-		array_push($lstEtudiants, $etudiant);
-
-
+		return $lstEtudiant;
 	}
-	ajoutBDD($lstEtudiants);
 
-}
+$test = creationEtudiant(lectureFichier("../donnees/S1 FI moyennes.xlsx"));
 
-function ajoutBDD($lstEtudiants) {
-	$db = DB::getInstance();
-	if($db){
-		$requeteSelect = 'SELECT * FROM Etudiant WHERE id_etu = ?';
-		$requeteUpdate = 'INSERT INTO Etudiant VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-
-		for($i = 0; $i < count($lstEtudiants); $i++){
-			$resultat = $db->execQuery($requeteSelect, $lstEtudiants[$i]->getIdetudiant(), 'Etudiant');
-			if(empty($resultat)){
-				$tparam = array($lstEtudiants[$i]->getIdetudiant(), $lstEtudiants[$i]->getCode_etu(), $lstEtudiants[$i]->getNom(), $lstEtudiants[$i]->getPenom(), $lstEtudiants[$i]->getParcours(),
-							$lstEtudiants[$i]->getGroupeTD(),$lstEtudiants[$i]->getGroupeTP(), $lstEtudiants[$i]->getCursus(), $lstEtudiants[$i]->getAnnee(), $lstEtudiants[$i]->getAvis());
-				$db->execMaj($requeteUpdate, $tparam);
-			}
-		}
-	}
+foreach($test as $etudiant){
+	echo $etudiant->getIdetudiant()."<br>";
+	echo $etudiant->getCode_etu()."<br>";
+	echo $etudiant->getNom()."<br>";
+	echo $etudiant->getPenom()."<br>";
+	echo $etudiant->getParcours()."<br>";
+	echo $etudiant->getGroupeTD()."<br>";
+	echo $etudiant->getGroupeTP()."<br>";
+	echo $etudiant->getCursus()."<br>";
+	echo $etudiant->getAnnee()."<br>";
+	echo $etudiant->getAvis()."<br>";
 }

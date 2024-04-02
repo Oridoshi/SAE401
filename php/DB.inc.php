@@ -4,7 +4,7 @@
 include 'Etudiant.inc.php';
 include 'Resultat.inc.php';
 include 'Competence.inc.php';
-include 'Module.inc.php';
+include 'Modules.inc.php';
 include 'CompetenceModule.inc.php';
 
 class DB{

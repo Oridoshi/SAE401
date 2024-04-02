@@ -18,7 +18,7 @@ class Competence{
 		$this->rang = $rang;
 	}
 
-	public function getIdEtudiant() { return $this->id_etu; }
+	public function getIdEtu() { return $this->id_etu; }
 
 	public function getCodeEtu() { return $this->code_etu; }
 
