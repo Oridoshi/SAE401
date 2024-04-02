@@ -1,11 +1,13 @@
 <?php // Inclure la bibliothèque TCPDF
+header("Access-Control-Allow-Origin: *");
+
+
 require_once './tcpdf/tcpdf.php';
 
 require_once'tcpdf/config/tcpdf_config.php';
 
 
 // Autoriser les requêtes provenant de tous les domaines (à des fins de démonstration)
-header("Access-Control-Allow-Origin: *");
 
 $doc = $_POST['document'];
 function creerPDF($doc){
