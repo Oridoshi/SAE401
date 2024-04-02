@@ -1,11 +1,12 @@
 <?php // Inclure la bibliothèque TCPDF
-require_once('./tcpdf/tcpdf.php');
+require_once './tcpdf/tcpdf.php';
 
-require_once('tcpdf/config/tcpdf_config.php');
+require_once'tcpdf/config/tcpdf_config.php';
 
 
-//$html = file_get_contents('test.html');
-//echo $html;
+// Autoriser les requêtes provenant de tous les domaines (à des fins de démonstration)
+header("Access-Control-Allow-Origin: *");
+
 $doc = $_POST['document'];
 function creerPDF($doc){
 	// Créer une nouvelle instance de TCPDF
