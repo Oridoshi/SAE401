@@ -16,7 +16,7 @@ const requestOptions = {
     headers: {
         'Content-Type': 'application/json' // Type de contenu de la requête
     },
-    body: JSON.stringify({ action: 'creerPDF', parametre: document.getElementById("page").value }) // Données à envoyer au serveur, si nécessaire
+    body: JSON.stringify({ action: 'creerPDF', parametre: document.documentElement }) // Données à envoyer au serveur, si nécessaire
 };
 
 function envoyer() {
@@ -26,12 +26,8 @@ function envoyer() {
 			console.log('Fichier téléchargé avec succès !');
 		} else {
 			console.error('Une erreur s\'est produite lors du téléchargement du fichier : ', response.status, ' - ', response.statusText);
-            console.log(response);
 		}
 	})
-    .then(response => {
-        
-    })
 	.catch(error => {
 		console.error('Une erreur s\'est produite :', error);
 	});
