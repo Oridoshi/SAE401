@@ -1,34 +1,19 @@
 <?php
+session_start();
+
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
-
-session_start();
 
 // Récupérer les données JSON envoyées dans la requête POST
 $json_data = file_get_contents('php://input');
 $data = json_decode($json_data, true);
 
-if(isset($data['login']) && isset($data['mdp'])) {
-	$login = $data['login'];
-	$mdp = $data['mdp'];
-} else {
-	if(isset($_SESSION['login'])) {
-		echo json_encode(true);
-		exit();
-	}
-	else
-	{
-		echo json_encode(false);
-		exit();
-	}
-}
+$login = $data['login'];
+$mdp = $data['mdp'];
 
 if(verifLogMdp($login, $mdp))
 {
-	$_SESSION['login'] = $login;
-	$_SESSION['droit'] = getDroit($login);
-
 	echo json_encode(true);
 	exit();
 }
