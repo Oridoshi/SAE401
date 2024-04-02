@@ -12,21 +12,26 @@ btnAnnule.addEventListener("click", function () {
 
 const requestOptions = {
     method: 'POST', // Méthode HTTP à utiliser (POST ou GET)
+   // mode : 'no-cors',
     headers: {
         'Content-Type': 'application/json' // Type de contenu de la requête
     },
-    body: JSON.stringify({ action: 'creerPDF', parametre: document }) // Données à envoyer au serveur, si nécessaire
+    body: JSON.stringify({ action: 'creerPDF', parametre: document.getElementById("page").value }) // Données à envoyer au serveur, si nécessaire
 };
 
 function envoyer() {
-    fetch('http://192.168.1.17/ExportPDF.php',{ mode: 'no-cors' }, requestOptions )
+    fetch('http://192.168.1.17:8000/ExportPDF.php', requestOptions )
 	.then(response => {
 		if (response.ok) {
 			console.log('Fichier téléchargé avec succès !');
 		} else {
-			console.error('Une erreur s\'est produite lors du téléchargement du fichier.');
+			console.error('Une erreur s\'est produite lors du téléchargement du fichier : ', response.status, ' - ', response.statusText);
+            console.log(response);
 		}
 	})
+    .then(response => {
+        
+    })
 	.catch(error => {
 		console.error('Une erreur s\'est produite :', error);
 	});
