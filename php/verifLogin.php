@@ -66,4 +66,3 @@ function isMotDePasseCryptOK($login, $mdp) : bool
 
 	return password_verify($mdp, $hashMapMdp[$login]);
 }
-?>
