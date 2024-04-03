@@ -97,6 +97,7 @@
 			border-dashed rounded border-2 border-vertFonce text-sm font-semibold 
 			text-vertFonce hover:bg-violet-100 cursor-pointer text-center mb-4 ml-4 col-span-2">déposer les coeff des Modules</label>
 
+
 			<div class="col-span-2 flex justify-end items-end">
 				<div class="relative">
 					<button id="dropdownBtn" class="flex items-center px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair focus:outline-none">
@@ -115,7 +116,7 @@
 				</div>
 				<button type="submit" id="btnSubmit" class="bg-vertFonce hover:bg-vertClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 h-full">Valider</button>
 			</div>
-			
+
 			<script src="js/dragAndDrop.js"></script>
 			<script>
 				document.getElementById('dropdownBtn').addEventListener('click', function() {
@@ -137,6 +138,14 @@
 
 		</form>
 	</div>
+	
+	<h1 id="Tableau" class="text-3xl text-bold text-vertFonce mb-8">Tableau</h1>
+
+	<table id="TableauFixe">
+
+
+	</table>
+
 
 	<h1 id="Informations" class="text-3xl font-bold text-vertFonce mb-16">Informations et exportation</h1>
 	<p class="text-justify bg-vertFondTexte rounded-perso shadow-xl text-marronFonce text-xl p-10 ml-20 mr-20 mb-16">
@@ -155,7 +164,7 @@
 				</select>
 				<button id="exportExelJury" class="bg-marronFonce w-60 hover:bg-marronClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 mb-3">Exporter jury</button>
 				
-				<select id="exportExelSemestre" class="bg-vertFonce w-44 hover:bg-vertClair  hover:text-black text-white font-bold py-2 px-4 rounded">
+				<select id="exportExcelSemestre" class="bg-vertFonce w-44 hover:bg-vertClair  hover:text-black text-white font-bold py-2 px-4 rounded">
 					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">S1</option>
 					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">S2</option>
 				</select>
