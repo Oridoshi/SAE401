@@ -178,9 +178,12 @@
 					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">Baptiste Hay</option>
 					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">Blocus Périphérique</option>
 				</select>
-				<form action="php/ExportPDF.php" method="post">
-					<button id="exportAvis" class="bg-marronFonce w-60 hover:bg-marronClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 mb-3" name="exportAvis">Exporter avis</button>
-				</form>
+				<button id="exportAvis" class="bg-marronFonce w-60 hover:bg-marronClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 mb-3" name="exportAvis">Exporter avis</button>
+				<script>
+					document.getElementById("exportAvis").addEventListener("click", function(){
+						window.location.href = './visuPdf.html';
+					});
+				</script>
 			</div>
 		</div>
 	</div>
