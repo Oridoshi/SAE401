@@ -1,6 +1,4 @@
 <?php
-include 'DB.inc.php';
-include 'lectureFIchier.php';
 
 //Fichier Jury
 function creationCompetence($values){

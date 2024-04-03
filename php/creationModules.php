@@ -1,6 +1,4 @@
 <?php
-include 'DB.inc.php';
-include 'lectureFIchier.php';
 
 //Fichire moyenne
 function creationModules($donnees){

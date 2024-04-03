@@ -1,48 +1,97 @@
 <?php
-// Inclure la bibliothèque PHP Spreadsheet
-require 'vendor/autoload.php';
-require 'DB.inc.php';
+// Inclure la bibliothèque PHP TCPDF
+require 'tcpdf/tcpdf.php';
 
-use PhpOffice\PhpSpreadsheet\Writer\Pdf;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\IOFactory;
+// Autoriser toutes les origines pour CORS
+header("Access-Control-Allow-Origin: *");
 
-// Récupérer le contenu HTML envoyé depuis JavaScript
-$donnees_post = json_decode(file_get_contents('php://input'), true);
-$contenuHTML = $donnees_post['contenuHTML'];
-$nomPrenom = $donnees_post['nomPrenom'];
-
-$etud = array(/* nom, prenom, annee, parcours(A, B, C)*/);
-$res1 = array(/* abs, moyenne, rang */);
-$res2 = array(/* abs, moyenne, rang */);
-$res3 = array(/* abs, moyenne, rang */);
-
-$db = DB::getInstance();
-
-$etudiants = $db->getEtudiants();
-$resultats = $db->getResultats();
-
-foreach ($etudiants as $etudiant) {
-	if($etudiant->prenom === $nomPrenom['prenomEleve'] && $etudiant->nom === $nomPrenom['nomEleve']){
-		array_push($etud, $etudiant->nom, $etudiant->prenom, $etudiant->annee, $etudiant->parcours);
-	}
+// Vérifier si la méthode de la requête est OPTIONS
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    // Répondre avec les en-têtes CORS appropriés
+    header("Access-Control-Allow-Methods: POST");
+    header("Access-Control-Allow-Headers: Content-Type");
+    header("Access-Control-Max-Age: 86400"); // Cache preflight pendant 1 jour
+    exit;
 }
 
+error_log("arriver dans le php");
 
-// Créer une nouvelle instance de la classe Spreadsheet
-$spreadsheet = new Spreadsheet();
+// Vérifier si la méthode de la requête est POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    error_log("ya une error la");
+    if(isset($_POST['id_etu'])) {
+        $donnees_post = json_decode(file_get_contents('php://input'), true);
+        $id_etu = $donnees_post['id_etu'];
 
-// Charger le contenu HTML dans la feuille de calcul
-$spreadsheet->getActiveSheet()->fromHtml($contenuHTML);
+        envoieDonnees($id_etu);
+    }
+    if(isset($_POST['contenuHTML'])){
+        // Récupérer les données JSON envoyées depuis le script JavaScript
+        $donnees_post = json_decode(file_get_contents('php://input'), true);
+        $contenuHTML = $donnees_post['contenuHTML'];
 
-// Créer un objet PDF Writer
-$writer = new Pdf($spreadsheet);
+        // Créer le PDF à partir du contenu HTML
+        creerPdf($contenuHTML);
+    }
+   
+} else {
+    // Répondre avec un code d'état HTTP approprié si la méthode n'est pas POST
+    http_response_code(405);
+}
 
-// Écrire le PDF dans un flux temporaire
-$filename = tempnam(sys_get_temp_dir(), 'pdf');
-$writer->save($filename);
+function envoieDonnees($id_etu) {
+    $data = array();
+    $etu = array();
+    $resBut1 = array();
+    $resBut2 = array();
+    $resBut3 = array();
 
-// Renvoyer le PDF généré en réponse à la requête
-header('Content-Type: application/pdf');
-header('Content-Disposition: attachment; filename="output.pdf"');
-readfile($filename);
+    $db = DB::getInstance();
+
+    $resultatBd = $db->selectEtudiant($id_etu);
+
+    array_push($data, 2);
+    array_push($data, $etu);
+    array_push($data, $resBut1);
+    array_push($data, $resBut2);
+    array_push($data, $resBut3);
+    
+    echo json_encode($data);
+}
+
+function creerPdf($contenuHTML) {
+    // Charger le contenu du fichier HTML
+    $htmlContent = file_get_contents($contenuHTML);
+
+    // Créer un nouvel objet DOMDocument
+    $dom = new DOMDocument();
+
+    // Charger le contenu HTML dans l'objet DOMDocument
+    $dom->loadHTML($htmlContent);
+
+    // Sélectionner l'élément contenant les données
+    $dataDiv = $dom->getElementById('data');
+
+    // Créer un tableau pour stocker les données
+    $dataArray = [];
+
+    // Parcourir les éléments enfants de l'élément de données
+    foreach ($dataDiv->childNodes as $node) {
+        if ($node->nodeType === XML_ELEMENT_NODE) {
+            // Récupérer le texte des éléments enfants et divisez-le en clé et valeur
+            $text = trim($node->textContent);
+            $parts = explode(':', $text);
+            $key = trim($parts[0]);
+            $value = trim($parts[1]);
+
+            // Ajouter la paire clé-valeur au tableau
+            $dataArray[$key] = $value;
+        }
+    }
+
+    // Convertir le tableau en JSON
+    $jsonData = json_encode($dataArray);
+
+    // Afficher le JSON
+    echo $jsonData;
+}

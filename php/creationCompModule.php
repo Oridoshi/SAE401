@@ -1,6 +1,4 @@
 <?php
-include 'DB.inc.php';
-
 	function creationCompetenceModule($values){
 		$lstCompetence = array();
 		$nomVal = array("etudid", "code_nip", "C1", "C1", "coef");

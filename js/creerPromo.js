@@ -1,6 +1,7 @@
 btnCreerPromo = document.getElementById('creerPromo');
 
 btnCreerPromo.addEventListener("click", function() {
+	console.log('creerPromo');
 	var overlay = document.getElementById('overlay');
 	var modal   = document.getElementById('creerPromoModal');
 	overlay.classList.remove('hidden');

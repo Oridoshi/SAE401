@@ -1,7 +1,7 @@
 const labels = document.querySelectorAll('.lbldg');
 const inputs = document.querySelectorAll('.idg');
 const btnSubmit = document.getElementById('btnSubmit');
-const btnPromo = document.getElementById('dropdownBtn');
+const btnPromo = document.getElementById('btnPromo');
 let files = [];
 let nomInputs = [];
 
@@ -40,24 +40,28 @@ btnSubmit.addEventListener('click', function() {
 });
 
 function uploadFile() {
+    event.preventDefault();
     let i = 0;
     for (const file of files) {
+        console.log(file);
         const formData = new FormData();
         formData.append('file', file);
         formData.append('source', nomInputs[i]);
         formData.append('promo', btnPromo.innerHTML);
 
-        fetch("http://localhost:8000/php/upload.php", {
+        fetch("http://192.168.1.17:8000/upload.php", {
             method: 'POST',
             body: formData
         })
         .then(response => {
+            console.log(response);
             if (response.ok) {
                 return response.text();
             }
             throw new Error('Network response was not ok.');
         })
         .then(data => {
+            sessionStorage.setItem('data', data);
             alert(data);
             console.log('File uploaded successfully:', data);
         })
