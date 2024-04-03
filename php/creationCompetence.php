@@ -2,6 +2,7 @@
 include 'DB.inc.php';
 include 'lectureFIchier.php';
 
+//Fichier Jury
 function creationCompetence($values){
     $lstCompetence = array();
     $nomVal = array("etudid", "code_nip", "/^BIN\d{2}$/");
@@ -36,11 +37,11 @@ function creationCompetence($values){
 	return $lstCompetence;
 }
 
-$test = creationCompetence(lectureFichier("../donnees/S2 FI jury.xlsx"));
+// $test = creationCompetence(lectureFichier("../donnees/S2 FI jury.xlsx"));
 
-foreach($test as $competence){
-	echo $competence->getIdEtu()."<br>";
-	echo $competence->getCodeEtu()."<br>";
-	echo $competence->getIdComp()."<br>";
-	echo $competence->getMoyenne()."<br>";
-}
+// foreach($test as $competence){
+// 	echo $competence->getIdEtu()."<br>";
+// 	echo $competence->getCodeEtu()."<br>";
+// 	echo $competence->getIdComp()."<br>";
+// 	echo $competence->getMoyenne()."<br>";
+// }

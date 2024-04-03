@@ -3,8 +3,8 @@ include 'DB.inc.php';
 include 'lectureFIchier.php';
 
 
-//fichier moyenne
-	function creationEtudiant($donnees){
+//Fichier moyenne
+	function creationEtudiant($donnees, $promo){
 		$nomValeur = array("etudid", "code_nip", "Nom", "Prénom", "Parcours", "TD", "TP", "Cursus");
 		$lstEtudiant = array();
 		$aNom = array();
@@ -40,23 +40,23 @@ include 'lectureFIchier.php';
 				}
 
 			}
-			$etudiant = new Etudiant($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4], $lstValeur[5], $lstValeur[6], $lstValeur[7], NULL, false);
+			$etudiant = new Etudiant($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4], $lstValeur[5], $lstValeur[6], $lstValeur[7], $promo, false);
 			array_push($lstEtudiant, $etudiant);
 		}
 		return $lstEtudiant;
 	}
 
-$test = creationEtudiant(lectureFichier("../donnees/S1 FI moyennes.xlsx"));
+// $test = creationEtudiant(lectureFichier("../donnees/S1 FI moyennes.xlsx"));
 
-foreach($test as $etudiant){
-	echo $etudiant->getIdetudiant()."<br>";
-	echo $etudiant->getCode_etu()."<br>";
-	echo $etudiant->getNom()."<br>";
-	echo $etudiant->getPenom()."<br>";
-	echo $etudiant->getParcours()."<br>";
-	echo $etudiant->getGroupeTD()."<br>";
-	echo $etudiant->getGroupeTP()."<br>";
-	echo $etudiant->getCursus()."<br>";
-	echo $etudiant->getAnnee()."<br>";
-	echo $etudiant->getAvis()."<br>";
-}
+// foreach($test as $etudiant){
+// 	echo $etudiant->getIdetudiant()."<br>";
+// 	echo $etudiant->getCode_etu()."<br>";
+// 	echo $etudiant->getNom()."<br>";
+// 	echo $etudiant->getPenom()."<br>";
+// 	echo $etudiant->getParcours()."<br>";
+// 	echo $etudiant->getGroupeTD()."<br>";
+// 	echo $etudiant->getGroupeTP()."<br>";
+// 	echo $etudiant->getCursus()."<br>";
+// 	echo $etudiant->getAnnee()."<br>";
+// 	echo $etudiant->getAvis()."<br>";
+// }
