@@ -35,12 +35,11 @@ labels.forEach(label => {
 });
 
 btnSubmit.addEventListener('click', function() {
-    event.preventDefault();
+    event.preventDefault(); // a retirer pour le déploiement
     uploadFile();
 });
 
 function uploadFile() {
-    event.preventDefault();
     let i = 0;
     for (const file of files) {
         console.log(file);
