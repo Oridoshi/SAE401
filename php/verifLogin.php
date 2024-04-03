@@ -1,20 +1,19 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
-
 session_start();
 
-$login = $_POST['login'];
-$mdp   = $_POST['mdp'];
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 
-header('Location: salut' + $login + $mdp);
+// Récupérer les données JSON envoyées dans la requête POST
+$json_data = file_get_contents('php://input');
+$data = json_decode($json_data, true);
+
+$login = $data['login'];
+$mdp = $data['mdp'];
 
 if(verifLogMdp($login, $mdp))
 {
-	$_SESSION['login'] = $login;
-	$_SESSION['droit'] = getDroit($login);
-
 	echo json_encode(true);
 	exit();
 }
@@ -67,4 +66,3 @@ function isMotDePasseCryptOK($login, $mdp) : bool
 
 	return password_verify($mdp, $hashMapMdp[$login]);
 }
-?>

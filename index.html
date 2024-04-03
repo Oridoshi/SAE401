@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liens centrés dans la navbar</title>
+    <title>HTTB</title>
     <link rel="stylesheet" href="style/tailwind.css"></link>
 </head>
 <body>
@@ -97,6 +97,7 @@
 			border-dashed rounded border-2 border-vertFonce text-sm font-semibold 
 			text-vertFonce hover:bg-violet-100 cursor-pointer text-center mb-4 ml-4 col-span-2">déposer les coeff des Modules</label>
 
+
 			<div class="col-span-2 flex justify-end items-end">
 				<div class="relative">
 					<button id="dropdownBtn" class="flex items-center px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair focus:outline-none">
@@ -115,7 +116,7 @@
 				</div>
 				<button type="submit" id="btnSubmit" class="bg-vertFonce hover:bg-vertClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 h-full">Valider</button>
 			</div>
-			
+
 			<script src="js/dragAndDrop.js"></script>
 			<script>
 				document.getElementById('dropdownBtn').addEventListener('click', function() {
@@ -137,13 +138,21 @@
 
 		</form>
 	</div>
+	
+	<h1 id="Tableau" class="text-3xl text-bold text-vertFonce mb-8">Tableau</h1>
 
-	<h1 id="Informations" class="text-3xl text-bold text-vertFonce mb-8">Informations et exportation</h1>
-	<p class="text-justify bg-vertFondTexte rounded-perso shadow-xl text-marronFonce text-xl p-10 ml-20 mr-20">
+	<table id="TableauFixe">
+
+
+	</table>
+
+
+	<h1 id="Informations" class="text-3xl font-bold text-vertFonce mb-16">Informations et exportation</h1>
+	<p class="text-justify bg-vertFondTexte rounded-perso shadow-xl text-marronFonce text-xl p-10 ml-20 mr-20 mb-16">
 		Nous tenons à souligner que notre responsabilité ne s'étend pas à l'intégrité des données fournies par les utilisateurs. Bien que nous mettions en œuvre des mesures de sécurité rigoureuses pour protéger les informations que vous partagez avec nous, telles que des pare-feu et des protocoles de cryptage avancés, nous ne pouvons garantir à cent pour cent la préservation complète de ces données. Les utilisateurs sont encouragés à prendre leurs propres précautions en matière de sécurité, telles que la création de mots de passe robustes et la vérification régulière de leurs comptes pour détecter toute activité suspecte. Nous nous engageons à collaborer avec nos utilisateurs pour résoudre tout problème de sécurité qui pourrait survenir, mais nous déclinons toute responsabilité pour toute perte ou dommage résultant de la compromission ou de la modification des données.
 	</p>
 
-	<h1 class="text-3xl text-bold text-vertFonce mb-8 mt-5">Exportation</h1>
+	<h1 class="text-3xl font-bold text-vertFonce mb-16">Exportation</h1>
 	<!-- double case -->
 	<div class="flex flex-wrap justify-center">
 		<div class="w-full md:w-1/2">
@@ -155,7 +164,7 @@
 				</select>
 				<button id="exportExelJury" class="bg-marronFonce w-60 hover:bg-marronClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 mb-3">Exporter jury</button>
 				
-				<select id="exportExelSemestre" class="bg-vertFonce w-44 hover:bg-vertClair  hover:text-black text-white font-bold py-2 px-4 rounded">
+				<select id="exportExcelSemestre" class="bg-vertFonce w-44 hover:bg-vertClair  hover:text-black text-white font-bold py-2 px-4 rounded">
 					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">S1</option>
 					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">S2</option>
 				</select>

@@ -1,38 +1,49 @@
 var btnTel = document.getElementById("telecharge");
 var btnAnnule = document.getElementById("annule");
 var divBtn = document.getElementById("divBtn");
-console.log("arriver dans js");
 btnTel.addEventListener("click", function(){
-    divBtn.innerHTML =  " ";
-    console.log("ff");
-    envoyer();
-    
+	divBtn.innerHTML =  " ";
+	envoyer();
 });
 
 btnAnnule.addEventListener("click", function () {
-    window.history.back();
+	window.history.back();
 });
 
-const requestOptions = {
-    method: 'POST', // Méthode HTTP à utiliser (POST ou GET)
-    headers: {
-        'Content-Type': 'application/json' // Type de contenu de la requête
-    },
-    body: JSON.stringify({ action: 'creerPDF', parametre: document }) // Données à envoyer au serveur, si nécessaire
-};
-
 function envoyer() {
-    console.log("envoie fct");
-    fetch('http://192.168.1.17/ExportPDF.php', requestOptions)
-	.then(response => {
-		if (response.ok) {
-			console.log('Fichier téléchargé avec succès !');
-		} else {
-			console.error('Une erreur s\'est produite lors du téléchargement du fichier.');
+	// Récupérer le contenu HTML que vous souhaitez convertir en PDF
+	
+	var contenuHTML = document.documentElement;
+    //var nomPrenom = document.getElementById("exportExcelSemestre").value;
+
+	// Envoyer le contenu HTML à votre script PHP via Fetch
+	fetch('http://192.168.1.17:8000/ExportPDF.php', {
+		method: 'POST',
+		body: JSON.stringify({ contenuHTML: contenuHTML, /*nomPrenom: nomPrenom*/ }),
+		headers: {
+			'Content-Type': 'application/json'
 		}
 	})
-	.catch(error => {
-		console.error('Une erreur s\'est produite :', error);
-	});
+	.then(response => response.blob())
+	.then(blob => {
+		// Récupérer le blob (PDF) et le télécharger ou l'afficher
+		var url = window.URL.createObjectURL(blob);
+		window.open(url); // Ouvre le PDF dans un nouvel onglet
+	})
+	.catch(error => console.error('Erreur:', error));
+};
 
+
+
+//possible de récupérer les noms des élèves directement lors de l'envoi par le php !
+function listerNoms() {
+	var lstNoms = [];
+	var tableau = document.getElementById("TableauFixe");
+
+	for (var i = 1; i < tableau.rows.length; i++) {
+		var nom = tableau.rows[i].cells[3].innerHTML;
+		var prenom = tableau.rows[i].cells[4].innerHTML;
+		lstNoms.push({nomEleve: nom, prenomEleve: prenom});
+	}
+	return lstNoms;
 }
