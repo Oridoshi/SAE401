@@ -47,10 +47,7 @@ function getDroit($login)
 
 function isLoginOK($login) : bool
 {
-	if($login == "user" || $login == "admin")
-		return true;
-
-	return false;
+	return $login == "user" || $login == "admin";
 }
 
 function isMotDePasseCryptOK($login, $mdp) : bool
@@ -66,4 +63,3 @@ function isMotDePasseCryptOK($login, $mdp) : bool
 
 	return password_verify($mdp, $hashMapMdp[$login]);
 }
-?>
