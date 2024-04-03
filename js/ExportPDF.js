@@ -1,4 +1,5 @@
 var btnTel = document.getElementById("telecharge");
+console.log(btnTel);
 var btnAnnule = document.getElementById("annule");
 var divBtn = document.getElementById("divBtn");
 
