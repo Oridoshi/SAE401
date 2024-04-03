@@ -7,6 +7,9 @@ if(isset($_FILES['file'])) {
     // Déplacer le fichier vers le répertoire de destination
     if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
         echo "Le fichier " . htmlspecialchars(basename($_FILES["file"]["name"])) . " a été téléchargé.";
+
+        //traitement du fichier
+        
     } else {
         echo "Désolé, une erreur s'est produite lors du téléchargement du fichier.";
     }
