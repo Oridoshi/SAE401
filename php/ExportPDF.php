@@ -1,48 +1,47 @@
 <?php
-// Inclure la bibliothèque PHP Spreadsheet
-require 'vendor/autoload.php';
-require 'DB.inc.php';
+// Inclure la bibliothèque PHP TCPDF
+require 'tcpdf/tcpdf.php';
 
-use PhpOffice\PhpSpreadsheet\Writer\Pdf;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\IOFactory;
+// Autoriser toutes les origines pour CORS
+header("Access-Control-Allow-Origin: *");
 
-// Récupérer le contenu HTML envoyé depuis JavaScript
-$donnees_post = json_decode(file_get_contents('php://input'), true);
-$contenuHTML = $donnees_post['contenuHTML'];
-$nomPrenom = $donnees_post['nomPrenom'];
-
-$etud = array(/* nom, prenom, annee, parcours(A, B, C)*/);
-$res1 = array(/* abs, moyenne, rang */);
-$res2 = array(/* abs, moyenne, rang */);
-$res3 = array(/* abs, moyenne, rang */);
-
-$db = DB::getInstance();
-
-$etudiants = $db->getEtudiants();
-$resultats = $db->getResultats();
-
-foreach ($etudiants as $etudiant) {
-	if($etudiant->prenom === $nomPrenom['prenomEleve'] && $etudiant->nom === $nomPrenom['nomEleve']){
-		array_push($etud, $etudiant->nom, $etudiant->prenom, $etudiant->annee, $etudiant->parcours);
-	}
+// Vérifier si la méthode de la requête est OPTIONS
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    // Répondre avec les en-têtes CORS appropriés
+    header("Access-Control-Allow-Methods: POST");
+    header("Access-Control-Allow-Headers: Content-Type");
+    header("Access-Control-Max-Age: 86400"); // Cache preflight pendant 1 jour
+    exit;
 }
 
+// Vérifier si la méthode de la requête est POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Récupérer les données JSON envoyées depuis le script JavaScript
+    $donnees_post = json_decode(file_get_contents('php://input'), true);
+    $contenuHTML = $donnees_post['contenuHTML'];
 
-// Créer une nouvelle instance de la classe Spreadsheet
-$spreadsheet = new Spreadsheet();
+    // Créer le PDF à partir du contenu HTML
+    creerPdf($contenuHTML);
+} else {
+    // Répondre avec un code d'état HTTP approprié si la méthode n'est pas POST
+    http_response_code(405);
+}
 
-// Charger le contenu HTML dans la feuille de calcul
-$spreadsheet->getActiveSheet()->fromHtml($contenuHTML);
+function creerPdf($contenuHTML) {
+    // Créer une nouvelle instance de TCPDF
+    $pdf = new TCPDF();
 
-// Créer un objet PDF Writer
-$writer = new Pdf($spreadsheet);
+    // Ajouter une nouvelle page au PDF
+    $pdf->addPage();
 
-// Écrire le PDF dans un flux temporaire
-$filename = tempnam(sys_get_temp_dir(), 'pdf');
-$writer->save($filename);
+	//$contenuHTML = preg_replace('<script>(.*?)</script>', '', $contenuHTML);
 
-// Renvoyer le PDF généré en réponse à la requête
-header('Content-Type: application/pdf');
-header('Content-Disposition: attachment; filename="output.pdf"');
-readfile($filename);
+    // Écrire le contenu HTML dans le PDF
+    $pdf->writeHTML($contenuHTML);
+
+    // Renvoyer le PDF généré en réponse à la requête
+    header('Content-Type: application/pdf');
+    header('Content-Disposition: attachment; filename="output.pdf"');
+    echo $pdf->Output('output.pdf', 'S');
+}
+?>
