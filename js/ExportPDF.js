@@ -14,6 +14,7 @@ function envoyer() {
 	// Récupérer le contenu HTML que vous souhaitez convertir en PDF
 	
 	var contenuHTML = document.documentElement;
+	console.log(contenuHTML);
     //var nomPrenom = document.getElementById("exportExcelSemestre").value;
 
 	// Envoyer le contenu HTML à votre script PHP via Fetch
