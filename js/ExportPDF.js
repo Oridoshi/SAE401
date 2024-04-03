@@ -1,5 +1,4 @@
 var btnTel = document.getElementById("telecharge");
-console.log(btnTel);
 var btnAnnule = document.getElementById("annule");
 var divBtn = document.getElementById("divBtn");
 
@@ -11,6 +10,7 @@ btnTel.addEventListener("click", function(){
 btnAnnule.addEventListener("click", function () {
     window.history.back();
 });
+
 
 function envoyer() {
     // Récupérer le contenu HTML que vous souhaitez convertir en PDF
@@ -24,11 +24,16 @@ function envoyer() {
             'Content-Type': 'application/json'
         }
     })
-    .then(response => response.blob())
-    .then(blob => {
-        // Récupérer le blob (PDF) et le télécharger ou l'afficher
-        var url = window.URL.createObjectURL(blob);
-        window.open(url); // Ouvre le PDF dans un nouvel onglet
+    .then(response => response.json())
+    .then(data => {
+        // Créer un objet jsPDF
+        const doc = new jsPDF();
+ 
+        // Ajouter les données reçues du serveur au PDF
+        doc.text(data.content, 10, 10);
+
+        // Télécharger le PDF
+        doc.save("fichier.pdf");
     })
     .catch(error => console.error('Erreur:', error));
 }

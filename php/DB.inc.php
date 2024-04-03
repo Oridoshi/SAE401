@@ -1,11 +1,11 @@
 <?php
 
 //include
-include 'Etudiant.inc.php';
-include 'Resultat.inc.php';
-include 'Competence.inc.php';
-include 'Modules.inc.php';
-include 'CompetenceModule.inc.php';
+include_once 'Etudiant.inc.php';
+include_once 'Resultat.inc.php';
+include_once 'Competence.inc.php';
+include_once 'Modules.inc.php';
+include_once 'CompetenceModule.inc.php';
 
 class DB{
     private static $instance = null;
@@ -93,6 +93,12 @@ class DB{
         return $this->execQuery($query, NULL, "Etudiant");
     }
 
+    public function selectEtudiant($id_etu) {
+        $query = "SELECT * FROM Etudiant WHERE id_etu = ?;";
+        $tparam = array($id_etu);
+        return $this->execQuery($query, $tparam, "Etudiant");
+    }
+
     public function selectResultats() {
         $query = "SELECT * FROM Resultat;";
         return $this->execQuery($query, NULL, "Resultat");
@@ -113,10 +119,15 @@ class DB{
         return $this->execQuery($query, NULL, "CompetenceModule");
     }
 
-    public function insertEtudiant($id_etudiant, $code_etu, $nom, $prenom, $parcours, $rang, $groupe_TD, $groupe_TP, $cursus, $annee, $avis) {
-        $requete = "INSERT INTO Etudiant VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-        $tparam = array($id_etudiant, $code_etu, $nom, $prenom, $parcours, $rang, $groupe_TD, $groupe_TP, $cursus, $annee, $avis);
-        return $this->execMaj($requete, $tparam);
+    //$id_etudiant, $code_e²tu, $nom, $prenom, $parcours, $groupe_TD, $groupe_TP, $cursus, $annee, $avis
+    public function insertEtudiant($etudiants)
+    {
+        $requete = "INSERT INTO Etudiant VALUES (?,?,?,?,?,?,?,?,?,?)";
+
+        foreach($etudiants as $etudiant) {
+            $tparam = array($etudiant->id_etudiant, $etudiant->code_etu, $etudiant->nom, $etudiant->prenom, $etudiant->parcours, $etudiant->groupe_td, $etudiant->groupe_tp, $etudiant->cursus, $etudiant->annee, $etudiant->avis);
+            $this->execMaj($requete, $tparam);
+        }
     }
 
     public function insertResultat($id_etudiant, $code_etu, $id_resultat, $rang, $absence, $moyenne, $alternant) {

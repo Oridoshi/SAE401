@@ -1,5 +1,4 @@
 <?php
-include 'DB.inc.php';
 
 
 function creationResultat($values){

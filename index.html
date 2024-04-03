@@ -100,96 +100,37 @@
 
 			<div class="col-span-2 flex justify-end items-end">
 				<div class="relative">
-					<button id="dropdownBtn" class="flex items-center px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair focus:outline-none">
-						<span id="dropdownText" class="text-sm leading-none  font-bold">
-							Sélectionner une année
-						</span>
-						<svg id="dropdownImg" class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-							<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-						</svg>
-					</button>
-					<div id="dropdownList" class="absolute flex flex-col w-40 border text-white font-bold rounded hidden">
-						<button id="creerPromo" class="flex items-center h-8 px-3 text-sm bg-vertFonce hover:bg-vertClair hover:text-black border border-black">Créer une promo</button>
-						<script src="js/creerPromo.js"></script>
-						<script src="js/lstPromo.js"></script>
-					</div>
+					<select id="btnPromo" class="flex items-center px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair">
+						<option id="creerPromo">Créer une promotion</option>
+					</select>
 				</div>
 				<button type="submit" id="btnSubmit" class="bg-vertFonce hover:bg-vertClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 h-full">Valider</button>
 			</div>
 
 			<script src="js/dragAndDrop.js"></script>
-			<script>
-				document.getElementById('dropdownBtn').addEventListener('click', function() {
-					event.preventDefault();
-					event.stopPropagation();
-
-					const dropdownList = document.getElementById('dropdownList');
-					const dropdownItems = dropdownList.getElementsByTagName('button');
-
-					Array.from(dropdownItems).forEach(element => {
-						element.addEventListener('click', function() {
-							event.preventDefault();
-							event.stopPropagation();
-						});
-					});
-					
-				});
-			</script>
-
+			<script src="js/creerPromo.js"></script>
 		</form>
 	</div>
 	
-	<h1 id="Tableau" class="text-3xl font-bold text-vertFonce mb-6">Tableau</h1>
+	<h1 id="Tableau" class="text-3xl mt-[13rem] font-bold text-vertFonce mb-6">Tableau</h1>
 
 	<div class="flex justify-between">
-		<div class="relative flex-none ml-14 mr-4">
-			<button id="dropdownBtn" class="flex items-center px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair focus:outline-none">
-				<span id="dropdownText" class="text-sm leading-none  font-bold">
-					Sélectionner une année
-				</span>
-				<svg id="dropdownImg" class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-					<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-				</svg>
-			</button>
-			<div id="dropdownList" class="absolute flex flex-col w-40 border text-white font-bold rounded hidden">
-				<button id="creerPromo" class="flex items-center h-8 px-3 text-sm bg-vertFonce hover:bg-vertClair hover:text-black border border-black">Créer une promo</button>
-				<script src="js/creerPromo.js"></script>
-				<script src="js/lstPromo.js"></script>
-			</div>
-		</div>
-		<div class="relative flex-none">
-			<button id="dropdownBtn" class="flex items-center px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair focus:outline-none">
-				<span id="dropdownText" class="text-sm leading-none  font-bold">
-					Sélectionner une année
-				</span>
-				<svg id="dropdownImg" class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-					<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-				</svg>
-			</button>
-			<div id="dropdownList" class="absolute flex flex-col w-40 border text-white font-bold rounded hidden">
-				<button id="creerPromo" class="flex items-center h-8 px-3 text-sm bg-vertFonce hover:bg-vertClair hover:text-black border border-black">Créer une promo</button>
-				<script src="js/creerPromo.js"></script>
-				<script src="js/lstPromo.js"></script>
-			</div>
-		</div>
-		<div class="relative flex-none ml-auto mr-14">
-			<button id="dropdownBtn" class="flex items-center px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair focus:outline-none">
-				<span id="dropdownText" class="text-sm leading-none  font-bold">
-					Sélectionner une année
-				</span>
-				<svg id="dropdownImg" class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-					<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-				</svg>
-			</button>
-			<div id="dropdownList" class="absolute flex flex-col w-40 border text-white font-bold rounded hidden">
-				<button id="creerPromo" class="flex items-center h-8 px-3 text-sm bg-vertFonce hover:bg-vertClair hover:text-black border border-black">Créer une promo</button>
-				<script src="js/creerPromo.js"></script>
-				<script src="js/lstPromo.js"></script>
-			</div>
-		</div>
+		<select id="lstPromo" class="relative flex-none ml-14 mr-4 px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair"></select>
+		<select class="relative flex-none px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair">
+			<option value="1">Semestre 1</option>
+			<option value="2">Semestre 2</option>
+			<option value="3">Semestre 3</option>
+			<option value="4">Semestre 4</option>
+			<option value="5">Semestre 5</option>
+			<option value="6">Semestre 6</option>
+		</select>
+		<select class="relative flex-none ml-auto mr-14 px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair">
+			<option id="vueCommission">Vue Commission</option>
+			<option id="vueJury">Vue Jury</option>
+		</select>
 	</div>
 
-	<div id="tabContainer" class="flex justify-start h-96 overflow-y-auto ml-4 mt-4">
+	<div id="tabContainer" class="flex justify-start h-[44rem] overflow-y-auto ml-4 mt-4">
 		<div id="tabFixeDiv" class="flex-none overflow-x-auto sticky left-0 z-20">
 			<!--rajouter les btns de modif pour les admins-->
 			<table id="TableauFixe" class="">
@@ -561,7 +502,7 @@
 	</script>
 
 
-	<h1 id="Informations" class="text-3xl font-bold text-vertFonce mb-16">Informations et exportation</h1>
+	<h1 id="Informations" class="text-3xl mt-[3rem] font-bold text-vertFonce mb-16">Informations et exportation</h1>
 	<p class="text-justify bg-vertFondTexte rounded-perso shadow-xl text-marronFonce text-xl p-10 ml-20 mr-20 mb-16">
 		Nous tenons à souligner que notre responsabilité ne s'étend pas à l'intégrité des données fournies par les utilisateurs. Bien que nous mettions en œuvre des mesures de sécurité rigoureuses pour protéger les informations que vous partagez avec nous, telles que des pare-feu et des protocoles de cryptage avancés, nous ne pouvons garantir à cent pour cent la préservation complète de ces données. Les utilisateurs sont encouragés à prendre leurs propres précautions en matière de sécurité, telles que la création de mots de passe robustes et la vérification régulière de leurs comptes pour détecter toute activité suspecte. Nous nous engageons à collaborer avec nos utilisateurs pour résoudre tout problème de sécurité qui pourrait survenir, mais nous déclinons toute responsabilité pour toute perte ou dommage résultant de la compromission ou de la modification des données.
 	</p>
@@ -595,8 +536,20 @@
 				<button id="exportAvis" class="bg-marronFonce w-60 hover:bg-marronClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 mb-3" name="exportAvis">Exporter avis</button>
 				<script>
 					document.getElementById("exportAvis").addEventListener("click", function(){
-						window.location.href = './visuPdf.html';
-					});
+						var test = "tgConnard"
+						fetch('http://192.168.1.17:8000/ExportPDF.php', {
+							method: 'POST',
+							body: JSON.stringify({ nomPrenom: test }),
+							headers: {
+								'Content-Type': 'application/json'
+							}
+							}).then(response => response.json())
+							.then(data => {
+								console.log(data);
+								//ajouter aux tableaux les données
+							}).catch(error => console.error("erreur lors de la récupération des données"));
+							//window.location.href = './visuPdf.html';
+						});
 				</script>
 			</div>
 		</div>
@@ -638,6 +591,10 @@
 		</form>
 	</div>
 </body>
+<script>
+	console.log("blablablou");
+</script>
 <script src="js/fct.HTML.js"></script>
 <script src="js/login.js"></script>
+<script src="js/lstPromo.js"></script>
 </html>

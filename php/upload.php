@@ -1,10 +1,13 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 
-include_once("lecureFIchier.php");
+include_once("lectureFIchier.php");
 include_once("creationEtudiant.php");
 include_once("creationResultat.php");
 include_once("creationCompetence.php");
 include_once("creationModules.php");
+include_once("Etudiant.inc.php");
 
 // Vérifier si un fichier a été envoyé
 if(isset($_FILES['file'])) {
@@ -13,8 +16,8 @@ if(isset($_FILES['file'])) {
 
     // Déplacer le fichier vers le répertoire de destination
     if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-        traitementFichier($target_file, $_POST["source"]);
-        echo "Le fichier " . htmlspecialchars(basename($_FILES["file"]["name"])) . " a été téléchargé.";
+        echo traitementFichier($target_file, $_POST["source"]);
+        // echo "Le fichier " . htmlspecialchars(basename($_FILES["file"]["name"])) . " a été téléchargé.";
 
         //traitement du fichier
         
