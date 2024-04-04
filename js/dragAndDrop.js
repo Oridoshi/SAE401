@@ -40,13 +40,18 @@ btnSubmit.addEventListener('click', function() {
 });
 
 function uploadFile() {
+    const promo = parseInt(btnPromo.value);
+    if(!Number.isInteger(promo)){
+        return alert('Veuillez sélectionner une promotion.');
+    }
+
     let i = 0;
     for (const file of files) {
         console.log(file);
         const formData = new FormData();
         formData.append('file', file);
         formData.append('source', nomInputs[i]);
-        formData.append('promo', btnPromo.innerHTML);
+        formData.append('promo', promo);
 
         fetch("http://127.0.0.1:8000/upload.php", {
             method: 'POST',
