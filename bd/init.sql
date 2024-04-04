@@ -52,13 +52,8 @@ CREATE TABLE Modules (
 );
 
 CREATE TABLE CompetenceModules (
-    id_etu int,
-    code_etu VARCHAR(10),
     id_comp VARCHAR(10),
     lib VARCHAR(50),
-    coef float,
-    PRIMARY KEY (id_etu, code_etu, id_comp, lib),
-    FOREIGN KEY (id_etu, code_etu, id_comp) REFERENCES Competence(id_etu, code_etu, id_comp),
-    FOREIGN KEY (id_etu, code_etu, lib) REFERENCES Modules(id_etu, code_etu, lib)
-
+    coef int,
+    PRIMARY KEY (id_comp, lib)
 );

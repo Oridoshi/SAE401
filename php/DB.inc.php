@@ -232,23 +232,23 @@ class DB{
 		}
 	}
 
-	/**
-	 * Insère des compétences de modules dans la base de données.
-	 *
-	 * @param array $competenceModules Un tableau d'objets représentant des compétences de modules.
-	 * Chaque objet doit avoir les attributs suivants :
-	 * - id_etudiant : L'identifiant de l'étudiant.
-	 * - code_etu : Le code de l'étudiant.
-	 * - id_comp : L'identifiant de la compétence associée au module.
-	 * - id_module : L'identifiant du module.
-	 * - coef : Le coefficient de la compétence de module.
-	 */
-	public function insertCompetenceModule($competenceModules) {
-		$requete = "INSERT INTO CompetenceModule VALUES (?,?,?,?,?)";
+    /**
+     * Insère des compétences de modules dans la base de données.
+     *
+     * @param array $competenceModules Un tableau d'objets représentant des compétences de modules.
+     * Chaque objet doit avoir les attributs suivants :
+     * - id_etudiant : L'identifiant de l'étudiant.
+     * - code_etu : Le code de l'étudiant.
+     * - id_comp : L'identifiant de la compétence associée au module.
+     * - id_module : L'identifiant du module.
+     * - coef : Le coefficient de la compétence de module.
+     */
+    public function insertCompetenceModule($competenceModules) {
+        $requete = "INSERT INTO CompetenceModules VALUES (?,?,?)";
 
-		foreach($competenceModules as $competenceModule) {
-			$tparam = array($competenceModule->id_etudiant, $competenceModule->code_etu, $competenceModule->id_comp, $competenceModule->id_module, $competenceModule->coef);
-			$this->execMaj($requete, $tparam);
-		}
-	}
+        foreach($competenceModules as $competenceModule) {
+            $tparam = array($competenceModule->getIdComp(), $competenceModule->getIdModule(), $competenceModule->getCoef());
+            $this->execMaj($requete, $tparam);
+        }
+    }
 }
