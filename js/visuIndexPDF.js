@@ -1,3 +1,7 @@
+
+
+var donnees = [];
+
 document.getElementById("exportAvis").addEventListener("click", function(){
 	var id_etu = 1;
 	fetch('http://localhost:8000/ExportPDF.php', {
@@ -9,17 +13,16 @@ document.getElementById("exportAvis").addEventListener("click", function(){
 		}).then(response => response.json())
 		.then(data => {
 		
-		console.log(data);
-
-
-
-
-
-
+		var etu = data.etudiants;
+		etu.forEach(function(etudiant){
+			donnees.push(etudiant);
+		});
+		console.log(data.etudiants.annee);
 		}).catch(error => console.error("erreur lors de la récupération des données " + error.value));
 		//window.location.href = './visuPdf.html';
 		open("./visuPdf.html");
 	});
+
 
 	/*
 	titre : année de la promo
