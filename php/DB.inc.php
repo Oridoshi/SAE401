@@ -13,10 +13,10 @@ class DB{
     private $pdo = null;
 
     public function __construct(){
-        $connStr = 'pgsql:host=woody port=5432 dbname=dt220522';
+        $connStr = 'pgsql:host=localhost port=5432 dbname=hugo';
 
         try{
-            $this->pdo = new PDO($connStr, 'dt220522', '22555225Tt.');
+            $this->pdo = new PDO($connStr, 'hugo', 'hugo');
 
             $this->pdo->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

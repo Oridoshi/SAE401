@@ -12,22 +12,37 @@ function corpsFixe(){
 		data.forEach(etu => {
 			console.log(etu);
 			let tr = document.createElement('tr');
+			let modif = document.createElement('td');
 			let avis = document.createElement('td');
 			let code = document.createElement('td');
 			let rang = document.createElement('td');
 			let nom = document.createElement('td');
 			let prenom = document.createElement('td');
 
+			modif.classList.add("bg-white");
+			modif.addEventListener('mouseout', function(){
+				modif.innerHTML = ''; // Supprime le contenu de la cellule de l'icône
+			});
+			
+			// Ajouter des écouteurs d'événements pour afficher l'icône de modification au survol de la souris
+			modif.addEventListener('mouseover', function(){
+				modif.innerHTML = '<img src="style/img/icon.png" alt="Modifier" width="20" height="20">'; // Restaure le contenu de la cellule de l'icône
+			});
+			
+			modif.addEventListener('click', function(){
+				console.log("Modifier");
+				//Code pour modifier la partie scroll
+			});
 			avis.textContent = etu.avis;
-			avis.classList.add("border-r", "border-black");
+			avis.classList.add("border-r", "border-black", "text-white");
 			code.textContent = etu.code_etu;
-			code.classList.add("border-r", "border-black");
+			code.classList.add("border-r", "border-black", "text-white");
 			rang.textContent = etu.rang;
-			rang.classList.add("border-r", "border-black");
+			rang.classList.add("border-r", "border-black", "text-white");
 			nom.textContent = etu.nom;
-			nom.classList.add("border-r", "border-black");
+			nom.classList.add("border-r", "border-black", "text-white");
 			prenom.textContent = etu.prenom;
-			prenom.classList.add("border-r", "border-white");
+			prenom.classList.add("border-r", "border-white", "text-white");
 
 			if(cpt%2 == 0){
 				tr.classList.add("bg-vertFonce");
@@ -35,6 +50,7 @@ function corpsFixe(){
 				tr.classList.add("bg-vertClair");
 			}
 
+			tr.appendChild(modif);
 			tr.appendChild(avis);
 			tr.appendChild(code);
 			tr.appendChild(rang);
