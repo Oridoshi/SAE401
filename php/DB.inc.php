@@ -13,10 +13,10 @@ class DB{
     private $pdo = null;
 
     public function __construct(){
-        $connStr = 'pgsql:host=woody port=5432 dbname=dt220522';
+        $connStr = 'pgsql:host=woody port=5432 dbname=hb220678';
 
         try{
-            $this->pdo = new PDO($connStr, 'dt220522', '22555225Tt.');
+            $this->pdo = new PDO($connStr, 'hb220678', 'postgre');
 
             $this->pdo->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -48,7 +48,7 @@ class DB{
         $this->pdo = null;
     }
 
-    public function execQuery($requete, $tparam, $nomClasse) {
+    public function execQuery($requete, $tparam, $nomClasse){
         //préparation de la requête
         $stmt = $this->pdo->prepare($requete);
         //on indique que l'on va récupére les tuples sous forme d'objets instance de Client
@@ -88,12 +88,12 @@ class DB{
         return $stmt->rowCount();
     }
 
-    public function selectEtudiants() {
+    public function selectEtudiants(){
         $query = "SELECT * FROM Etudiant;";
         return $this->execQuery($query, NULL, "Etudiant");
     }
 
-    public function selectEtudiant($id_etu) {
+    public function selectEtudiant($id_etu){
         $query = "SELECT * FROM Etudiant WHERE id_etu = ?;";
         $tparam = array($id_etu);
         return $this->execQuery($query, $tparam, "Etudiant");
