@@ -1,8 +1,6 @@
 <?php
-include 'DB.inc.php';
-include 'lectureFIchier.php';
 
-//fichire moyenne
+//Fichire moyenne
 function creationModules($donnees){
 	$regex = "/^(Bonus)|(^(BIN)[RS]\d{3})$/";
 	$lstModules = array();
@@ -36,11 +34,11 @@ function creationModules($donnees){
 
 }
 
-$test = creationModules(lectureFichier("../donnees/S1 FI moyennes.xlsx"));
+// $test = creationModules(lectureFichier("../donnees/S1 FI moyennes.xlsx"));
 
-foreach($test as $modules){
-	echo $modules->getIdetudiant()."<br>";
-	echo $modules->getCodeEtu()."<br>";
-	echo $modules->getIdModule()."<br>";
-	echo $modules->getNotes()."<br>";
-}
+// foreach($test as $modules){
+// 	echo $modules->getIdetudiant()."<br>";
+// 	echo $modules->getCodeEtu()."<br>";
+// 	echo $modules->getIdModule()."<br>";
+// 	echo $modules->getNotes()."<br>";
+// }

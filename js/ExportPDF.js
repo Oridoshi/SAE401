@@ -1,20 +1,20 @@
 var btnTel = document.getElementById("telecharge");
 var btnAnnule = document.getElementById("annule");
 var divBtn = document.getElementById("divBtn");
+
 btnTel.addEventListener("click", function(){
-	divBtn.innerHTML =  " ";
+    divBtn.innerHTML =  " ";
 	envoyer();
 });
 
 btnAnnule.addEventListener("click", function () {
-	window.history.back();
+    window.history.back();
 });
 
+
 function envoyer() {
-	// Récupérer le contenu HTML que vous souhaitez convertir en PDF
-	
-	var contenuHTML = document.documentElement;
-    //var nomPrenom = document.getElementById("exportExcelSemestre").value;
+    // Récupérer le contenu HTML que vous souhaitez convertir en PDF
+    var contenuHTML = document.documentElement.outerHTML;
 
 	// Envoyer le contenu HTML à votre script PHP via Fetch
 	fetch('http://localhost:8000/ExportPDF.php', {

@@ -1,11 +1,11 @@
 <?php
 
 //include
-include 'Etudiant.inc.php';
-include 'Resultat.inc.php';
-include 'Competence.inc.php';
-include 'Modules.inc.php';
-include 'CompetenceModule.inc.php';
+include_once 'Etudiant.inc.php';
+include_once 'Resultat.inc.php';
+include_once 'Competence.inc.php';
+include_once 'Modules.inc.php';
+include_once 'CompetenceModule.inc.php';
 
 class DB{
     private static $instance = null;
@@ -93,6 +93,12 @@ class DB{
         return $this->execQuery($query, NULL, "Etudiant");
     }
 
+    public function selectEtudiant($id_etu) {
+        $query = "SELECT * FROM Etudiant WHERE id_etu = ?;";
+        $tparam = array($id_etu);
+        return $this->execQuery($query, $tparam, "Etudiant");
+    }
+
     public function selectResultats() {
         $query = "SELECT * FROM Resultat;";
         return $this->execQuery($query, NULL, "Resultat");
@@ -113,36 +119,6 @@ class DB{
         return $this->execQuery($query, NULL, "CompetenceModule");
     }
 
-    public function insertEtudiant($id_etudiant, $code_etu, $nom, $prenom, $parcours, $rang, $groupe_TD, $groupe_TP, $cursus, $annee, $avis) {
-        $requete = "INSERT INTO Etudiant VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-        $tparam = array($id_etudiant, $code_etu, $nom, $prenom, $parcours, $rang, $groupe_TD, $groupe_TP, $cursus, $annee, $avis);
-        return $this->execMaj($requete, $tparam);
-    }
-
-    public function insertResultat($id_etudiant, $code_etu, $id_resultat, $rang, $absence, $moyenne, $alternant) {
-        $requete = "INSERT INTO Resultat VALUES (?,?,?,?,?,?,?)";
-        $tparam = array($id_etudiant, $code_etu, $id_resultat, $rang, $absence, $moyenne, $alternant);
-        return $this->execMaj($requete, $tparam);
-    }
-
-    public function insertCompetence($id_etudiant, $code_etu, $id_comp, $moyenne, $recommendation, $rang) {
-        $requete = "INSERT INTO Competence VALUES (?,?,?,?,?,?)";
-        $tparam = array($id_etudiant, $code_etu, $id_comp, $moyenne, $recommendation, $rang);
-        return $this->execMaj($requete, $tparam);
-    }
-
-    public function insertModule($id_etudiant, $code_etu, $id_comp, $id_module, $notes, $libelle) {
-        $requete = "INSERT INTO Module VALUES (?,?,?,?,?,?)";
-        $tparam = array($id_etudiant, $code_etu, $id_comp, $id_module, $notes, $libelle);
-        return $this->execMaj($requete, $tparam);
-    }
-
-    public function insertCompetenceModule($id_etu, $code_etu, $id_comp, $id_module, $coef) {
-        $requete = "INSERT INTO CompetenceModule VALUES (?,?,?,?,?)";
-        $tparam = array($id_etu, $code_etu, $id_comp, $id_module, $coef);
-        return $this->execMaj($requete, $tparam);
-    }
-
     public function getAnnees() {
         $query = "SELECT DISTINCT annee FROM Etudiant;";
         $stmt = $this->pdo->prepare($query);
@@ -156,5 +132,118 @@ class DB{
             $annees[] = $resultat->annee;
         }
         return $annees;
+    }
+
+
+    //Requete pour insertion des donnéesµ
+
+    /**
+     * Insère des données d'étudiants dans la base de données.
+     *
+     * @param array $etudiants Un tableau d'objets représentant des étudiants.
+     * Chaque objet doit avoir les attributs suivants :
+     * - id_etudiant : L'identifiant de l'étudiant.
+     * - code_etu : Le code de l'étudiant.
+     * - nom : Le nom de l'étudiant.
+     * - prenom : Le prénom de l'étudiant.
+     * - parcours : Le parcours de l'étudiant.
+     * - groupe_TD : Le groupe de travaux dirigés de l'étudiant.
+     * - groupe_TP : Le groupe de travaux pratiques de l'étudiant.
+     * - cursus : Le cursus de l'étudiant.
+     * - annee : L'année d'études de l'étudiant.
+     * - avis : L'avis sur l'étudiant.
+     */
+    public function insertEtudiant($etudiants)
+    {
+        $requete = "INSERT INTO Etudiant VALUES (?,?,?,?,?,?,?,?,?,?)";
+
+        foreach($etudiants as $etudiant) {
+            $tparam = array($etudiant->id_etudiant, $etudiant->code_etu, $etudiant->nom, $etudiant->prenom, $etudiant->parcours, $etudiant->groupe_td, $etudiant->groupe_tp, $etudiant->cursus, $etudiant->annee, $etudiant->avis);
+            $this->execMaj($requete, $tparam);
+        }
+    }
+
+    /**
+     * Insère des résultats dans la base de données.
+     *
+     * @param array $resultats Un tableau d'objets représentant des résultats.
+     * Chaque objet doit avoir les attributs suivants :
+     * - id_etudiant : L'identifiant de l'étudiant.
+     * - code_etu : Le code de l'étudiant.
+     * - id_resultat : L'identifiant du résultat.
+     * - rang : Le rang du résultat.
+     * - absence : Le nombre d'absences.
+     * - moyenne : La moyenne.
+     * - alternant : Un indicateur indiquant si l'étudiant est en alternance.
+     */
+    public function insertResultat($resultats) {
+        $requete = "INSERT INTO Resultat VALUES (?,?,?,?,?,?,?)";
+
+        foreach($resultats as $resultat) {
+            $tparam = array($resultat->id_etudiant, $resultat->code_etu, $resultat->id_resultat, $resultat->rang, $resultat->absence, $resultat->moyenne, $resultat->alternant);
+            $this->execMaj($requete, $tparam);
+        }
+    }
+
+    /**
+     * Insère des compétences dans la base de données.
+     *
+     * @param array $competences Un tableau d'objets représentant des compétences.
+     * Chaque objet doit avoir les attributs suivants :
+     * - id_etudiant : L'identifiant de l'étudiant.
+     * - code_etu : Le code de l'étudiant.
+     * - id_comp : L'identifiant de la compétence.
+     * - moyenne : La moyenne de la compétence.
+     * - recommendation : La recommandation.
+     * - rang : Le rang de la compétence.
+     */
+    public function insertCompetence($competences) {
+        $requete = "INSERT INTO Competence VALUES (?,?,?,?,?,?)";
+
+        foreach($competences as $competence) {
+            $tparam = array($competence->id_etudiant, $competence->code_etu, $competence->id_comp, $competence->moyenne, $competence->recommendation, $competence->rang);
+            $this->execMaj($requete, $tparam);
+        }
+    }
+
+    /**
+     * Insère des modules dans la base de données.
+     *
+     * @param array $modules Un tableau d'objets représentant des modules.
+     * Chaque objet doit avoir les attributs suivants :
+     * - id_etudiant : L'identifiant de l'étudiant.
+     * - code_etu : Le code de l'étudiant.
+     * - id_comp : L'identifiant de la compétence associée au module.
+     * - id_module : L'identifiant du module.
+     * - notes : Les notes du module.
+     * - libelle : Le libellé du module.
+     */
+    public function insertModule($modules) {
+        $requete = "INSERT INTO Module VALUES (?,?,?,?,?,?)";
+
+        foreach($modules as $module) {
+            $tparam = array($module->id_etudiant, $module->code_etu, $module->id_comp, $module->id_module, $module->notes, $module->libelle);
+            $this->execMaj($requete, $tparam);
+        }
+    }
+
+    /**
+     * Insère des compétences de modules dans la base de données.
+     *
+     * @param array $competenceModules Un tableau d'objets représentant des compétences de modules.
+     * Chaque objet doit avoir les attributs suivants :
+     * - id_etudiant : L'identifiant de l'étudiant.
+     * - code_etu : Le code de l'étudiant.
+     * - id_comp : L'identifiant de la compétence associée au module.
+     * - id_module : L'identifiant du module.
+     * - coef : Le coefficient de la compétence de module.
+     */
+    public function insertCompetenceModule($competenceModules) {
+        $requete = "INSERT INTO CompetenceModule VALUES (?,?,?,?,?)";
+
+        foreach($competenceModules as $competenceModule) {
+            $tparam = array($competenceModule->id_etudiant, $competenceModule->code_etu, $competenceModule->id_comp, $competenceModule->id_module, $competenceModule->coef);
+            $this->execMaj($requete, $tparam);
+        }
     }
 }

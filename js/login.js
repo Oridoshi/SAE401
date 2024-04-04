@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 	if(sessionStorage.getItem('login') !== null) {
 		console.log('Utilisateur connecté :', sessionStorage.getItem('login'));
+		console.log('hey : ', sessionStorage.getItem('data'));
 	}
 	else {
 		var overlay = document.getElementById('overlay');
