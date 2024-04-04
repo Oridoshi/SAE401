@@ -13,10 +13,10 @@ class DB{
     private $pdo = null;
 
     public function __construct(){
-        $connStr = 'pgsql:host=127.0.0.1 port=5432 dbname=hugo';
+        $connStr = 'pgsql:host=woody port=5432 dbname=dt220522';
 
         try{
-            $this->pdo = new PDO($connStr, 'hugo', 'hugo');
+            $this->pdo = new PDO($connStr, 'dt220522', '22555225Tt.');
 
             $this->pdo->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -155,10 +155,10 @@ class DB{
      */
     public function insertEtudiant($etudiants)
     {
-        $requete = "INSERT INTO Etudiant VALUES (?,?,?,?,?,?,?,?,?,?)";
+        $requete = "INSERT INTO Etudiant VALUES (?,?,?,?,?,?,?,?,?)";
 
         foreach($etudiants as $etudiant) {
-            $tparam = array($etudiant->id_etudiant, $etudiant->code_etu, $etudiant->nom, $etudiant->prenom, $etudiant->parcours, $etudiant->groupe_td, $etudiant->groupe_tp, $etudiant->cursus, $etudiant->annee, $etudiant->avis);
+            $tparam = array($etudiant->getIdEtudiant(), $etudiant->getCode_etu(), $etudiant->getNom(), $etudiant->getPrenom(), $etudiant->getParcours(), $etudiant->getGroupeTD(), $etudiant->getGroupeTP(), $etudiant->getCursus(), 1976);
             $this->execMaj($requete, $tparam);
         }
     }

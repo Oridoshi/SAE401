@@ -25,13 +25,13 @@ class Etudiant {
 		$this->avis = $avis;
 	}
 
-	public function getIdetudiant() { return $this->id_etu; }
+	public function getIdEtudiant() { return $this->id_etu; }
 
 	public function getCode_etu() {return $this->code_etu; }
 
 	public function getNom() { return $this->nom; }
 
-	public function getPenom() { return $this->prenom; }
+	public function getPrenom() { return $this->prenom; }
 
 	public function getParcours() { return $this->parcours; }
 

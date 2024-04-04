@@ -12,9 +12,9 @@ CREATE TABLE Etudiant (
     parcours VARCHAR(20),
     groupe_TD VARCHAR(2),
     groupe_TP VARCHAR(2),
-    cursus VARCHAR(20),
+    cursus VARCHAR(30),
     annee int,
-    avis boolean,
+    avis boolean default false,
     PRIMARY KEY (id_etu, code_etu)
 );
 

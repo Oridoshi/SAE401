@@ -48,7 +48,7 @@ function uploadFile() {
         formData.append('source', nomInputs[i]);
         formData.append('promo', btnPromo.innerHTML);
 
-        fetch("http://192.168.1.17:8000/upload.php", {
+        fetch("http://127.0.0.1:8000/upload.php", {
             method: 'POST',
             body: formData
         })

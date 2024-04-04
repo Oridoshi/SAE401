@@ -537,7 +537,7 @@
 				<script>
 					document.getElementById("exportAvis").addEventListener("click", function(){
 						var id_etu = 1;
-						fetch('http://192.168.1.17:8000/ExportPDF.php', {
+						fetch('http://127.0.0.1:8000/ExportPDF.php', {
 							method: 'POST',
 							body: JSON.stringify({ id_etu : id_etu }),
 							headers: {
@@ -592,9 +592,6 @@
 		</form>
 	</div>
 </body>
-<script>
-	console.log("blablablou");
-</script>
 <script src="js/fct.HTML.js"></script>
 <script src="js/login.js"></script>
 <script src="js/lstPromo.js"></script>
