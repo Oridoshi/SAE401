@@ -36,7 +36,7 @@ function creationEtudiant($donnees, $promo){
 			}
 
 		}
-		$etudiant = new Etudiant($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], null, $lstValeur[4], $lstValeur[5], $lstValeur[6], $promo, false);
+		$etudiant = new Etudiant($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], "A", $lstValeur[4], $lstValeur[5], $lstValeur[6], $promo, false);
 		array_push($lstEtudiant, $etudiant);
 	}
 	$DB = DB::getInstance();
