@@ -16,11 +16,9 @@ if(isset($_FILES['file'])) {
 
     // Déplacer le fichier vers le répertoire de destination
     if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-        echo traitementFichier($target_file, $_POST["source"]);
-        // echo "Le fichier " . htmlspecialchars(basename($_FILES["file"]["name"])) . " a été téléchargé.";
+        traitementFichier($target_file, $_POST["source"]);
 
-        //traitement du fichier
-        
+        echo "Le fichier " . htmlspecialchars(basename($_FILES["file"]["name"])) . " a été téléchargé.";
     } else {
         echo "Désolé, une erreur s'est produite lors du téléchargement du fichier.";
     }
@@ -42,14 +40,13 @@ function traitementFichier($file, $source) {
 
     if(preg_match($regexJury, $source)) {
         $fichierLue = lectureFichier($file);
-        creationEtudiant($fichierLue, $_POST["promo"]);
+        creationResultat($fichierLue);
         creationCompetence($fichierLue);
     } else if(preg_match($regexCoeff, $source)) {
         $source = "coeff";
     } else {
         $fichierLue = lectureFichier($file);
         creationEtudiant($fichierLue, $_POST["promo"]);
-        creationResultat($fichierLue);
         creationModules($fichierLue);
     }
 }

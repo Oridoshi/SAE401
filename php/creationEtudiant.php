@@ -25,9 +25,6 @@ function creationEtudiant($donnees, $promo){
 			if($donnees[0][$col] == $nomValeur[3]){
 				array_push($lstValeur, $donnees[$lig][$col]);
 			}
-			if($donnees[0][$col] == $nomValeur[4]){
-				array_push($lstValeur, $donnees[$lig][$col]);
-			}
 			if($donnees[0][$col] == $nomValeur[5]){
 				array_push($lstValeur, $donnees[$lig][$col]);
 			}
@@ -39,7 +36,7 @@ function creationEtudiant($donnees, $promo){
 			}
 
 		}
-		$etudiant = new Etudiant($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4], $lstValeur[5], $lstValeur[6], $lstValeur[7], $promo, false);
+		$etudiant = new Etudiant($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], null, $lstValeur[4], $lstValeur[5], $lstValeur[6], $promo, false);
 		array_push($lstEtudiant, $etudiant);
 	}
 	$DB = DB::getInstance();

@@ -1,5 +1,8 @@
 <?php
 
+include_once 'DB.inc.php';
+include_once 'Competence.inc.php';
+
 //Fichier Jury
 function creationCompetence($values){
     $lstCompetence = array();
@@ -18,12 +21,12 @@ function creationCompetence($values){
             }
             //idComp - moyenne - recommandation
             else if(preg_match($nomVal[2], $values[0][$col])){
-				//idComp
-				$lstValeur[2] = $values[0][$col];
-				//moyenne
-				$lstValeur[3] = $values[$lig][$col];
-				//recommandation
-				$lstValeur[4] = $values[$lig][$col+1];
+                //idComp
+                $lstValeur[2] = $values[0][$col];
+                //moyenne
+                $lstValeur[3] = $values[$lig][$col];
+                //recommandation
+                $lstValeur[4] = $values[$lig][$col+1];
 
                 //ajout de la competence
                 $competence = new Competence($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4], null);
@@ -31,15 +34,7 @@ function creationCompetence($values){
             }
         }
     }
+    $DB = DB::getInstance();
 
-	return $lstCompetence;
+    $DB->insertCompetence($lstCompetence);
 }
-
-// $test = creationCompetence(lectureFichier("../donnees/S2 FI jury.xlsx"));
-
-// foreach($test as $competence){
-// 	echo $competence->getIdEtu()."<br>";
-// 	echo $competence->getCodeEtu()."<br>";
-// 	echo $competence->getIdComp()."<br>";
-// 	echo $competence->getMoyenne()."<br>";
-// }

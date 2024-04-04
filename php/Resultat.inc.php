@@ -22,10 +22,6 @@ class Resultat{
 		$this->alternant = $alternant;
 	}
 
-	public function addComp($id){
-		array_push($this->id_comp, $id);
-	}
-
 	public function getIdEtudiant(){ return $this->id_etu; }
 
 	public function getCodeEtu(){ return $this->code_etu; }

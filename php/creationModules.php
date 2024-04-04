@@ -1,5 +1,8 @@
 <?php
 
+include_once 'DB.inc.php';
+include_once 'Modules.inc.php';
+
 //Fichire moyenne
 function creationModules($donnees){
 	$regex = "/^(Bonus)|(^(BIN)[RS]\d{3})$/";
@@ -7,7 +10,7 @@ function creationModules($donnees){
 	$nomValeur = array("etudid", "code_nip");
 	for($lig = 1; $lig < count($donnees); $lig++){
 		$lstValeur = array();
-		
+		$lstLibelle = array();
 		
 		for($col = 0; $col < count($donnees[0]); $col++){
 			if($donnees[0][$col] == $nomValeur[0]){
@@ -16,29 +19,21 @@ function creationModules($donnees){
 			if($donnees[0][$col] == $nomValeur[1]){
 				array_push($lstValeur, $donnees[$lig][$col]);
 			}
-			$estComp = preg_match($regex, $donnees[0][$col]);
+			$estComp = preg_match($regex, $donnees[0][$col]) && !in_array($donnees[0][$col], $lstLibelle);
 
 			if($estComp){
 				$lstValeur[2] = $donnees[0][$col];
-				$lstValeur[3] = $donnees[$lig][$col];
-				$module = new Modules($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], NULL);
-				array_push($lstModules, $module);
+				$lstValeur[3] = $donnees[$lig][$col] == "" ? null : $donnees[$lig][$col];
+				$module = new Modules($lstValeur[0], $lstValeur[1], $lstValeur[3], $lstValeur[2]);
 
+				array_push($lstLibelle, $donnees[0][$col]);
+				array_push($lstModules, $module);
 			}
 
 		}
 
 	}
-	
-	return $lstModules;
+	$DB = DB::getInstance();
 
+	$DB->insertModule($lstModules);
 }
-
-// $test = creationModules(lectureFichier("../donnees/S1 FI moyennes.xlsx"));
-
-// foreach($test as $modules){
-// 	echo $modules->getIdetudiant()."<br>";
-// 	echo $modules->getCodeEtu()."<br>";
-// 	echo $modules->getIdModule()."<br>";
-// 	echo $modules->getNotes()."<br>";
-// }
