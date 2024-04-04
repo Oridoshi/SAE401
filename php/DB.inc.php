@@ -239,10 +239,10 @@ class DB{
      * - coef : Le coefficient de la compétence de module.
      */
     public function insertCompetenceModule($competenceModules) {
-        $requete = "INSERT INTO CompetenceModule VALUES (?,?,?,?,?)";
+        $requete = "INSERT INTO CompetenceModules VALUES (?,?,?)";
 
         foreach($competenceModules as $competenceModule) {
-            $tparam = array($competenceModule->id_etudiant, $competenceModule->code_etu, $competenceModule->id_comp, $competenceModule->id_module, $competenceModule->coef);
+            $tparam = array($competenceModule->getIdComp(), $competenceModule->getIdModule(), $competenceModule->getCoef());
             $this->execMaj($requete, $tparam);
         }
     }

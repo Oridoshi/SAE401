@@ -3,43 +3,27 @@
 include_once 'DB.inc.php';
 include_once 'CompetenceModule.inc.php';
 
-	function creationCompetenceModule($values){
-		$lstCompetence = array();
-		$nomVal = array("etudid", "code_nip", "C1", "C1", "coef");
-		$cpt = 0;
-		for($lig = 1; $lig < count($values); $lig++){
-			$lstValeur = array();
-			for($col = 0; $col < count($values[0]); $col++){
-				if($values[0][$col] == $nomVal[$cpt]){
-					if($values[$lig][$col] == "" || $values[$lig][$col] == null){
-						array_push($lstValeur, "inconnu");
-					}
-					else{
-						array_push($lstValeur, $values[$lig][$col]);
-					}
-					$cpt++;
-					$col = 0;
-				}
-				if($col == count($values)-1){
-					array_push($lstValeur,"inconnu");
-					$col = 0;
-					$cpt++;
-				}
-				if(count($lstValeur) == 5){
-					$col = count($values[0]);
-				}
+function creationCompetenceModule($donnees){
+	$lstCompMod = array();
+	$regex = "/(^(BIN)[RS]\d{3})$/";
 
+	for($lig = 0; $lig < count($donnees); $lig++){
+		if(preg_match($regex, $donnees[$lig][0])) {
+			$module = $donnees[$lig][0];
+			
+			for($col = 1; $col < count($donnees[0]); $col++){
+				$comp = "BIN" . $module[4] . $col;
+				$coeff = trim($donnees[$lig][$col]) == "" ? null : $donnees[$lig][$col];
+
+				if($coeff != null){
+					$competenceMod = new CompetenceModule($comp, $module, $coeff);
+					array_push($lstCompMod, $competenceMod);
+				}
 			}
-			$cpt = 0;
-			while(count($lstValeur) < 5) {
-				array_push( $ldtValeur, "inconnu");
-			}
-
-			$competenceMod = new CompetenceModule($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4]);
-			array_push($lstCompetence, $competenceMod);
-
 
 		}
-		ajoutBDD($lstCompetence);
-
 	}
+	$DB = DB::getInstance();
+
+	$DB->insertCompetenceModule($lstCompMod);
+}
