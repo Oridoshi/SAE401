@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			if (username.trim() === '' || password.trim() === '') {
 				alert('Veuillez saisir un nom d\'utilisateur et un mot de passe.');
 			} else {
-				fetch("http://127.0.0.1:8000/verifLogin.php", {
+				fetch("http://localhost:8000/verifLogin.php", {
 					method: 'POST',
 					body: JSON.stringify({ login: username, mdp: password }),
 					headers: {

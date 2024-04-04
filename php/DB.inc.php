@@ -135,7 +135,7 @@ class DB{
     }
 
 
-    //Requete pour insertion des donnéesµ
+    //Requete pour insertion des données
 
     /**
      * Insère des données d'étudiants dans la base de données.
@@ -177,10 +177,10 @@ class DB{
      * - alternant : Un indicateur indiquant si l'étudiant est en alternance.
      */
     public function insertResultat($resultats) {
-        $requete = "INSERT INTO Resultat VALUES (?,?,?,?,?,?,?)";
+        $requete = "INSERT INTO Resultats VALUES (?,?,?,?,?,?,?)";
 
         foreach($resultats as $resultat) {
-            $tparam = array($resultat->id_etudiant, $resultat->code_etu, $resultat->id_resultat, $resultat->rang, $resultat->absence, $resultat->moyenne, $resultat->alternant);
+            $tparam = array($resultat->getIdEtudiant(), $resultat->getCodeEtu(), $resultat->getIdResultat(), '{' . implode(',', $resultat->getIdComp()) . '}', $resultat->getAbsence(), $resultat->getRang(), $resultat->getMoyenne());
             $this->execMaj($requete, $tparam);
         }
     }
@@ -201,7 +201,7 @@ class DB{
         $requete = "INSERT INTO Competence VALUES (?,?,?,?,?,?)";
 
         foreach($competences as $competence) {
-            $tparam = array($competence->id_etudiant, $competence->code_etu, $competence->id_comp, $competence->moyenne, $competence->recommendation, $competence->rang);
+            $tparam = array($competence->getIdEtu(), $competence->getCodeEtu(), $competence->getIdComp(), $competence->getMoyenne(), $competence->getRang(), $competence->getRecommendation());
             $this->execMaj($requete, $tparam);
         }
     }
@@ -219,10 +219,10 @@ class DB{
      * - libelle : Le libellé du module.
      */
     public function insertModule($modules) {
-        $requete = "INSERT INTO Module VALUES (?,?,?,?,?,?)";
+        $requete = "INSERT INTO Modules VALUES (?,?,?,?)";
 
         foreach($modules as $module) {
-            $tparam = array($module->id_etudiant, $module->code_etu, $module->id_comp, $module->id_module, $module->notes, $module->libelle);
+            $tparam = array($module->getIdEtudiant(), $module->getCodeEtu(), $module->getNotes(), $module->getLibelle());
             $this->execMaj($requete, $tparam);
         }
     }

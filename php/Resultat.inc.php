@@ -11,7 +11,7 @@ class Resultat{
 	private $moyenne;
 	private $alternant;
 
-	public function __construct($id_etudiant, $code_etu, $id_resultat, $id_comp, $rang, $absence, $moyenne, $alternant){
+	public function __construct($id_etudiant, $code_etu, $id_resultat, $id_comp, $rang, $moyenne, $absence, $alternant){
 		$this->id_etu = $id_etudiant;
 		$this->code_etu = $code_etu;
 		$this->id_resultat = $id_resultat;
@@ -20,10 +20,6 @@ class Resultat{
 		$this->absence = $absence;
 		$this->moyenne = $moyenne;
 		$this->alternant = $alternant;
-	}
-
-	public function addComp($id){
-		array_push($this->id_comp, $id);
 	}
 
 	public function getIdEtudiant(){ return $this->id_etu; }

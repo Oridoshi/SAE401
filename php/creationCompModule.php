@@ -1,4 +1,8 @@
 <?php
+
+include_once 'DB.inc.php';
+include_once 'CompetenceModule.inc.php';
+
 	function creationCompetenceModule($values){
 		$lstCompetence = array();
 		$nomVal = array("etudid", "code_nip", "C1", "C1", "coef");
@@ -38,21 +42,4 @@
 		}
 		ajoutBDD($lstCompetence);
 
-	}
-
-	function ajoutBDD($lstCompetence) {
-		$db = DB::getInstance();
-		if($db){
-			$requeteSelect = 'SELECT * FROM CompetenceModules WHERE id_etu = ?';
-			$requeteUpdate = 'INSERT INTO CompetenceModules VALUES(?, ?, ?, ?, ?)';
-
-			for($i = 0; $i < count($lstCompetence); $i++){
-				$resultat = $db->execQuery($requeteSelect, $lstCompetence[$i]->getIdEtudiant(), 'Competence');
-				if(empty($resultat)){
-					$tparam = array($lstCompetence[$i]->getIdEtu(), $lstCompetence[$i]->getCodeEtu(), $lstCompetence[$i]->getIdComp(), $lstCompetence[$i]->getIdModule(), 
-									$lstCompetence[$i]->getCoef());
-					$db->execMaj($requeteUpdate, $tparam);
-				}
-			}
-		}
 	}

@@ -2,7 +2,7 @@ $btnPromo = document.getElementById('btnPromo');
 $lstPromo = document.getElementById('lstPromo');
 $xlsPromo = document.getElementById('exportExelPromo');
 
-fetch("http://127.0.0.1:8000/annee.php").then(response => { 
+fetch("http://localhost:8000/annee.php").then(response => { 
     if(response.ok)
         return response.json();
     throw new Error('Network response was not ok.');
