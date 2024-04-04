@@ -9,7 +9,7 @@ CREATE TABLE Etudiant (
     code_etu VARCHAR(10),
     nom VARCHAR(30),
     prenom VARCHAR(30),
-    parcours VARCHAR(20),
+    parcours VARCHAR(20) default 'A',
     groupe_TD VARCHAR(2),
     groupe_TP VARCHAR(2),
     cursus VARCHAR(30),

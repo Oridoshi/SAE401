@@ -12,6 +12,8 @@ fetch("http://localhost:8000/annee.php").then(response => {
         option.textContent = annee;
         let option2 = document.createElement('option');
         option2.textContent = annee;
+        option2.value = annee;
+        console.log(option2.value);
         let option3 = document.createElement('option');
         option3.textContent = annee;
         $btnPromo.appendChild(option);

@@ -247,5 +247,32 @@ class DB{
         }
     }
 
+    public function getCompEtu($id_etu, $id_comp) {
+        $query = "SELECT recommandation, moyenne FROM Competence WHERE id_etu = ? AND id_comp = ?;";
+        $stmt = $this->pdo->prepare($query);
 
+        $stmt->execute([$id_etu, $id_comp]);
+        
+        $resultat = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        return $resultat;
+    }
+
+    public function getEtudiants($annee) {
+        $query = "SELECT *, rang FROM Etudiant NATURAL JOIN Resultats WHERE annee = ?;";
+        $stmt = $this->pdo->prepare($query);
+
+        $stmt->execute([$annee]);
+
+        $resultats = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        $etudiants = array();
+
+        foreach ($resultats as $resultat) {
+            $etudiant = [$resultat->id_etu, $resultat->code_etu, $resultat->nom, $resultat->prenom, $resultat->parcours, $resultat->groupe_td, $resultat->groupe_tp, $resultat->cursus, $resultat->annee, $resultat->avis, $resultat->rang];
+            $etudiants[] = $etudiant;
+        }
+
+        return $etudiants;
+    }
 }
