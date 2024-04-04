@@ -19,15 +19,20 @@ function corpsFixe(){
 			let prenom = document.createElement('td');
 
 			avis.textContent = etu.avis;
+			avis.classList.add("border-r", "border-black");
 			code.textContent = etu.code_etu;
+			code.classList.add("border-r", "border-black");
 			rang.textContent = etu.rang;
+			rang.classList.add("border-r", "border-black");
 			nom.textContent = etu.nom;
+			nom.classList.add("border-r", "border-black");
 			prenom.textContent = etu.prenom;
+			prenom.classList.add("border-r", "border-white");
 
 			if(cpt%2 == 0){
-				tr.addClass = "bg-vertFonce";
+				tr.classList.add("bg-vertFonce");
 			} else {
-				tr.addClass = "bg-vertClair";
+				tr.classList.add("bg-vertClair");
 			}
 
 			tr.appendChild(avis);
