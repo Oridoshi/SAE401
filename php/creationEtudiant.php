@@ -39,6 +39,7 @@ function creationEtudiant($donnees, $promo){
 			}
 
 		}
+		
 		$etudiant = new Etudiant($lstValeur[0], $lstValeur[1], $lstValeur[2], $lstValeur[3], $lstValeur[4], $lstValeur[5], $lstValeur[6], $lstValeur[7], $promo, false);
 		array_push($lstEtudiant, $etudiant);
 	}
