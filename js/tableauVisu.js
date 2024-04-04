@@ -58,5 +58,12 @@ fetch("http://localhost:8000/tabFixe.php").then(response => {
 fetch("http://localhost:8000/tabEnTete.php").then(response => {
 	return response.json();
 }).then(data => {
-	console.log(data);
+	//si moyenne sinon jury
+	if(document.getElementById("previ").value === "1"){
+		console.log(data)
+
+	} else {
+
+	}
 });
+
