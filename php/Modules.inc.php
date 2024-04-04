@@ -6,7 +6,7 @@ class Modules {
 	private $notes;
 	private $libelle;
 
-	public function __construct($id_etudiant, $code_etu, $notes, $libelle){
+	public function __construct($id_etudiant=0, $code_etu=0, $id_module=0, $notes=0.0, $libelle=""){
 		$this->id_etu = $id_etudiant;
 		$this->code_etu = $code_etu;
 		$this->notes = $notes;

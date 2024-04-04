@@ -207,24 +207,6 @@
 					<option class="bg-vertFonce hover:bg-vertClair hover:text-black text-white">Blocus Périphérique</option>
 				</select>
 				<button id="exportAvis" class="bg-marronFonce w-60 hover:bg-marronClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 mb-3" name="exportAvis">Exporter avis</button>
-				<script>
-					document.getElementById("exportAvis").addEventListener("click", function(){
-						var id_etu = 1;
-						fetch('http://localhost:8000/ExportPDF.php', {
-							method: 'POST',
-							body: JSON.stringify({ id_etu : id_etu }),
-							headers: {
-								'Content-Type': 'application/json'
-							}
-							}).then(response => response.json())
-							.then(data => {
-								console.log("dans le fetch");
-								console.log(data);
-								//ajouter aux tableaux les données
-							}).catch(error => console.error("erreur lors de la récupération des données"));
-							//window.location.href = './visuPdf.html';
-						});
-				</script>
 			</div>
 		</div>
 	</div>
@@ -265,6 +247,7 @@
 		</form>
 	</div>
 </body>
+<script src="js/visuIndexPDF.js"></script>
 <script src="js/fct.HTML.js"></script>
 <script src="js/login.js"></script>
 <script src="js/lstPromo.js"></script>

@@ -1,15 +1,55 @@
 var btnTel = document.getElementById("telecharge");
 var btnAnnule = document.getElementById("annule");
 var divBtn = document.getElementById("divBtn");
+var btnImage1 = document.getElementById("inputLogo1");
+var btnImage2 = document.getElementById("inputLogo2");
+var btnImage3 = document.getElementById("inputImage");
 
 btnTel.addEventListener("click", function(){
-    divBtn.innerHTML =  " ";
-	envoyer();
+	divBtn.innerHTML =  " ";
+	btnImage1.remove();
+	btnImage2.remove();
+	btnImage3.remove();
+	valider();
 });
 
 btnAnnule.addEventListener("click", function () {
     window.history.back();
 });
+
+
+function valider() {
+	const jsonData = {};
+	const dataDiv = document.getElementById('data');
+	const elements = dataDiv.querySelectorAll('*');
+
+	elements.forEach(element => {
+		const id = element.id;
+		const tagName = element.tagName.toLowerCase();
+		const content = element.innerHTML.trim();
+
+		if (tagName === 'input' || tagName === 'textarea') {
+			jsonData[id] = element.value;
+		} else if (tagName === 'img') {
+			const src = element.src;
+			jsonData[id] = src;
+		} else {
+			jsonData[id] = content;
+		}
+	});
+
+	// Convertir l'objet JSON en chaîne JSON
+	const jsonString = JSON.stringify(jsonData);
+
+	// Créer un nouvel objet jsPDF
+	const doc = new jsPDF();
+
+	// Ajouter le contenu JSON au PDF
+	doc.text(jsonString, 10, 10);
+
+	// Télécharger le PDF
+	doc.save('fichier.pdf');
+}
 
 
 function envoyer() {
@@ -19,16 +59,22 @@ function envoyer() {
 	// Envoyer le contenu HTML à votre script PHP via Fetch
 	fetch('http://localhost:8000/ExportPDF.php', {
 		method: 'POST',
-		body: JSON.stringify({ contenuHTML: contenuHTML, /*nomPrenom: nomPrenom*/ }),
+		body: JSON.stringify({ contenuHTML: contenuHTML }),
 		headers: {
 			'Content-Type': 'application/json'
 		}
 	})
-	.then(response => response.blob())
-	.then(blob => {
-		// Récupérer le blob (PDF) et le télécharger ou l'afficher
-		var url = window.URL.createObjectURL(blob);
-		window.open(url); // Ouvre le PDF dans un nouvel onglet
+	.then(response => response.json())
+	.then(data => {
+		console.log(data);
+		 // Créer un objet jsPDF
+		 const doc = new jsPDF();
+
+		 // Ajouter les données reçues du serveur au PDF
+		 doc.text(data.content, 10, 10);
+
+		 // Télécharger le PDF
+		 doc.save("fichier.pdf");
 	})
 	.catch(error => console.error('Erreur:', error));
 };

@@ -8,6 +8,7 @@ include_once("creationResultat.php");
 include_once("creationCompetence.php");
 include_once("creationModules.php");
 include_once("Etudiant.inc.php");
+include_once("creationCompModule.php");
 
 // Vérifier si un fichier a été envoyé
 if(isset($_FILES['file'])) {
@@ -43,7 +44,8 @@ function traitementFichier($file, $source) {
         creationResultat($fichierLue);
         creationCompetence($fichierLue);
     } else if(preg_match($regexCoeff, $source)) {
-        $source = "coeff";
+        $fichierLue = lectureFichier($file);
+        creationCompetenceModule($fichierLue);
     } else {
         $fichierLue = lectureFichier($file);
         creationEtudiant($fichierLue, $_POST["promo"]);

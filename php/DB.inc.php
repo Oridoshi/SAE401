@@ -48,7 +48,7 @@ class DB{
         $this->pdo = null;
     }
 
-    public function execQuery($requete, $tparam, $nomClasse) {
+    public function execQuery($requete, $tparam, $nomClasse){
         //préparation de la requête
         $stmt = $this->pdo->prepare($requete);
         //on indique que l'on va récupére les tuples sous forme d'objets instance de Client
@@ -88,12 +88,12 @@ class DB{
         return $stmt->rowCount();
     }
 
-    public function selectEtudiants() {
+    public function selectEtudiants(){
         $query = "SELECT * FROM Etudiant;";
         return $this->execQuery($query, NULL, "Etudiant");
     }
 
-    public function selectEtudiant($id_etu) {
+    public function selectEtudiant($id_etu){
         $query = "SELECT * FROM Etudiant WHERE id_etu = ?;";
         $tparam = array($id_etu);
         return $this->execQuery($query, $tparam, "Etudiant");
@@ -239,10 +239,10 @@ class DB{
      * - coef : Le coefficient de la compétence de module.
      */
     public function insertCompetenceModule($competenceModules) {
-        $requete = "INSERT INTO CompetenceModule VALUES (?,?,?,?,?)";
+        $requete = "INSERT INTO CompetenceModules VALUES (?,?,?)";
 
         foreach($competenceModules as $competenceModule) {
-            $tparam = array($competenceModule->id_etudiant, $competenceModule->code_etu, $competenceModule->id_comp, $competenceModule->id_module, $competenceModule->coef);
+            $tparam = array($competenceModule->getIdComp(), $competenceModule->getIdModule(), $competenceModule->getCoef());
             $this->execMaj($requete, $tparam);
         }
     }
