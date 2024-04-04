@@ -210,7 +210,7 @@
 				<script>
 					document.getElementById("exportAvis").addEventListener("click", function(){
 						var id_etu = 1;
-						fetch('http://127.0.0.1:8000/ExportPDF.php', {
+						fetch('http://localhost:8000/ExportPDF.php', {
 							method: 'POST',
 							body: JSON.stringify({ id_etu : id_etu }),
 							headers: {

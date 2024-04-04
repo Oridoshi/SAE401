@@ -50,7 +50,7 @@ function uploadFile() {
         console.log(file);
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('source', nomInputs[i]);
+        formData.append('source', nomInputs[i++]);
         formData.append('promo', promo);
 
         fetch("http://localhost:8000/upload.php", {

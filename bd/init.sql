@@ -22,11 +22,11 @@ CREATE TABLE Resultats (
     id_etu int,
     code_etu VARCHAR(10),
     id_resultat int,
-    id_comp int[],
+    id_comp VARCHAR(10)[],
     absence int,
     rang int,
     moyenne float,
-    alternant boolean,
+    alternant boolean default false,
     PRIMARY KEY (id_etu, code_etu, id_resultat),
     FOREIGN KEY (id_etu, code_etu) REFERENCES Etudiant(id_etu, code_etu)
 );
@@ -45,10 +45,9 @@ CREATE TABLE Competence (
 CREATE TABLE Modules (
     id_etu int,
     code_etu VARCHAR(10),
-    id_module VARCHAR(10),
     notes float,
     lib VARCHAR(50),
-    PRIMARY KEY (id_etu, code_etu, id_module),
+    PRIMARY KEY (id_etu, code_etu, lib),
     FOREIGN KEY (id_etu, code_etu) REFERENCES Etudiant(id_etu, code_etu)
 );
 
@@ -56,10 +55,10 @@ CREATE TABLE CompetenceModules (
     id_etu int,
     code_etu VARCHAR(10),
     id_comp VARCHAR(10),
-    id_module VARCHAR(10),
+    lib VARCHAR(50),
     coef float,
-    PRIMARY KEY (id_etu, code_etu, id_comp, id_module),
+    PRIMARY KEY (id_etu, code_etu, id_comp, lib),
     FOREIGN KEY (id_etu, code_etu, id_comp) REFERENCES Competence(id_etu, code_etu, id_comp),
-    FOREIGN KEY (id_etu, code_etu, id_module) REFERENCES Modules(id_etu, code_etu, id_module)
+    FOREIGN KEY (id_etu, code_etu, lib) REFERENCES Modules(id_etu, code_etu, lib)
 
 );
