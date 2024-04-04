@@ -2,14 +2,14 @@
 
 
 class Resultat{
-	private $id_etu;
-	private $code_etu;
-	private $id_resultat;
-	private $id_comp;
-	private $absence;
-	private $rang;
-	private $moyenne;
-	private $alternant;
+	public $id_etu;
+	public $code_etu;
+	public $id_resultat;
+	public $id_comp;
+	public $absence;
+	public $rang;
+	public $moyenne;
+	public $alternant;
 
 	public function __construct($id_etudiant, $code_etu, $id_resultat, $id_comp, $rang, $moyenne, $absence, $alternant){
 		$this->id_etu = $id_etudiant;

@@ -100,7 +100,7 @@ class DB{
     }
 
     public function selectResultats() {
-        $query = "SELECT * FROM Resultat;";
+        $query = "SELECT * FROM Resultats;";
         return $this->execQuery($query, NULL, "Resultat");
     }
 
@@ -246,4 +246,6 @@ class DB{
             $this->execMaj($requete, $tparam);
         }
     }
+
+
 }
