@@ -106,9 +106,6 @@
 				</div>
 				<button type="submit" id="btnSubmit" class="bg-vertFonce hover:bg-vertClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 h-full">Valider</button>
 			</div>
-
-			<script src="js/dragAndDrop.js"></script>
-			<script src="js/creerPromo.js"></script>
 		</form>
 	</div>
 	
@@ -159,18 +156,7 @@
 		</div>
 </div>
 
-	<script>
-		const tabScrollDiv = document.getElementById("tabScrollDiv")
-		const tabFixeDiv = document.getElementById("tabFixeDiv")
 
-		tabScrollDiv.addEventListener("scroll", function(){
-			tabFixeDiv.scrollTop = tabScrollDiv.scrollTop
-		});
-
-		tabFixeDiv.addEventListener("scroll", function(){
-			tabScrollDiv.scrollTop = tabFixeDiv.scrollTop
-		});
-	</script>
 
 
 	<h1 id="Informations" class="text-3xl mt-[3rem] font-bold text-vertFonce mb-16">Informations et exportation</h1>
@@ -246,9 +232,23 @@
 		</form>
 	</div>
 </body>
+<script src="js/login.js"></script>
 <script src="js/visuIndexPDF.js"></script>
 <script src="js/fct.HTML.js"></script>
-<script src="js/login.js"></script>
 <script src="js/lstPromo.js"></script>
 <script src="js/tableauVisu.js"></script>
+<script src="js/dragAndDrop.js"></script>
+<script src="js/creerPromo.js"></script>
+<script>
+	const tabScrollDiv = document.getElementById("tabScrollDiv")
+	const tabFixeDiv = document.getElementById("tabFixeDiv")
+
+	tabScrollDiv.addEventListener("scroll", function(){
+		tabFixeDiv.scrollTop = tabScrollDiv.scrollTop
+	});
+
+	tabFixeDiv.addEventListener("scroll", function(){
+		tabScrollDiv.scrollTop = tabFixeDiv.scrollTop
+	});
+</script>
 </html>
