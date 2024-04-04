@@ -22,7 +22,7 @@ CREATE TABLE Resultats (
     id_etu int,
     code_etu VARCHAR(10),
     id_resultat int,
-    id_comp int[],
+    id_comp VARCHAR[],
     absence int,
     rang int,
     moyenne float,

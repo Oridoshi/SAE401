@@ -12,8 +12,8 @@ class Etudiant {
 	private $annee;
 	private $avis;
 
-	public function __construct($id_etudiant, $code_etu, $nom, $prenom, $parcours, $groupe_TD, $groupe_TP, $cursus, $annee, $avis) {
-		$this->id_etu = $id_etudiant;
+	public function __construct($id_etu=0, $code_etu=0, $nom="", $prenom="", $parcours="", $groupe_TD="", $groupe_TP="", $cursus="", $annee=0, $avis=false) {
+		$this->id_etu = $id_etu;
 		$this->code_etu = $code_etu;
 		$this->nom = $nom;
 		$this->prenom = $prenom;
@@ -31,7 +31,7 @@ class Etudiant {
 
 	public function getNom() { return $this->nom; }
 
-	public function getPenom() { return $this->prenom; }
+	public function getPrenom() { return $this->prenom; }
 
 	public function getParcours() { return $this->parcours; }
 

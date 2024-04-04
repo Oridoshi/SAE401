@@ -65,8 +65,8 @@
     	max-height: 100px;
 		}
 		#logo1 img {
-		max-width: 200px; 
-		max-height: 100px;
+		max-width: 150px; 
+		max-height: 75px;
 		float : left;
 		}
 		#logo2 img {
@@ -79,7 +79,7 @@
 		}
 		.divLogo1 {
 			float: left;
-			max-height: 100px;
+			max-height: 75px;
 		}
 		.divLogo2 {
 			float: right;
@@ -90,6 +90,7 @@
 	</style>
 </head>
 <body>
+	<div id="data">
 	<div class="divLogo1">
 		<input type="file" accept="image/*" id="inputLogo1" title="signature du chef de Dept." name="." >
 		<div id="logo1"></div>
@@ -116,34 +117,34 @@
 		<p><b>FICHE D'INFORMATION ÉTUDIANT(E)</b> <hr></p>
 		<table>
 			<tr>
-				<th class="nonGras">NOM - Prénom :</th>
-				<td colspan="6"></td>
+				<th class="nonGras" >NOM - Prénom :</th>
+				<td colspan="6" id="nomPrenom"></td>
 			</tr>
 			<tr>
 				<th class="nonGras">Apprentissage : (oui/non) </th>
 				<td>BUT1</td>
-				<td class="marge"></td>
+				<td id="alt1" class="marge"></td>
 				<td>BUT2</td>
-				<td class="marge"></td>
+				<td id="alt2" class="marge"></td>
 				<td>BUT3</td>
-				<td class="marge"></td>
+				<td id="alt3" class="marge"></td>
 			</tr>
 			<tr>
 				<th class="nonGras">Parcours d'études</th>
 				<td>n-2</td>
-				<td class="marge"></td>
+				<td id="parcours-2" class="marge"></td>
 				<td>n-1</td>
-				<td class="marge"></td>
+				<td id="parcours-1" class="marge"></td>
 				<td>n</td>
-				<td class="marge"></td>
+				<td id="parcours-0" class="marge"></td>
 			</tr>
 			<tr>
 				<th class="nonGras">Parcours BUT</th>
-				<td colspan="6" class="marge"></td>
+				<td colspan="6" class="marge" id="parcoursBUT"></td>
 			</tr>
 			<tr>
 				<th class="nonGras">Si mobilité à l'étranger (lieu, durée) </th>
-				<td colspan="6"></td>
+				<td colspan="6" id="erasmus"></td>
 			</tr>
 		</table>
 	</div>
@@ -167,65 +168,66 @@
 			</tr>
 			<tr>
 				<th class="nonGras">UE1 - Réaliser des applications</th>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
+				<td class="marge" id="moy11"></td>
+				<td class="marge" id="rang11"></td>
+				<td class="marge" id="moy21"></td>
+				<td class="marge" id="rang21"></td>
 
 			</tr>
 			<tr>
 				<th class="nonGras">UE2 - Optimiser des applications</th>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
+				<td class="marge" id="moy12"></td>
+				<td class="marge" id="rang12"></td>
+				<td class="marge" id="moy22"></td>
+				<td class="marge" id="rang22"></td>
 
 			</tr>
 			<tr>
 				<th class="nonGras">UE3 - Administrer des projets</th>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
+				<td class="marge" id="moy13"></td>
+				<td class="marge" id="rang13"></td>
+				<td class="marge" id="moy23"></td>
+				<td class="marge" id="rang23"></td>
 			</tr>
 			<tr>
 				<th class="nonGras">UE4 - Gérer des données</th>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
+				<td class="marge" id="moy14"></td>
+				<td class="marge" id="rang14"></td>
+				<td class="marge" id="moy24"></td>
+				<td class="marge" id="rang24"></td>
 			</tr>
 			<tr>
 				<th class="nonGras">UE5 - Conduire des projets</th>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
+				<td class="marge" id="moy15"></td>
+				<td class="marge" id="rang15"></td>
+				<td class="marge" id="moy25"></td>
+				<td class="marge" id="rang25"></td>
 			</tr>
 			<tr>
 				<th class="nonGras">UE6 - Collaborer</th>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
+				<td class="marge" id="moy16"></td>
+				<td class="marge" id="rang16"></td>
+				<td class="marge" id="moy26"></td>
+				<td class="marge" id="rang26"></td>
 			</tr>
 			<tr>
 				<th class="nonGras">Maths</th>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
-			</tr>			<tr>
+				<td class="marge" id="moy17"></td>
+				<td class="marge" id="rang17"></td>
+				<td class="marge" id="moy27"></td>
+				<td class="marge" id="rang27"></td>
+			</tr>
+			<tr>
 				<th class="nonGras">Anglais</th>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
-				<td class="marge"></td>
+				<td class="marge" id="moy18"></td>
+				<td class="marge" id="rang18"></td>
+				<td class="marge" id="moy28"></td>
+				<td class="marge" id="rang28"></td>
 			</tr>
 			<tr>
 				<th class="nonGras">Nombre d'absences inustifiées</th>
-				<td colspan="2"></td>
-				<td colspan="2"></td>
+				<td colspan="2" id="absS1"></td>
+				<td colspan="2" id="absS2"></td>
 			</tr>
 
 		</table>
@@ -244,42 +246,42 @@
 			</tr>
 			<tr>
 				<th class="nonGras">UE1 - Réaliser des applications</th>
-				<td class="marge"></td>
-				<td class="marge"></td>
+				<td class="marge" id="moy31"></td>
+				<td class="marge" id="rang31"></td>
 			</tr>
 			<tr>
 				<th class="nonGras">UE2 - Optimiser des applications</th>
-				<td class="marge"></td>
-				<td class="marge"></td>
+				<td class="marge" id="moy32"></td>
+				<td class="marge" id="rang32"></td>
 			</tr>
 			<tr>
 				<th class="nonGras barrer">UE3 - Administrer des projets</th>
-				<td class="marge"></td>
-				<td class="marge"></td>
+				<td class="marge" id="moy33"></td>
+				<td class="marge" id="rang33"></td>
 			</tr>
 			<tr>
 				<th class="nonGras barrer">UE4 - Gérer des données</th>
-				<td class="marge"></td>
-				<td class="marge"></td>
+				<td class="marge" id="moy34"></td>
+				<td class="marge" id="rang34"></td>
 			</tr>
 			<tr>
 				<th class="nonGras barrer">UE5 - Conduire des projets</th>
-				<td class="marge"></td>
-				<td class="marge"></td>
+				<td class="marge" id="moy35"></td>
+				<td class="marge" id="rang35"></td>
 			</tr>
 			<tr>
 				<th class="nonGras">UE6 - Collaborer</th>
-				<td class="marge"></td>
-				<td class="marge"></td>
+				<td class="marge" id="moy36"></td>
+				<td class="marge" id="rang36"></td>
 			</tr>
 			<tr>
 				<th class="nonGras">Maths</th>
-				<td class="marge"></td>
-				<td class="marge"></td>
+				<td class="marge" id="moy37"></td>
+				<td class="marge" id="rang37"></td>
 			</tr>
 			<tr>
 				<th class="nonGras">Nombre d'absences inustifiées</th>
-				<td colspan="2"></td>
+				<td colspan="2" id="absS5"></td>
 			</tr>
 
 		</table>
@@ -303,19 +305,19 @@
 			<tr>
 				<th class="nonGrasCentre" rowspan="2"> Pour l'étudiant</th>
 				<td>En école <br> d'ingénieurs</td>
-				<td><input type="checkbox"></td>
-				<td><input type="checkbox"></td>
-				<td><input type="checkbox"></td>
-				<td><input type="checkbox"></td>
-				<td><input type="checkbox"></td>
+				<td><input type="radio" name="l1"></td>
+				<td><input type="radio" name="l1"></td>
+				<td><input type="radio" name="l1"></td>
+				<td><input type="radio" name="l1"></td>
+				<td><input type="radio" name="l1"></td>
 			</tr>
 			<tr>
 				<td>En master</td>
-				<td><input type="checkbox"></td>
-				<td><input type="checkbox"></td>
-				<td><input type="checkbox"></td>
-				<td><input type="checkbox"></td>
-				<td><input type="checkbox"></td>
+				<td><input type="radio" name="l2"></td>
+				<td><input type="radio" name="l2"></td>
+				<td><input type="radio" name="l2"></td>
+				<td><input type="radio" name="l2"></td>
+				<td><input type="radio" name="l2"></td>
 			</tr>
 			<tr>
 				<th class="nonGrasCentre" rowspan="2">Nombre d'avis <br> pour la <br> promotion <br><p id="nbEleves">(total : 52 )</p></th>
@@ -343,7 +345,7 @@
 
 	<div id="signature" class="droite">
 		<label>Signature du Chef de Département <br><br></label>
-		<input type="text">
+		<input type="text" id="signature" placeholder="">
 
 		<br><br>
 		<input type="file" accept="image/*" id="inputImage" title="signature du chef de Dept." name="." >
@@ -354,6 +356,8 @@
 		<button id="telecharge">Télécharge</button>
 		<button id="annule">Annule</button>
 	</div>
+
+</div>
 
 	<script>
 		document.getElementById('inputImage').addEventListener('change', function(event) {
@@ -397,9 +401,19 @@
 			reader.readAsDataURL(file); 
 		}
 		});
+
+		var signatureChef = document.getElementById('signature');
+		signatureChef.addEventListener('input', function() {
+			var texte = signatureChef.value;
+			signatureChef.placeholder = texte;
+		});
+
+
+
 	</script>
 
 	<script src="js/ExportPDF.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
 
 
 </body>

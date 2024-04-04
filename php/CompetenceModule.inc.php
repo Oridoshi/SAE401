@@ -7,7 +7,7 @@ class CompetenceModule {
     private $id_module;
     private $coef;
 
-    public function __construct($id_etu, $code_etu, $id_comp, $id_module, $coef) {
+    public function __construct($id_etu=0, $code_etu=0, $id_comp=0, $id_module=0, $coef=0) {
         $this->id_etu = $id_etu;
         $this->code_etu = $code_etu;
         $this->id_comp = $id_comp;

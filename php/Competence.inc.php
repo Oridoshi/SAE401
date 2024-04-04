@@ -9,7 +9,7 @@ class Competence{
 	private $recommendation;
 	private $rang;
 
-	public function __construct($id_etudiant, $code_etu, $id_comp, $moyenne, $recommendation, $rang){
+	public function __construct($id_etudiant=0, $code_etu=0, $id_comp=0, $moyenne=0.0, $recommendation="", $rang=0){
 		$this->id_etu = $id_etudiant;
 		$this->code_etu = $code_etu;
 		$this->id_comp = $id_comp;
