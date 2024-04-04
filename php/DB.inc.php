@@ -259,7 +259,7 @@ class DB{
     }
 
     public function getEtudiants($annee) {
-        $query = "SELECT *, rang FROM Etudiant NATURAL JOIN Resultats WHERE annee = ?;";
+        $query = "SELECT *, rang, moyenne FROM Etudiant NATURAL JOIN Resultats WHERE annee = ?;";
         $stmt = $this->pdo->prepare($query);
 
         $stmt->execute([$annee]);
@@ -269,10 +269,23 @@ class DB{
         $etudiants = array();
 
         foreach ($resultats as $resultat) {
-            $etudiant = [$resultat->id_etu, $resultat->code_etu, $resultat->nom, $resultat->prenom, $resultat->parcours, $resultat->groupe_td, $resultat->groupe_tp, $resultat->cursus, $resultat->annee, $resultat->avis, $resultat->rang];
+            $etudiant = [$resultat->id_etu, $resultat->code_etu, $resultat->nom, $resultat->prenom, $resultat->parcours, $resultat->groupe_td, $resultat->groupe_tp, $resultat->cursus, $resultat->annee, $resultat->avis, $resultat->rang, $resultat->moyenne];
             $etudiants[] = $etudiant;
         }
 
         return $etudiants;
+    }
+
+    public function getModules($code, $regex) {
+        $query = "SELECT * FROM Modules WHERE code_etu = ? and lib ~ ? ;";
+        $stmt = $this->pdo->prepare($query);
+
+        $stmt->execute([$code, $regex]);
+
+        $resultats = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        
+
+        return $resultats;
     }
 }

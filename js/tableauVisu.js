@@ -23,30 +23,31 @@ function changePrevi() {
 	/*thead scroll */
 	let trHead = document.createElement('tr');
 
+	let thCursus = document.createElement('th');
+	thCursus.textContent = "Cursus";
+	thCursus.classList.add("border-r", "border-black", "text-white","sticky", "top-0", "text-center", "font-bold", "p-4", "bg-marronFonce");
+	trHead.appendChild(thCursus);
+
 	if(estComm){
-		let thRCUEs = document.createElement('th');
-		thRCUEs.textContent = "RCUEs";
-		thRCUEs.classList.add("border-r", "border-black", "text-white","sticky", "top-0", "text-center", "font-bold", "p-4", "bg-marronFonce");
-		trHead.appendChild(thRCUEs);
-		let thCursus = document.createElement('th');
-		thCursus.textContent = "Cursus";
-		thCursus.classList.add("border-r", "border-black", "text-white","sticky", "top-0", "text-center", "font-bold", "p-4", "bg-marronFonce");
-		trHead.appendChild(thCursus);
+		
 		let thMoyenne = document.createElement('th');
 		thMoyenne.textContent = "Moy";
 		thMoyenne.classList.add("border-r", "border-black", "text-white","sticky", "top-0", "text-center", "font-bold", "p-4", "bg-marronFonce");
 		trHead.appendChild(thMoyenne);
 
+		for (let i = 1; i <= 6; i++) {
+			let thB = document.createElement('th');
+			thB.textContent = "BIN" + semmestre + i;
+			thB.classList.add("border-r", "border-black", "text-white","sticky", "top-0", "text-center", "font-bold", "p-4", "bg-marronFonce");
+			thB.id = "BIN" + semmestre + i;
+			trHead.appendChild(thB);
+		}
 	} else {
 			
 		let thParcours = document.createElement('th');
 		thParcours.textContent = "Parcours";
 		thParcours.classList.add("border-r", "border-black", "text-white","sticky", "top-0", "text-center", "font-bold", "p-4", "bg-marronFonce");
 		trHead.appendChild(thParcours);
-		let thCursus = document.createElement('th');
-		thCursus.textContent = "Cursus";
-		thCursus.classList.add("border-r", "border-black", "text-white","sticky", "top-0", "text-center", "font-bold", "p-4", "bg-marronFonce");
-		trHead.appendChild(thCursus);
 
 		for (let i = 1; i <= 6; i++) {
 			let thC = document.createElement('th');
@@ -77,6 +78,7 @@ function changePrevi() {
 		return response.json();
 	}).then(data => {
 		let cpt = 0;
+		let a = 0;
 		data.forEach(etu => {
 			let tr = document.createElement('tr');
 			let modif = document.createElement('td');
@@ -127,59 +129,85 @@ function changePrevi() {
 
 			tbody.appendChild(tr);
 
-			
+			let cursus = document.createElement('td');
+			cursus.textContent = etu[7];
+			cursus.classList.add("border-r", "border-black", "text-white");
+			trScroll.appendChild(cursus);
+
 			if(estComm){
+				let moyenne = document.createElement('td');
+				moyenne.textContent = etu[11];
+				moyenne.classList.add("border-r", "border-black", "text-white");
+				trScroll.appendChild(moyenne);
+
+
+				fetch("http://localhost:8000/compEtu.php?code=" + etu[0] + "&semmestre=" + semmestre).then(response => {
+					return response.json();
+				}).then(data => {
+					data.forEach(comp => {
+						let moy = document.createElement('td');
+						moy.textContent = comp[0].moyenne;
+						moy.classList.add("border-r", "border-black", "text-white");
+						trScroll.appendChild(moy);
+
+						fetch("http://localhost:8000/modulesEtu.php?code=" + etu[0] + "&semmestre=" + semmestre).then(response => {
+							return response.json();
+						}).then(data => {
+							if(a == 0)
+								data.forEach(d => {
+									let th = document.createElement('th');
+									th.textContent = d;
+									th.classList.add("border-r", "border-black", "text-white");
+									
+									a++;
+								});
+						});
+					});
+				});
 
 			} else {
 				let parcours = document.createElement('td');
 				parcours.textContent = etu[4];
 				parcours.classList.add("border-r", "border-black", "text-white");
 				trScroll.appendChild(parcours);
+			
+
+				let nbC = 0;
+
+				fetch("http://localhost:8000/compEtu.php?code=" + etu[0] + "&semmestre=" + semmestre).then(response => {
+					return response.json();
+				}).then(data => {
+					data.forEach(comp => {
+						
+						let td = document.createElement('td');
+						td.textContent = comp[0].recommandation;
+						td.classList.add("border-r", "border-black", "text-white");
+						trScroll.appendChild(td);
+						if(comp[0].recommandation === "ADM"){
+							nbC++;
+						}
+					});
+					let tdRCUEs = document.createElement('td');
+					tdRCUEs.textContent = nbC + "/6";
+					tdRCUEs.classList.add("border-r", "border-black", "text-white");
+					trScroll.appendChild(tdRCUEs);
+
+					let moye = 0;
+					data.forEach(comp => {
+						let moy = document.createElement('td');
+						moy.textContent = comp[0].moyenne;
+						moy.classList.add("border-r", "border-black", "text-white");
+						trScroll.appendChild(moy);
+						moye += parseFloat(comp[0].moyenne);
+					});
+
+					let moyenne = document.createElement('td');
+					moyenne.textContent = (moye / 6).toFixed(2);
+					moyenne.classList.add("border-r", "border-black", "text-white");
+					trScroll.appendChild(moyenne);
+				});
 			}
-
-			let cursus = document.createElement('td');
-			cursus.textContent = etu[7];
-			cursus.classList.add("border-r", "border-black", "text-white");
-			trScroll.appendChild(cursus);
-
 			tbodyScroll.appendChild(trScroll);
-
-			let nbC = 0;
-
-			fetch("http://localhost:8000/compEtu.php?code=" + etu[0] + "&semmestre=" + semmestre).then(response => {
-				return response.json();
-			}).then(data => {
-				data.forEach(comp => {
-					
-					let td = document.createElement('td');
-					td.textContent = comp[0].recommandation;
-					td.classList.add("border-r", "border-black", "text-white");
-					trScroll.appendChild(td);
-					if(comp[0].recommandation === "ADM"){
-						nbC++;
-					}
-				});
-				let tdRCUEs = document.createElement('td');
-				tdRCUEs.textContent = nbC + "/6";
-				tdRCUEs.classList.add("border-r", "border-black", "text-white");
-				trScroll.appendChild(tdRCUEs);
-
-				let moye = 0;
-				data.forEach(comp => {
-					let moy = document.createElement('td');
-					moy.textContent = comp[0].moyenne;
-					moy.classList.add("border-r", "border-black", "text-white");
-					trScroll.appendChild(moy);
-					moye += parseFloat(comp[0].moyenne);
-				});
-
-				let moyenne = document.createElement('td');
-				moyenne.textContent = (moye / 6).toFixed(2);
-				moyenne.classList.add("border-r", "border-black", "text-white");
-				trScroll.appendChild(moyenne);
-			});
-
-
 			cpt++;
 		});
 	});
