@@ -40,7 +40,7 @@ function uploadFile() {
         const formData = new FormData();
         formData.append('file', file);
 
-        fetch("http://192.168.1.17:8000/upload.php", {
+        fetch("http://localhost:8000/upload.php", {
             method: 'POST',
             body: formData
         })

@@ -17,7 +17,7 @@ function envoyer() {
     //var nomPrenom = document.getElementById("exportExcelSemestre").value;
 
 	// Envoyer le contenu HTML à votre script PHP via Fetch
-	fetch('http://192.168.1.17:8000/ExportPDF.php', {
+	fetch('http://localhost:8000/ExportPDF.php', {
 		method: 'POST',
 		body: JSON.stringify({ contenuHTML: contenuHTML, /*nomPrenom: nomPrenom*/ }),
 		headers: {
