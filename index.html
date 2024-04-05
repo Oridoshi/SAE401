@@ -106,17 +106,14 @@
 				</div>
 				<button type="submit" id="btnSubmit" class="bg-vertFonce hover:bg-vertClair hover:text-black text-white font-bold py-2 px-4 rounded ml-2 mr-4 h-full">Valider</button>
 			</div>
-
-			<script src="js/dragAndDrop.js"></script>
-			<script src="js/creerPromo.js"></script>
 		</form>
 	</div>
 	
 	<h1 id="Tableau" class="text-3xl mt-[13rem] font-bold text-vertFonce mb-6">Tableau</h1>
 
 	<div class="flex justify-between">
-		<select id="lstPromo" class="relative flex-none ml-14 mr-4 px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair"></select>
-		<select class="relative flex-none px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair">
+		<select id="lstPromo" class="relative flex-none ml-14 mr-4 px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair" ></select>
+		<select id="semmestre" class="relative flex-none px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair">
 			<option value="1">Semestre 1</option>
 			<option value="2">Semestre 2</option>
 			<option value="3">Semestre 3</option>
@@ -124,9 +121,9 @@
 			<option value="5">Semestre 5</option>
 			<option value="6">Semestre 6</option>
 		</select>
-		<select class="relative flex-none ml-auto mr-14 px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair">
-			<option id="vueCommission">Vue Commission</option>
-			<option id="vueJury">Vue Jury</option>
+		<select id="previ" class="relative flex-none ml-auto mr-14 px-4 py-3 h-full rounded border hover:text-black text-white bg-vertFonce hover:bg-vertClair">
+			<option value="1">Vue Commission</option>
+			<option value="2">Vue Jury</option>
 		</select>
 	</div>
 
@@ -134,13 +131,14 @@
 		<div id="tabFixeDiv" class="flex-none overflow-x-auto sticky left-0 z-20">
 			<!--rajouter les btns de modif pour les admins-->
 			<table id="TableauFixe" class="">
-				<thead class="bg-marronFonce text-white">
+				<thead class="text-white">
 					<tr>
-						<th class="sticky top-0 text-center font-bold p-4 border-r border-black">Avis</th>
-						<th class="sticky top-0 text-center font-bold p-4 border-r border-black">Code_nip</th>
-						<th class="sticky top-0 text-center font-bold p-4 border-r border-black">Rang</th>
-						<th class="sticky top-0 text-center font-bold p-4 border-r border-black">Nom</th>
-						<th class="sticky top-0 text-center font-bold p-4 border-r border-white">Prénom</th>
+						<th class="sticky top-0 text-center font-bold p-4 border-r border-black bg-white"><pre>    </pre></th>
+						<th class="sticky top-0 text-center font-bold p-4 border-r border-black bg-marronFonce">Avis</th>
+						<th class="sticky top-0 text-center font-bold p-4 border-r border-black bg-marronFonce">Code_nip</th>
+						<th class="sticky top-0 text-center font-bold p-4 border-r border-black bg-marronFonce">Rang</th>
+						<th class="sticky top-0 text-center font-bold p-4 border-r border-black bg-marronFonce">Nom</th>
+						<th class="sticky top-0 text-center font-bold p-4 border-r border-white bg-marronFonce">Prénom</th>
 					</tr>
 				</thead>
 				<tbody id="tbodyFixe">
@@ -150,27 +148,15 @@
 		
 		<div id="tabScrollDiv" class="relative flex-none overflow-x-auto mr-4 z-10">
 			<table id="TableauScroll" class="">
-				<thead class="sticky top-0">
+				<thead id="theadScroll" class="sticky top-0">
 				</thead>
-				<tbody>	
+				<tbody id="tbodyScroll">	
 				</tbody>
 			</table>
 		</div>
 </div>
-<script src="js/tableauVisu.js"></script>
 
-	<script>
-		const tabScrollDiv = document.getElementById("tabScrollDiv")
-		const tabFixeDiv = document.getElementById("tabFixeDiv")
 
-		tabScrollDiv.addEventListener("scroll", function(){
-			tabFixeDiv.scrollTop = tabScrollDiv.scrollTop
-		});
-
-		tabFixeDiv.addEventListener("scroll", function(){
-			tabScrollDiv.scrollTop = tabFixeDiv.scrollTop
-		});
-	</script>
 
 
 	<h1 id="Informations" class="text-3xl mt-[3rem] font-bold text-vertFonce mb-16">Informations et exportation</h1>
@@ -246,9 +232,23 @@
 		</form>
 	</div>
 </body>
+<script src="js/login.js"></script>
 <script src="js/visuIndexPDF.js"></script>
 <script src="js/fct.HTML.js"></script>
-<script src="js/login.js"></script>
 <script src="js/lstPromo.js"></script>
-<script src="js/recptDataPourExcel.js"></script>
+<script src="js/tableauVisu.js"></script>
+<script src="js/dragAndDrop.js"></script>
+<script src="js/creerPromo.js"></script>
+<script>
+	const tabScrollDiv = document.getElementById("tabScrollDiv")
+	const tabFixeDiv = document.getElementById("tabFixeDiv")
+
+	tabScrollDiv.addEventListener("scroll", function(){
+		tabFixeDiv.scrollTop = tabScrollDiv.scrollTop
+	});
+
+	tabFixeDiv.addEventListener("scroll", function(){
+		tabScrollDiv.scrollTop = tabFixeDiv.scrollTop
+	});
+</script>
 </html>
