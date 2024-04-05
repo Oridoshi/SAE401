@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 	
-	if(sessionStorage.getItem('estCo') !== null) {
-			
+	if(sessionStorage.getItem('login') !== null) {
 		let estComm = document.getElementById("previ").value === "1";
 		changePrevi();
 		document.getElementById("previ").addEventListener('change', function(){
@@ -20,9 +19,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			let semmestre = document.getElementById("semmestre").value;
 			let annee = document.getElementById("lstPromo").value;
 			if(annee === ""){
-				annee = 1976;
+				annee = 2022;
 			}
-			console.log(annee);
 
 			/*thead scroll */
 			let trHead = document.createElement('tr');
@@ -79,8 +77,10 @@ document.addEventListener("DOMContentLoaded", function() {
 			theadScroll.appendChild(trHead);
 
 			fetch("http://localhost:8000/tabFixe.php?annee=" + annee).then(response => {
-				return response.json();
+				if(response.ok)return response.json();
+				throw new Error('Network response was not ok.');
 			}).then(data => {
+				console.log(data);
 				let cpt = 0;
 				let a = 0;
 				data.forEach(etu => {
@@ -156,17 +156,22 @@ document.addEventListener("DOMContentLoaded", function() {
 								trScroll.appendChild(moy);
 								let id = "";
 								let idTd = cptX + semmestre + etu[1];
+								let cptZ = 1;
 								cptX++;
 								fetch("http://localhost:8000/modulesEtu.php?code=" + etu[0] + "&semmestre=" + semmestre).then(response => {
 									return response.json();
 								}).then(data => {
 
 									data.forEach(d => {
+										console.log(d);
 										let nom = d.lib;
 										
+
 										if(a == 0 && nom.toLowerCase().includes("bonus")){
 											id = nom.match(/\bBIN\d+/);
+											a++;
 										}
+
 										let th = document.createElement('th');
 										th.textContent = nom;
 										th.id = nom;
@@ -180,7 +185,15 @@ document.addEventListener("DOMContentLoaded", function() {
 										td.classList.add("border-r", "border-black", "text-white");
 										document.getElementById(idTd).insertAdjacentElement('afterend', td);
 										idTd = d.lib + etu[1];
-					
+										
+										if(nom.match(/^BINS\d\d\d$/)){
+											cptZ++;
+											id[0] = "BIN" + semmestre + cptZ;
+										}
+
+										if(a != 0 && id[0].match(/^BIN\d\d$/)){
+											idTd = cptZ + semmestre + etu[1];
+										}
 									});
 								});
 							});

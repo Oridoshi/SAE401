@@ -158,7 +158,7 @@ class DB{
         $requete = "INSERT INTO Etudiant VALUES (?,?,?,?,?,?,?,?,?)";
 
         foreach($etudiants as $etudiant) {
-            $tparam = array($etudiant->getIdEtudiant(), $etudiant->getCode_etu(), $etudiant->getNom(), $etudiant->getPrenom(), $etudiant->getParcours(), $etudiant->getGroupeTD(), $etudiant->getGroupeTP(), $etudiant->getCursus(), 1976);
+            $tparam = array($etudiant->getIdEtudiant(), $etudiant->getCode_etu(), $etudiant->getNom(), $etudiant->getPrenom(), $etudiant->getParcours(), $etudiant->getGroupeTD(), $etudiant->getGroupeTP(), $etudiant->getCursus(), $etudiant->getAnnee());
             $this->execMaj($requete, $tparam);
         }
     }

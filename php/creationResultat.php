@@ -40,7 +40,7 @@ function creationResultat($values){
 			}
 		}
 
-		$resultat = new Resultat($lstValeur[0], $lstValeur[1], $semestre, $lstComp, $lstValeur[2], $lstValeur[3], $lstValeur[4], false);
+		$resultat = new Resultat($lstValeur[0], $lstValeur[1], $semestre, $lstComp, $lstValeur[2], $lstValeur[4], $lstValeur[3], false);
 		array_push($lstResultat, $resultat);
 	}
 	$DB = DB::getInstance();
