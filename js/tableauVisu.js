@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			let tbody = document.getElementById("tbodyFixe");
 			let tbodyScroll = document.getElementById("tbodyScroll");
 			let theadScroll = document.getElementById("theadScroll");
-
+		
 			tbody.innerHTML = '';
 			tbodyScroll.innerHTML = '';
 			theadScroll.innerHTML = '';
@@ -75,14 +75,14 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 
 			theadScroll.appendChild(trHead);
-
+			let a = 0;
 			fetch("http://localhost:8000/tabFixe.php?annee=" + annee).then(response => {
 				if(response.ok)return response.json();
 				throw new Error('Network response was not ok.');
 			}).then(data => {
 				console.log(data);
 				let cpt = 0;
-				let a = 0;
+				
 				data.forEach(etu => {
 					let tr = document.createElement('tr');
 					let modif = document.createElement('td');
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
 						moyenne.textContent = etu[11];
 						moyenne.classList.add("border-r", "border-black", "text-white");
 						trScroll.appendChild(moyenne);
-
+						let z = 0;
 						let cptX = 1;
 						fetch("http://localhost:8000/compEtu.php?code=" + etu[0] + "&semmestre=" + semmestre).then(response => {
 							return response.json();
@@ -154,10 +154,12 @@ document.addEventListener("DOMContentLoaded", function() {
 								moy.id = cptX + semmestre + etu[1];
 								moy.classList.add("border-r", "border-black", "text-white");
 								trScroll.appendChild(moy);
-								let id = "";
+								let id = [];
 								let idTd = cptX + semmestre + etu[1];
 								let cptZ = 1;
 								cptX++;
+
+								if(a==0){
 								fetch("http://localhost:8000/modulesEtu.php?code=" + etu[0] + "&semmestre=" + semmestre).then(response => {
 									return response.json();
 								}).then(data => {
@@ -172,30 +174,37 @@ document.addEventListener("DOMContentLoaded", function() {
 											a++;
 										}
 
-										let th = document.createElement('th');
-										th.textContent = nom;
-										th.id = nom;
-										th.classList.add("border-r", "border-black", "text-white","sticky", "top-0", "text-center", "font-bold", "p-4", "bg-marronFonce");
-										document.getElementById(id[0]).insertAdjacentElement('afterend', th);
-										id[0] = nom;
-
-										let td = document.createElement('td');
-										td.textContent = d.notes;
-										td.id = d.lib + etu[1];
-										td.classList.add("border-r", "border-black", "text-white");
-										document.getElementById(idTd).insertAdjacentElement('afterend', td);
-										idTd = d.lib + etu[1];
-										
-										if(nom.match(/^BINS\d\d\d$/)){
-											cptZ++;
-											id[0] = "BIN" + semmestre + cptZ;
+										if(typeof id[0] !== 'undefined' && document.getElementById(id[0]) !== null){
+											let th = document.createElement('th');
+											th.textContent = nom;
+											th.id = nom;
+											th.classList.add("border-r", "border-black", "text-white","sticky", "top-0", "text-center", "font-bold", "p-4", "bg-marronFonce");
+											document.getElementById(id[0]).insertAdjacentElement('afterend', th);
+											id[0] = nom;
+											if(nom.match(/^BINS\d\d\d$/)){
+												cptZ++;
+												id[0] = "BIN" + semmestre + cptZ;
+											}
 										}
 
-										if(a != 0 && id[0].match(/^BIN\d\d$/)){
-											idTd = cptZ + semmestre + etu[1];
-										}
 									});
+								});}
+								fetch("http://localhost:8000/modulesEtu.php?code=" + etu[0] + "&semmestre=" + semmestre).then(response => {
+									return response.json();
+								}).then(data => {
+									let x = 4;
+									if(z == 0 || z == 2) {x = 5};
+									if(z == 4 || z == 5) {x=3};
+										for(let i = 1; i <= x; i++){
+											let td = document.createElement('td');
+											td.classList.add("border-r", "border-black", "text-white");
+											document.getElementById(idTd).insertAdjacentElement('afterend', td);
+										}
+									
+									z++;
+									idTd = cptZ + semmestre + etu[1];
 								});
+
 							});
 						});
 
@@ -244,17 +253,6 @@ document.addEventListener("DOMContentLoaded", function() {
 					tbodyScroll.appendChild(trScroll);
 					cpt++;
 				});
-			});
-
-			fetch("http://localhost:8000/tabEnTete.php").then(response => {
-				return response.json();
-			}).then(data => {
-				//si moyenne sinon jury
-				if(estComm){
-
-				} else {
-
-				}
 			});
 		}
 	}
