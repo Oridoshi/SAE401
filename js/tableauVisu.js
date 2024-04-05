@@ -10,7 +10,6 @@ function corpsFixe(){
 	}).then(data => {
 		let cpt = 0;
 		data.forEach(etu => {
-			console.log(etu);
 			let tr = document.createElement('tr');
 			let avis = document.createElement('td');
 			let code = document.createElement('td');
