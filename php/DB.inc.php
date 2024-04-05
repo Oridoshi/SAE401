@@ -99,10 +99,10 @@ class DB{
 		return $this->execQuery($query, $tparam, "Etudiant");
 	}
 
-	public function selectResultats() {
-		$query = "SELECT * FROM Resultat;";
-		return $this->execQuery($query, NULL, "Resultat");
-	}
+    public function selectResultats() {
+        $query = "SELECT * FROM Resultats;";
+        return $this->execQuery($query, NULL, "Resultat");
+    }
 
 	public function selectCompetences() {
 		$query = "SELECT * FROM Competence;";
@@ -162,11 +162,11 @@ class DB{
 	{
 		$requete = "INSERT INTO Etudiant VALUES (?,?,?,?,?,?,?,?,?)";
 
-		foreach($etudiants as $etudiant) {
-			$tparam = array($etudiant->getIdEtudiant(), $etudiant->getCode_etu(), $etudiant->getNom(), $etudiant->getPrenom(), $etudiant->getParcours(), $etudiant->getGroupeTD(), $etudiant->getGroupeTP(), $etudiant->getCursus(), 1976);
-			$this->execMaj($requete, $tparam);
-		}
-	}
+        foreach($etudiants as $etudiant) {
+            $tparam = array($etudiant->getIdEtudiant(), $etudiant->getCode_etu(), $etudiant->getNom(), $etudiant->getPrenom(), $etudiant->getParcours(), $etudiant->getGroupeTD(), $etudiant->getGroupeTP(), $etudiant->getCursus(), $etudiant->getAnnee());
+            $this->execMaj($requete, $tparam);
+        }
+    }
 
 	/**
 	 * Insère des résultats dans la base de données.
@@ -250,5 +250,47 @@ class DB{
             $tparam = array($competenceModule->getIdComp(), $competenceModule->getIdModule(), $competenceModule->getCoef());
             $this->execMaj($requete, $tparam);
         }
+    }
+
+    public function getCompEtu($id_etu, $id_comp) {
+        $query = "SELECT recommandation, moyenne FROM Competence WHERE id_etu = ? AND id_comp = ?;";
+        $stmt = $this->pdo->prepare($query);
+
+        $stmt->execute([$id_etu, $id_comp]);
+        
+        $resultat = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        return $resultat;
+    }
+
+    public function getEtudiants($annee) {
+        $query = "SELECT *, rang, moyenne FROM Etudiant NATURAL JOIN Resultats WHERE annee = ?;";
+        $stmt = $this->pdo->prepare($query);
+
+        $stmt->execute([$annee]);
+
+        $resultats = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        $etudiants = array();
+
+        foreach ($resultats as $resultat) {
+            $etudiant = [$resultat->id_etu, $resultat->code_etu, $resultat->nom, $resultat->prenom, $resultat->parcours, $resultat->groupe_td, $resultat->groupe_tp, $resultat->cursus, $resultat->annee, $resultat->avis, $resultat->rang, $resultat->moyenne];
+            $etudiants[] = $etudiant;
+        }
+
+        return $etudiants;
+    }
+
+    public function getModules($code, $regex) {
+        $query = "SELECT * FROM Modules WHERE code_etu = ? and lib ~ ? ;";
+        $stmt = $this->pdo->prepare($query);
+
+        $stmt->execute([$code, $regex]);
+
+        $resultats = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        
+
+        return $resultats;
     }
 }

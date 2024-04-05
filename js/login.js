@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function() {
 						sessionStorage.setItem('login', username);
 						overlay.classList.add('hidden');
 						modal.classList.add('hidden');
+						sessionStorage.setItem('estCo', true);
+						window.location.reload();
 					} else {
 						alert('Nom d\'utilisateur ou mot de passe incorrect.');
 					}
