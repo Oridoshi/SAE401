@@ -99,10 +99,28 @@ class DB{
 		return $this->execQuery($query, $tparam, "Etudiant");
 	}
 
-    public function selectResultats() {
-        $query = "SELECT * FROM Resultats;";
-        return $this->execQuery($query, NULL, "Resultat");
+	public function selectMoyEtu($etudiants, $annee, $competence){
+        $requete = "Select SUM(moyenne) from Competence where id_etu = ? AND code_etu = ? AND (id_comp = ? OR id_comp = ?);";
+
+		$etudiant  = $etudiants[0];
+        $semestre1 = null; 
+        $semestre2 = null;
+
+        switch ($annee)
+        {
+            case 1: $semestre1 = 1; $semestre2 = 2; break;
+            case 2: $semestre1 = 3; $semestre2 = 4; break;
+            case 3: $semestre1 = 5; $semestre2 = 6; break;
+        }
+
+        $tparam = array($etudiant->getIdEtudiant(), $etudiant->getCode_etu(), "BIN".$semestre1.$competence, "BIN".$semestre2.$competence);
+        $this->execMaj($requete, $tparam);
     }
+
+	public function selectResultats() {
+		$query = "SELECT * FROM Resultat;";
+		return $this->execQuery($query, NULL, "Resultat");
+	}
 
 	public function selectCompetences() {
 		$query = "SELECT * FROM Competence;";

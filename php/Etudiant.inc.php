@@ -10,7 +10,7 @@ class Etudiant {
 	public ?string $groupe_TP;
 	public ?string $cursus;
 	public int $annee;
-	public bool $avis;
+	public ?bool $avis;
 
 	public function __construct(int $id_etudiant = 0, ?string $code_etu = "", ?string $nom = "", ?string $prenom = "", ?string $parcours = "", ?string $groupe_TD = "", ?string $groupe_TP = "", ?string $cursus = "", int $annee = 0, bool $avis = false) {
 		$this->id_etu = $id_etudiant;
